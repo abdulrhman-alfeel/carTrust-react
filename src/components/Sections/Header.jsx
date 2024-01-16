@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
-import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
+import { clearYears, fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 
 export default function Header() {
   const childRef = useRef(null);
@@ -32,7 +32,7 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchManufacturers());
-    dispatch(fetchYears());
+    // dispatch(fetchYears());
     dispatch(fetchModels("64"));
   }, [dispatch]);
 
@@ -73,6 +73,12 @@ export default function Header() {
   const handleManufacturerChange = (value) => {
     setManufacturer(value);
     dispatch(fetchModels(value));
+    dispatch(clearYears());
+  }
+
+  const handleModelChange = (value) => {
+    setModel(value);
+    dispatch(fetchYears(value,manufacturer));
   }
 
   const submitHandler = () => {
@@ -159,7 +165,7 @@ export default function Header() {
             </select>
           </div>
           <div class="col-lg-3">
-            <select id="typeText" placeholder="Type here" value={model} class="form-control" onChange={(e) => setModel(e.target.value)}>
+            <select id="typeText" placeholder="Type here" value={model} class="form-control" onChange={(e) => handleModelChange(e.target.value)}>
               {
                 models?.map((model, index) => {
                   return (
