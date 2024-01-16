@@ -1,0 +1,7 @@
+.slick-slide {
+  width: 80px;
+}
+
+.slider .slick-track {
+  width: max-content !important;
+}
