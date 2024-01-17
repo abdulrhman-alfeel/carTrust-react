@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
-import { clearYears, fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
+import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 
 export default function Header() {
   const childRef = useRef(null);
@@ -32,8 +32,9 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchManufacturers());
-    // dispatch(fetchYears());
     dispatch(fetchModels("64"));
+    dispatch(fetchYears(model,manufacturer));
+
   }, [dispatch]);
 
   const handleSlideNext = (slideNext, ind) => {
@@ -73,7 +74,8 @@ export default function Header() {
   const handleManufacturerChange = (value) => {
     setManufacturer(value);
     dispatch(fetchModels(value));
-    dispatch(clearYears());
+    dispatch(fetchYears(models[0],manufacturers[0]));
+    // dispatch(clearYears());
   }
 
   const handleModelChange = (value) => {
