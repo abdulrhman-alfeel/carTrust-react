@@ -803,7 +803,8 @@ margin:25px
 
  .slick-dots{
   position: relative;
-  top:-300px
+  top:-300px;
+ 
  } 
 @media(max-width:960px){
   .slick-slide {

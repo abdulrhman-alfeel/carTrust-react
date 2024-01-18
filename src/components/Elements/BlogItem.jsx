@@ -40,28 +40,21 @@ export default function BlogItem({icon, title, subtitle,times,link="#"}) {
         fontStyle: "normal",
         fontWeight: "400",
         lineHeight: "normal",
-       
         }}
         >{title}</TitleStyle>
            {/* <a href="#" > */}
-           <LinkStyle_b href={`${link}`}>
+        <LinkStyle_b href={`${link}`}>
         <i class="fi fi-rr-angle-small-left" style={{color:"#2563eb",marginTop: "10px"}}></i>
         <SubtitleStyle>مشاهدة المزيد</SubtitleStyle>
         </LinkStyle_b>
         {/* <SubtitleStyle className="font13">{subtitle}</SubtitleStyle> */}
         </div>
-
         <IconStyle className="col-md-6 m-0">
         <img src={getIcon} />
         {/* <SubtitleStyle_respons>مشاهدة المزيد</SubtitleStyle_respons> */}
         </IconStyle>
-
-       
       </div>
- 
-   
-      
-       
+
     // </Wrapper>
     // <Wrapper >
 
@@ -108,8 +101,11 @@ export default function BlogItem({icon, title, subtitle,times,link="#"}) {
 const LinkStyle_b = styled.a`
 display: flex;
 flex-direction: row-reverse; 
+// border:solid 2px #000;
+justify-content: flex-end;
+align-self: center;
 text-align: right;
-margin-left:25px;
+// margin-left:25px;
 
 `;
 const Wrapper = styled.div`

@@ -48,15 +48,10 @@ export default function Projects() {
                     title="  لكزس تتصدر قائمة أكثر 10 علامات تجارية للسيارات اعتمادية في العالم دراسة  "
                     // subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
                     />
-   
-   
-   
-   
 
 
             </ServiceBoxWrapper>
-           
-         
+
             {/* <ServiceBoxWrapper>
               <ServiceBox
                 icon="monitor"
@@ -83,7 +78,7 @@ export default function Projects() {
                 <Madonaplus 
                 href="#"
                 style={{background:"#2D3291" ,color:"#FFF" ,marginTop:"30px"}}>
-                <i class="fi fi-rr-angle-small-right" ></i>المزيد 
+               المزيد  <i class="fi fi-rr-angle-small-left" ></i>
                  </Madonaplus>
                  </div>  
               </div>
