@@ -76,7 +76,9 @@ export default function Contact() {
           </ListElement>
           </div>
           <ListElement>
-          <a rel="nofollow" className="  text-reset grid-cols-2">
+          <a rel="nofollow" className="   grid-cols-2"
+        
+          >
                     <div className="row"
                     // style={{margin:"2px"}}
                     >
@@ -90,7 +92,7 @@ export default function Contact() {
        
         </div>
          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mt-10">
-           <ListHeader className="text-uppercase fw-bold mb-4">
+           <ListHeader className="text-uppercase fw-bold mb-4 ">
                    مصادر
           </ListHeader>
           <ListElement>
@@ -169,7 +171,7 @@ export default function Contact() {
       </div>  
    
       <div  className="logo_footer">
-      <a > <img src={RollerIcon} alt=""  className="cartrust-footer"/> </a>
+      <a href="#"> <img src={RollerIcon} alt=""  className="cartrust-footer"/> </a>
       </div>
  </div>
   </Wrapper>
@@ -189,6 +191,7 @@ const InnerWrapper = styled.div`
 
 const ListHeader = styled.div`
  text-align:right;
+ margin:10px;
   // @media (max-width: 550px) {
   //   margin: 20px 0;
   // }

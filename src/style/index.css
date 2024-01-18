@@ -171,6 +171,9 @@
  .evlution_box{
   width:600px;
  }
+ .text-reset{
+  text-align: center;
+ }
 .text-reset:hover{
   font-weight: 900;
 }
@@ -902,6 +905,7 @@ margin:25px
   --bs-gutter-x: 1.5rem; 
     --bs-gutter-y: 0;
     display: flex;
+    margin-bottom: 40px;
     justify-content: space-between;
     /* width:90%; */
     /* margin-top: 30px; */
@@ -914,8 +918,7 @@ margin:25px
 
 .download_footer{
   display: block;
-
-   position:relative;
+  position:relative;
   left:7rem;
 }
 
@@ -924,8 +927,17 @@ margin:25px
   margin: auto;
 }
 
-.input-footer{}
-
+.input-footer{
+  width: 342px;
+height: 64px;
+flex-shrink: 0;
+border-radius: 15px;
+background: rgba(233, 233, 233, 0.75);
+}
+.input-group-text{
+  border-radius: 15px;
+background: #2D3291;
+}
 
 .inupt-footer{
   width:20rem
@@ -938,6 +950,7 @@ margin:25px
 }
 .footer-down{
   width: 50%;
+
   /* border:solid 2px #000; */
   display: grid;
   justify-content: flex-start;
