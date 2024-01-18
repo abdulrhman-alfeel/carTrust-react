@@ -66,5 +66,9 @@ font-weight: 800;
 line-height: 61px;
 @media(max-width:860px){
 line-height: 3rem;}
-  
+  @media(max-width:960px){
+    font-size: 28px;
+font-style: normal;
+font-weight: 800;
+  }
 `;

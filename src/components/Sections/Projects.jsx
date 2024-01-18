@@ -99,7 +99,7 @@ export default function Projects() {
                <p className="title_sub">
                 هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
                 </p>
-               <div  className=" app">
+               <div  className="app">
                 <a 
                 href="https://get.cartrust.sa"
                 className="col-6 "

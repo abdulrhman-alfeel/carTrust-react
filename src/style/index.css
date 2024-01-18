@@ -181,7 +181,7 @@
      
    }
  .evl_continer{
-  margin: 40px;
+  margin: auto;
  }
  .evlution_box{
   width:50%;
@@ -701,7 +701,8 @@ line-height: normal;
 
 }
 .app img{
-  width:"200rem";
+  width:40%;
+  border-radius: 10px;
 /* border:solid 1px #000; */
 margin:25px
 }
@@ -740,7 +741,8 @@ margin:25px
     /* border:solid #000 1px; */
   }
   .app img{
-    width: 80%;
+    width: 40%;
+    margin:5px 5px auto;
   }
   .phone-image-2 {
     width: 90%;
@@ -799,9 +801,17 @@ margin:25px
    padding: 20px;
  }
 
+ .slick-dots{
+  position: relative;
+  top:-300px
+ } 
 @media(max-width:960px){
   .slick-slide {
     margin: auto;}
+    .slick-dots{
+      /* position: relative; */
+      top:-10px
+     } 
 
 }
 
@@ -813,10 +823,6 @@ margin:25px
  }
 
 
- .slick-dots{
-  position: relative;
-  top:-300px
- } 
 
 .slick-list {
   /* // adjust the card-margin  */
