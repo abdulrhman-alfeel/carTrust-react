@@ -25,12 +25,13 @@ export default function ClientReviews() {
 
   var settings = {
     infinite: true,
-    speed: 400,
+    speed: 500,
     slidesToShow: width_slid,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     autoplay:true,
     arrows: false,
-    centerPadding: 100
+    // centerPadding: 100,
+    // autoplaySpeed: 1000,
   };
   return (
 <Wrapper>
@@ -43,13 +44,14 @@ style={{
   fontStyle: "normal",
   fontWeight: "700",
   lineHeight: "130%" /* 52px */
+  
 }}
 >ما يقوله الناس عنا</h1>
 
 <br />
 <div
 >
-      <Slider dots={true} {...settings} >
+      <Slider  dots={true} {...settings} >
     {/* <div>
       <p>Current width: {width}px</p>
     </div> */}
@@ -93,7 +95,6 @@ veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatib
 "
 />
       
-     
     </Slider>
     </div>
 
@@ -101,8 +102,6 @@ veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatib
 
   );
 
-
-   
 }
 
 

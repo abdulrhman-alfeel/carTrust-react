@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
-<<<<<<< HEAD
 import arrow_log from '../../assets/img/arrow_log.png'
 import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 import { components } from 'react-select';
@@ -22,9 +21,6 @@ import { NavLink } from "react-router-dom";
 
 const { SingleValue, Option } = components;
 
-=======
-import { billingInfo, fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
->>>>>>> 3304d67450bd6f60a434a4cde7f7e12f4e256fec
 
 export default function Header() {
   const childRef = useRef(null);
@@ -46,17 +42,9 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchManufacturers());
-<<<<<<< HEAD
     dispatch(fetchYears());
     dispatch(fetchModels("64"));
     console.log(manufacturers)
-=======
-    dispatch(billingInfo());
-    dispatch(fetchModels("64"));
-    dispatch(fetchYears(model,manufacturer));
-    console.log(billing);
-
->>>>>>> 3304d67450bd6f60a434a4cde7f7e12f4e256fec
   }, [dispatch]);
 
   const handleSlideNext = (slideNext, ind) => {
@@ -222,7 +210,6 @@ const customStyles = {
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => setSwiper(swiper)}
           >
-
             {images.map((image, index) => {
               return (
                 <SwiperSlide  key={index}>
@@ -252,7 +239,7 @@ const customStyles = {
                               handleSlidePrevClick();
                             }}
                           >
-                           <i class="fi fi-rr-arrow-small-right"
+                          <i class="fi fi-rr-arrow-small-right"
                             style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}></i>
                           </button>
                           <button
@@ -262,9 +249,8 @@ const customStyles = {
                               handleSlidePrevClick();
                             }}
                           >
-                           <i class="fi fi-rr-arrow-small-left"
+                          <i class="fi fi-rr-arrow-small-left"
                             style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}
-
                            ></i>
                           </button>
                       
@@ -479,7 +465,7 @@ const ImageWrapper = styled.div`
   // position: relative;
   z-index: 9;
   @media (max-width: 960px) {
-    width: 10%;
+    width: 100%;
     justify-content: center;
   }
 `;

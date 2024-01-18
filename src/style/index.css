@@ -640,6 +640,7 @@ flex-shrink: 0;
  .image_post{
   width: 20%;
   height: 20%;
+
   /* margin: 10px; */
 
   background-color: #ffffff;
@@ -690,8 +691,8 @@ font-style: normal;
 font-weight: 500;
 line-height: normal;
 
-
  }
+
 .app{
   width:"400px";
   margin:25px
@@ -792,13 +793,17 @@ margin:25px
 
 
  .slick-slide {
-   margin:  auto;
+   margin: 0 20px;
    padding: 20px;
  }
 
- .slick-dots {
-   bottom: 40px;
- }
+@media(max-width:960px){
+  .slick-slide {
+    margin: auto;}
+
+}
+
+ 
  .continer_star{
   display: flex;
   justify-content:flex-end;
@@ -806,7 +811,10 @@ margin:25px
  }
 
 
-
+ .slick-dots{
+  position: relative;
+  top:-300px
+ } 
 
 .slick-list {
   /* // adjust the card-margin  */
@@ -816,21 +824,23 @@ margin:25px
    display: inline-flex;
    /* left: 80px; */
    flex-direction: row-reverse;
-   position: relative;
+   /* position: relative; */
    margin: 15px;
+   padding: 0 10px;
    margin-bottom: 5px;
    /* border: solid 2px #000 ; */
  }
  .client-name-post {
   color: #464646;
-
-padding: 5px;
+  padding: 0  20px;
+  padding-top:  20px;
+  padding-bottom:  20px;
   text-align: right;
   font-family: "Tajawal";
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 180%; /* 32.4px */
+  line-height: 130%; /* 32.4px */
  }
 .titl_blog_note{
   display:'grid';
