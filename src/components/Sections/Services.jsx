@@ -13,8 +13,8 @@ import ServiceTitle from "../Elements/ServiceTitle";
 export default function Services() {
   return (
     <Wrapper id="services" dir="rtl">
-      <div className="lightBg" style={{ padding: "50px 0" }}>
-        <div className="container">
+      <div className="lightBg" style={{ padding: "30px 0" }}>
+        <div style={{height:"14rem"}}>
           <ClientSlider />
         </div>
       </div>
@@ -25,19 +25,12 @@ export default function Services() {
 
           <div className="row">
 
-            {/* <ServiceBoxHeader>
-            <h1 className="font40 extraBold center">Our Awesome Services</h1>
-            <h2 className="font13">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-              <br />
-              labore et dolore magna aliquyam erat, sed diam voluptua.
-            </h2>
-            </ServiceBoxHeader> */}
+         
 
-            <div className="col-md-6">
+          <div className="col-md-6">
               <ServiceBoxRow >
                 {/* <ServiceBoxRow > */}
-                <ServiceBoxWrapper>
+                <ServiceBoxWrapper >
                   <ServiceTitle
                     title="افضل الخدمات"
                     subtitle="احصل على تجربة فريدة"
@@ -48,11 +41,9 @@ export default function Services() {
               </ServiceBoxRow>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6"></div>
 
-            </div>
-
-            <ServicesWrapper className="col-sm-12 col-md-12 col-lg-6">
+            <ServicesWrapper className="col-sm-12 col-md-12 col-lg-6 evl_continer">
               <ServiceBoxRow >
                 {/* <ServiceBoxRow > */}
                 <ServiceBoxWrapper>
@@ -77,24 +68,18 @@ export default function Services() {
                   />
                 </ServiceBoxWrapper>
 
-                <ServiceBoxWrapper>
-                  <ServiceBox
-                    icon="monitor"
-                    title="فحص المركبات"
-                    subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
-                  />
-                </ServiceBoxWrapper>
-
+               
               </ServiceBoxRow>
             </ServicesWrapper>
 
 
-
-
             <CarImagesWrapper className="service-car-images col-sm-12 col-md-12 col-lg-6">
-              <img className="service-car-image-1" src={carImage2} alt="" />
-              {/* <img className="service-car-image-2" src={carImage1} alt="" /> */}
-            </CarImagesWrapper>
+            <img src={carImage2}
+          className="service-car-image-1"
+            />
+           </CarImagesWrapper>
+
+        
 
           </div>
 
@@ -110,19 +95,19 @@ const Wrapper = styled.section`
 `;
 const ServiceBoxRow = styled.div`
   
+left:30px
    
 `;
 
 
 const CarImagesWrapper = styled.div`
-
 `;
 
 
 const ServicesWrapper = styled.div`
    
 @media (max-width: 860px) {
-  // width: 100%;
+   width: 80%;
   }
 `;
 
@@ -136,12 +121,16 @@ const ServiceBoxHeader = styled.div`
   }
 `;
 const ServiceBoxWrapper = styled.div`
-  
+  // margin:35px;
   @media (max-width: 860px) {
     width: 100%;
+    display:flex;
     alien-items:center
     text-align: center;
     padding: 40px 0;
+    margin:auto;
+    // border:solid 2px #000;
+  
   }
 `;
 const HeaderInfo = styled.div`

@@ -9,7 +9,7 @@ function SvgComponent(props) {
   return (
 
     // <ReactSVG src={Logo}   wrapper="span"/>
-    <img src={Logopng} />
+    <img src={Logopng} className="logo_home"/>
 
     
  

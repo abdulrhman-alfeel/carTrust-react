@@ -73,7 +73,7 @@ const Form = styled.form`
     border: 0px;
     outline: none;
     box-shadow: none;
-    border-bottom: 1px solid #707070;
+    // border-bottom: 1px solid #707070;
     height: 30px;
     margin-bottom: 30px;
   }

@@ -229,7 +229,8 @@ export default function Checkout() {
                       <div class="col-6 mb-3">
                         <p class="mb-0">Maintenance History</p>
                         <div class="form-outline">
-                          <select id="typeText" placeholder="Type here" class="form-control" onChange={(e) => handleChange("maintenance_history", e.target.value)}>
+                          <select id="typeText"
+                          placeholder="Type here" class="form-control" onChange={(e) => handleChange("maintenance_history", e.target.value)}>
                             <option>Please choose...</option>
                             {
                               ["available", "not_available"]?.map(opt => {
@@ -295,23 +296,23 @@ export default function Checkout() {
                           <div className="con-lg-12" style={{ margin: "20px" }}>
                             <p>Maintainance history </p>
                           </div>
+                          <div className="row-chackbox">
+                              <div className="col-lg-6 responsev-m">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault8" id="flexRadioDefault8" />
+                                <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault8">
+                                  Available <br />
+                                </label>
+                              </div>
 
-                          <div className="col-lg-6">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault8" id="flexRadioDefault8" />
-                            <label class="form-check-label" for="flexRadioDefault8">
-                              Available <br />
-                            </label>
-                          </div>
-
-                          <div className="col-lg-6">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault8" id="flexRadioDefault8" checked />
-                            <label class="form-check-label" for="flexRadioDefault8">
-                              Not  Available <br />
-                              {/* <small class="text-muted">3-4 days via Fedex </small> */}
-                            </label>
-                          </div>
+                              <div className="col-lg-6 responsev-m">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault8" id="flexRadioDefault8" checked />
+                                <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault8">
+                                  Not  Available <br />
+                                  {/* <small class="text-muted">3-4 days via Fedex </small> */}
+                                </label>
+                              </div>
+                            </div>
                         </div>
-
 
                       </div>
 
@@ -321,22 +322,26 @@ export default function Checkout() {
                           <div className="con-lg-12" style={{ margin: "20px" }}>
                             <p>Is it inspected by car trust </p>
                           </div>
-
-                          <div className="col-lg-6">
+                        <div className="row-chackbox">
+                          <div 
+                            
+                          className="col-lg-6 responsev-m">
                             <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" />
-                            <label class="form-check-label" for="flexRadioDefault2">
+                            <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault2">
                               Express delivery <br />
                               {/* <small class="text-muted">3-4 days via Fedex </small> */}
                             </label>
                           </div>
 
-                          <div className="col-lg-6">
+                          <div className="col-lg-6 responsev-m">
                             <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2" checked />
-                            <label class="form-check-label" for="flexRadioDefault2">
+                            <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault2">
                               Express delivery <br />
                               {/* <small class="text-muted">3-4 days via Fedex </small> */}
                             </label>
                           </div>
+                        </div>
+                        
                         </div>
                       </div>
 
@@ -348,21 +353,23 @@ export default function Checkout() {
                           <div className="con-lg-12" style={{ margin: "20px" }}>
                             <p>Maintainance history </p>
                           </div>
+                          <div className="row-chackbox">
+                            <div 
+                              >                            
+                              <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" />
+                              <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault4">
+                                Express delivery <br />
+                                {/* <small class="text-muted">3-4 days via Fedex </small> */}
+                              </label>
+                            </div>
 
-                          <div className="col-lg-6">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" />
-                            <label class="form-check-label" for="flexRadioDefault4">
-                              Express delivery <br />
-                              {/* <small class="text-muted">3-4 days via Fedex </small> */}
-                            </label>
-                          </div>
-
-                          <div className="col-lg-6">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" checked />
-                            <label class="form-check-label" for="flexRadioDefault4">
-                              Express delivery <br />
-                              {/* <small class="text-muted">3-4 days via Fedex </small> */}
-                            </label>
+                            <div className="col-lg-6 responsev-m">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" checked />
+                              <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault4">
+                                Express delivery <br />
+                                {/* <small class="text-muted">3-4 days via Fedex </small> */}
+                              </label>
+                            </div>
                           </div>
                         </div>
 
@@ -375,21 +382,23 @@ export default function Checkout() {
                           <div className="con-lg-12" style={{ margin: "20px" }}>
                             <p>Is it inspected by car trust </p>
                           </div>
+                          <div className="row-chackbox">
+                              <div 
+                                >
+                                <input class="form-check-input" type="radio" name="flexRadioDefault6" id="flexRadioDefault6" />
+                                <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault6">
+                                  Express delivery <br />
+                                  {/* <small class="text-muted">3-4 days via Fedex </small> */}
+                                </label>
+                              </div>
 
-                          <div className="col-lg-6">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault6" id="flexRadioDefault6" />
-                            <label class="form-check-label" for="flexRadioDefault6">
-                              Express delivery <br />
-                              {/* <small class="text-muted">3-4 days via Fedex </small> */}
-                            </label>
-                          </div>
-
-                          <div className="col-lg-6">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault6" id="flexRadioDefault6" checked />
-                            <label class="form-check-label" for="flexRadioDefault6">
-                              Express delivery <br />
-                            </label>
-                          </div>
+                              <div className="col-lg-6 responsev-m">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault6" id="flexRadioDefault6" checked />
+                                <label class="form-check-label" style={{marginLeft:"5px"}} for="flexRadioDefault6">
+                                  Express delivery <br />
+                                </label>
+                              </div>
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -462,15 +471,7 @@ export default function Checkout() {
                   <img className="m-2" src={cash} alt="" />
                 </PaymentMethodWrapper>
 
-
-
-
               </div>
-
-
-
-
-
 
               <div class="ms-lg-4 mt-4 mt-lg-0">
                 <div class="d-flex justify-content-between">
@@ -524,6 +525,8 @@ export default function Checkout() {
 
 const Wrapper = styled.div`
    background:#FFF
+
+
 `;
 
 const CarSelectWrapper = styled.div`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
 // Screens
@@ -33,6 +33,7 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
+
   return (
     <>
       <Provider store={store}>
@@ -41,6 +42,8 @@ export default function App() {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
           <link href="https://fonts.googleapis.com/css2?family=Khula:wght@400;600;800&display=swap" rel="stylesheet" />
+          <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'></link>
+       
         </Helmet>
         <RouterProvider router={router} />
         {/* <Landing /> */}

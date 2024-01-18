@@ -35,15 +35,15 @@ export default function ServiceBox({icon, title, subtitle}) {
   return (
     <Wrapper >
 
-<div className="container" style={{width:"500px"}}>
+<div className="container evlution_box" >
       <div className="row no-gutters">
-      <IconStyle className="col-md-6 m-0">
-        <img src={getIcon} />
+      <IconStyle className="col-md-6 m-3">
+        <img src={getIcon}  />
         </IconStyle>
 
-        <div className="col-md-6 m-0" dir="rtl">
-        <TitleStyle className="font20 extraBold">{title}</TitleStyle>
-        <SubtitleStyle className="font13">{subtitle}</SubtitleStyle>
+        <div className="col-md-6 m-0 evlution_box_text" dir="rtl">
+        <TitleStyle className="font20 extraBold ">{title}</TitleStyle>
+        <SubtitleStyle className="font13 ">{subtitle}</SubtitleStyle>
         </div>
 
         <br />
@@ -61,30 +61,55 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 const IconStyle = styled.div`
-max-width: 137px;
+max-width: 147px;
 max-height:137px;
 background-color:white;
+border-radius: 15px;
+background: #FFF;
+box-shadow: 1px 10px 35px 0px rgba(0, 0, 0, 0.10);
+padding:25px;
+
+
   @media (max-width: 860px) {
     margin: 0 auto;
+    
   }
 `;
 
 const TitleStyle = styled.h2`
-color:#1E1E1E;
 
- 
+color: #000;
+
+text-align: right;
+font-family: Tajawal;
+font-size: 22px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
 @media (max-width: 860px) {
   margin: 10px;
+  text-align: center;
+  width:10rem
 }
 `;
 const SubtitleStyle = styled.p`
-word-wrap: break-word;
-width:500px;
-color:#858585;
+// word-wrap: break-word;
+// width:500px;
+// color:#858585;
+color: #858585;
+
+text-align: right;
+font-family: Tajawal;
+font-size: 20px;
+font-style: normal;
+font-weight: 800;
+line-height: normal;
 @media (max-width: 860px) {
   margin: 10px;
   width :300px;
-  word-wrap: break-word;  `;
+  word-wrap: break-word;
+  text-align: center;
+  `;
 
   const Divider = styled.div`
   stroke-width: 12px;

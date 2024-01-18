@@ -1,80 +1,104 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
-import carImage2 from "../../assets/img/car34.png";
-
+import PostsClint from './PostsClint'
 // Assets
 
 
 export default function ClientReviews() {
 
+  const [width, setWidth] = useState(window.innerWidth);
+  const [width_slid, setWidth_slid] = useState(4);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+      setWidth_slid(window.innerWidth < 960 ? 1 :4)
+
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   var settings = {
-    dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1
+    slidesToShow: width_slid,
+    slidesToScroll: 1,
+    autoplay:true,
+    arrows: true,
+    centerPadding: 30
+
+   
   };
   return (
-    <Wrapper>
-<h1>ما يقوله الناس عنا</h1>
+<Wrapper>
+<h1
+style={{
+  color: "#2D3291",
+  textAlign: "center",
+  fontFamily: "Tajawal",
+  fontSize: "40px",
+  fontStyle: "normal",
+  fontWeight: "700",
+  lineHeight: "130%" /* 52px */
+}}
+>ما يقوله الناس عنا</h1>
+
 <br />
-    <Slider {...settings}>
+<div
+>
+      <Slider  {...settings} >
+    {/* <div>
+      <p>Current width: {width}px</p>
+    </div> */}
 
-       <LogoWrapper >
+<PostsClint 
+nameUser="Dawn Marie Williams "
+evaluation="5.0"
+title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
+veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+"
+/>
       
-      <div className="client-name">
-      <div>
-      <h5>Dawn Marie Williams <span>Client</span> </h5>
-        <p>******</p>     
- </div>
-
-       <img style={{width: "40px", height: "40px" , margin:"0 10px"}} src={carImage2} alt="" />
-
-       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa. </p>
-
-         </LogoWrapper>
-
-         <LogoWrapper >
-         <div className="client-name">
-        <h5>Dawn Marie Williams <span>Client</span> </h5>
-        <img style={{width: "40px", height: "40px" , margin:"0 10px"}} src={carImage2} alt="" />
-      </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa. </p>
-         </LogoWrapper>
-       <LogoWrapper >
-       <div className="client-name">
-        <h5>Dawn Marie Williams <span>Client</span> </h5>
-        <img style={{width: "40px", height: "40px" , margin:"0 10px"}} src={carImage2} alt="" />
-      </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa. </p>
-         </LogoWrapper>
-         <LogoWrapper >
-         <div className="client-name">
-        <h5>Dawn Marie Williams <span>Client</span> </h5>
-        <img style={{width: "40px", height: "40px" , margin:"0 10px"}} src={carImage2} alt="" />
-      </div>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa. </p>
-         </LogoWrapper>
-         <LogoWrapper >
-         <div className="client-name">
-        <h5>Dawn Marie Williams <span>Client</span> </h5>
-        <img style={{width: "40px", height: "40px" , margin:"0 10px"}} src={carImage2} alt="" />
-      </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa. </p>
-         </LogoWrapper>
-         <LogoWrapper >
-         <div className="client-name">
-        <h5>Dawn Marie Williams <span>Client</span> </h5>
-        <img style={{width: "40px", height: "40px" , margin:"0 10px"}} src={carImage2} alt="" />
-      </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa. </p>
-         </LogoWrapper>
+<PostsClint 
+nameUser="Dawn Marie Williams "
+evaluation="5.0"
+title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
+veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+"
+/>
+      
+<PostsClint 
+nameUser="Dawn Marie Williams "
+evaluation="5.0"
+title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
+veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+"
+/>
+      
+<PostsClint 
+nameUser="Dawn Marie Williams "
+evaluation="5.0"
+title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
+veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+"
+/>
+<PostsClint 
+nameUser="Dawn Marie Williams "
+evaluation="5.0"
+title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
+veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+"
+/>
+      
+     
     </Slider>
+    </div>
+
     </Wrapper>
 
   );
@@ -83,20 +107,11 @@ export default function ClientReviews() {
    
 }
 
-const LogoWrapper = styled.div`
-overflow: hidden;
- background-color: #ffffff;
-text-align: right;
-border-radius: 0.5rem;
-max-width: 290px;
-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
- 
-  :focus-visible {
-    outline: none;
-    border: 0px;  
-  }
-`;
+
 const Wrapper = styled.div`
    margin-top:"60px";
    text-align:center;
+   height:50vh;
+  //  border: 2px solid #000;
+  //  overflow:hidden;
 `;

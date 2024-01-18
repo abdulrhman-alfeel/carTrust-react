@@ -13,9 +13,10 @@ export default function ClientSlider() {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: 7,
     slidesToScroll: 2,
-    arrows: false,
+    autoplay:true,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -34,44 +35,58 @@ export default function ClientSlider() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
     ],
   };
   return (
-    <div className="container" style={{textAlign:"center"}}>
+    <div className="container" style={{
+      
+      textAlign:"center", 
+      // border:"solid 2px #000"
+      }} >
       {/* <LogoSlider/> */}
-      <h1>شركاؤنا</h1>
-      <Slider {...settings}>
+      <h1
+      style={{
+      color: "#2D3291",
+      textalign: "right",
+      fontFamily: "Tajawal",
+      fontSize: "38px",
+      fontStyle: "normal",
+      fontWeight: "800",
+      lineHeight:" 72px"
+      }}
+      >شركاؤنا</h1>
+      <Slider  {...settings} >
         <LogoWrapper >
-          <ImgStyle src={ClientLogo01} alt="client logo" />
+          <ImgStyle src={ClientLogo01} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo02} alt="client logo" />
+          <ImgStyle src={ClientLogo02} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo03} alt="client logo" />
+          <ImgStyle src={ClientLogo03} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo04} alt="client logo" />
+          <ImgStyle src={ClientLogo04} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo05} alt="client logo" />
+          <ImgStyle src={ClientLogo05} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
        
         <LogoWrapper >
-          <ImgStyle src={ClientLogo03} alt="client logo" />
+          <ImgStyle src={ClientLogo03} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo04} alt="client logo" />
+          <ImgStyle src={ClientLogo04} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo01} alt="client logo" />
+          <ImgStyle src={ClientLogo01} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
         <LogoWrapper >
-          <ImgStyle src={ClientLogo02} alt="client logo" />
+          <ImgStyle src={ClientLogo02} alt="client logo" className="image_serves_box "/>
         </LogoWrapper>
       </Slider>
     </div>
@@ -88,7 +103,7 @@ const LogoWrapper = styled.div`
   }
 `;
 const ImgStyle = styled.img`
-  width: 100%;
-  height: 100%;
-  padding: 10%;
+  max-width: 100%;
+  max-height: 120%;
+  padding: 2%;
 `;

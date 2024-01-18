@@ -47,22 +47,23 @@ export default function Login() {
 
 
   return (
-    <>
+    // style={{overflow:'hidden'}}
+    <div className="continer-login-home">
       <ToastContainer />
       <Wrapper className="row">
 
-        <div className="col-8">
+        <div className="col-8 img-login" >
           <img src={loginImage} alt="" />
 
         </div>
 
-        <div className="col-4" style={{ margin: "auto" }}>
-          <p style={{ fontSize: "16px", fontWeight: "400", color: "#2D3291" }}>Let’s explore beyond the world with Car Trust services,</p>
-          <p style={{ fontSize: "40px", fontWeight: "600", color: "#000000" }}>Hello, Welcome Back!</p>
+        <div className="col-4 login-continer" style={{ margin: "auto" }}>
+          <p className="title-sub-login" >Let’s explore beyond the world with Car Trust services,</p>
+          <p className="title-login" >Hello, Welcome Back!</p>
           <br />
-          <p style={{ fontSize: "16px", fontWeight: "400", color: "#2D3291" }}>Phone number</p>
+          <p className="title-sub-login" >Phone number</p>
 
-          <input onChange={(e) => setPhone(e.target.value)} style={{ borderRadius: "5px", width: "391px", height: "43px", background: "rgba(217, 217, 217, 0.00)", border: "1px solid #EEE", }} type="text" />
+          <input className="input-login" onChange={(e) => setPhone(e.target.value)}  type="text" />
 
           {
             status === "loading" ?
@@ -70,28 +71,41 @@ export default function Login() {
               :
               <EavaluateButton href="" onClick={submitOTP}>Login</EavaluateButton>
           }
-          <p style={{ fontSize: "16px", fontWeight: "400", color: "#2D3291" }}>Dont have an account yet? Creat an account </p>
+          <p className="title-sub-login">Dont have an account yet? Creat an account </p>
         </div>
       </Wrapper>
-    </>
+    </div>
   );
 }
 
 
 const Wrapper = styled.section`
   width: 100%;
+  overflow:hadden;
+  // @media(max-width:950px){
+    
+  //   border: solid 16px #000;
+  // }
 `;
 
 
 const EavaluateButton = styled.button`
  color:#FFF;
  width: 400px;
- padding: 20px 188px; border-radius: 8px;
+ padding: 20px 188px; 
  border-radius: 8px;
  background: #2D3291;
  color: #FFF;
  margin-top:20px;
 
+@media(max-width:960px){
+  // position: absolute;
+  // display:none;
+ width:100%;
+ text-align:center;
+ padding: 0 ; 
+ border-radius: 5px;
 
+}
     
 `;

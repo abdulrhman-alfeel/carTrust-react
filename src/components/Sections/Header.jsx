@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import FullButton from "../Buttons/FullButton";
 // Assets
+import Select from 'react-select';
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
+import arrow_log from '../../assets/img/arrow_log.png'
 import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 
 export default function Header() {
@@ -28,12 +30,14 @@ export default function Header() {
   const [manufacturer, setManufacturer] = useState("64");
   const [model, setModel] = useState("2639");
   const [year, setYear] = useState("133");
+  // const [Brand, setBrand] = useState("133");
   const [swiper, setSwiper] = React.useState(null);
 
   useEffect(() => {
     dispatch(fetchManufacturers());
     dispatch(fetchYears());
     dispatch(fetchModels("64"));
+    console.log(manufacturers)
   }, [dispatch]);
 
   const handleSlideNext = (slideNext, ind) => {
@@ -71,8 +75,12 @@ export default function Header() {
   // }
 
   const handleManufacturerChange = (value) => {
+    console.log(value.name)
     setManufacturer(value);
-    dispatch(fetchModels(value));
+
+      console.log(manufacturers.find(pic => pic.name == value.name).id  )
+      dispatch(fetchModels(manufacturers.find(pic => pic.name == value.name).id ));
+
   }
 
   const submitHandler = () => {
@@ -93,46 +101,59 @@ export default function Header() {
 
             {images.map((image, index) => {
               return (
-                <SwiperSlide key={index}>
+                <SwiperSlide  key={index}>
                   {/* <div style={{ display: "flex", justifyContent: "space-between" }}> */}
                   <div className="row">
                     {/* <LeftSide className="flexCenter"> */}
-                    <LeftSide className="col-sm-12 col-md-6 col-lg-6">
+                    <LeftSide className="col-sm-12 col-md-6 col-lg-6 ">
                       <div dir="rtl">
+                        <div
+                        style={{
+                          marginTop:"12%",
+                          marginRight:'7%'             
+                      }}
+                        >
                         <h1 className="extraBold font60">{image?.text1}</h1>
                         <h1 className="extraBold font60">{image?.text2}</h1>
                         <h2>{image?.text3}</h2>
+                        </div>
                         <BtnWrapper>
                           <FullButton title={image?.buttonText} />
                         </BtnWrapper>
-                        <NextPrevWrapper>
+                        <NextPrevWrapper className="Center_left">
                           <button
-                            style={{ backgroundColor: "white", width: "30px", height: "30px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
-
+                            style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
                             onClick={(e) => {
                               e.preventDefault();
                               handleSlidePrevClick();
                             }}
                           >
-                            {"<"}
+                           <i class="fi fi-rr-arrow-small-right"
+                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"50px"}}
+
+                           ></i>
                           </button>
                           <button
-                            style={{ backgroundColor: "white", width: "30px", height: "30px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
-
+                            style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
                             onClick={(e) => {
-                              // e.preventDefault();
-                              handleSlideNextClick();
+                              e.preventDefault();
+                              handleSlidePrevClick();
                             }}
                           >
-                            {">"}
+                           <i class="fi fi-rr-arrow-small-left"
+                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"50px"}}
+
+                           ></i>
                           </button>
+                      
                         </NextPrevWrapper>
                       </div>
                     </LeftSide>
                     <RightSide className="col-sm-12 col-md-6 col-lg-6" >
+                    <img src={arrow_log} alt={image.imgAlt} className="image_arrow" />
                       <ImageWrapper>
-                        <div className="image-container" key={index} style={{ width: "250px", position: "relative", backgroundColor: "rgba(38, 170, 225, 0.05)", float: "right" }}>
-                          <img src={image.imgURL} alt={image.imgAlt} style={{ width: "500px", float: "right" }} />
+                        <div className="image-container" key={index} >
+                          <img src={image.imgURL} alt={image.imgAlt} className="image_slider" />
                         </div>
                       </ImageWrapper>
                     </RightSide>
@@ -146,20 +167,90 @@ export default function Header() {
         </div>
       </Wrapper>
       <HeaderElement1 className="d-flex justify-content-center align-items-center" style={{ zInndex: "2", left: "50px", top: "200px", margin: "auto" }}>
-        <div class="row  " style={{ margin: "0 auto", width: "80%" }}>
-          <div class="col-lg-3">
-            <select id="typeText" value={manufacturer} placeholder="Type here" class="form-control" onChange={(e) => handleManufacturerChange(e.target.value)}>
-              {
+        <div class="row " style={{ margin: "0 auto", width: "80%" ,lef:"20px"}}>
+          <div 
+          // style={{marginTop:"5px"}}
+          class="col-lg-3 mb-2">
+            <h4
+            style={{
+              color: "#000",
+              fontFamily: "Poppins",
+              fontSize: "14px",
+              fontStyle: "normal",
+              fontWeight:"900",
+              lineHeight: "normal"}}
+            >Car Brand</h4>
+            <Select 
+            className="select-image"
+                  style={{
+                    width: "12rem",
+                    height: "60px",
+                    borderRadius: "8px",
+                    border:" 1px solid rgba(110, 118, 132, 0.33)",
+                    background: "#FFF"}}
+            // id="typeText"  placeholder="Type here"
+            
+            onChange={handleManufacturerChange}
+            // value={}
+            value={manufacturer}
+            options={
+        
+              manufacturers?.map((manufacturer, index) => manufacturer)
+          
+            }
+            formatOptionLabel={country => (
+              <div className="country-option">
+                <span>{country.name}</span>
+                <img src={country.make_logo} alt="country-image" />
+
+              </div>
+            )
+         
+          }
+            isSearchable
+            />
+
+
+{/* <Select mode="multiple" style={{ width: 120 }}>
+    {manufacturers.map(({ id, name, make_logo }) =>
+ 
+        <Select.Option value={name || ""} key={id}>
+          <span>{name}</span>
+           <img src={make_logo} alt="country-image" />
+        </Select.Option>
+ 
+    )}
+  </Select> */}
+              {/* {
                 manufacturers?.map((manufacturer, index) => {
+                  console.log(manufacturer.make_logo)
+
                   return (
-                    <option key={index} value={manufacturer?.id}>{manufacturer?.name}</option>
+                    <option 
+                   
+                    data-img_src={manufacturer?.make_logo}
+                    key={index} value={manufacturer?.id}> 
+                    
+                    <img src={`${manufacturer?.make_logo}`} alt="Image 1" />
+                    {manufacturer?.name}
+                    </option>
                   )
                 })
-              }
-            </select>
+              } */}
           </div>
-          <div class="col-lg-3">
-            <select id="typeText" placeholder="Type here" value={model} class="form-control" onChange={(e) => setModel(e.target.value)}>
+          <div class="col-lg-3 mb-2 ">
+          <h4
+            style={{
+              color: "#000",
+              fontFamily: "Poppins",
+              fontSize: "14px",
+              fontStyle: "normal",
+              fontWeight:"900",
+              lineHeight: "normal"}}
+            >Car Model</h4>
+            <select 
+              
+            id="typeText" placeholder="Type here" value={model} className="form-control select_name" onChange={(e) => setModel(e.target.value)}>
               {
                 models?.map((model, index) => {
                   return (
@@ -169,8 +260,21 @@ export default function Header() {
               }
             </select>
           </div>
-          <div class="col-lg-3">
-            <select id="typeText" placeholder="Type here" value={year} class="form-control" onChange={(e) => setYear(e.target.value)}>
+          <div 
+          class="col-lg-3 mb-2"
+          >
+                <h4
+            style={{
+              color: "#000",
+              fontFamily: "Poppins",
+              fontSize: "14px",
+              fontStyle: "normal",
+              fontWeight:"900",
+              lineHeight: "normal"}}
+            >Car Year</h4>
+            <select
+                 
+            id="typeText" placeholder="Type here" value={year} className="form-control select_name" onChange={(e) => setYear(e.target.value)}>
               {
                 years?.map((year, index) => {
                   return (
@@ -180,8 +284,7 @@ export default function Header() {
               }
             </select>
           </div>
-
-          <div class="col-lg-3">
+          <div class="col-lg-3 mt-3">
             <EavaluateButton href="" onClick={submitHandler}>Evaluate</EavaluateButton>
           </div>
         </div>
@@ -203,6 +306,14 @@ const LeftSide = styled.div`
    
 `;
 const RightSide = styled.div`
+@media (max-width: 960px) {
+  position:relative;
+  top:-10px;
+    padding: 15px 0 50px 0;
+    text-align: center;
+    max-width: 100%;
+
+  }
    
 `;
 const HeaderP = styled.div`
@@ -220,13 +331,21 @@ const BtnWrapper = styled.div`
    margin-top:20px;
   @media (max-width: 960px) {
     margin: 0 auto;
+
+
   }
 `;
 
 
 const NextPrevWrapper = styled.div`
+
  margin-top: 25px;
- margin-right:80%;
+ margin-right:70%;
+ @media(max-width:960px){
+
+  margin-top: 25px;
+  margin-right:70%;
+ }
   
 `;
 const GreyDiv = styled.div`
@@ -246,7 +365,7 @@ const ImageWrapper = styled.div`
   // position: relative;
   z-index: 9;
   @media (max-width: 960px) {
-    width: 100%;
+    width: 10%;
     justify-content: center;
   }
 `;
@@ -254,19 +373,29 @@ const ImageWrapper = styled.div`
 
 const EavaluateButton = styled.button`
  color:#FFF;
- width:100%;
- border-radius: 8px;
+ width: 248px;
+ height: 40px;
+ flex-shrink: 0;
+border-radius: 8px;
 background: #2D3291;
 box-shadow: 0px -5px 13px 0px rgba(45, 50, 145, 0.12);
-   
+@media(max-width:960px){
+  width: 100%;
+ }  
 `;
 
 
 
 const HeaderElement1 = styled.div`
- width: 70%;
-height: 100px;
+ width: 75%;
+// height: 7rem;
+padding:1rem;
 background-color: #FFFFFF;
+fill: linear-gradient(180deg, #FFF 0%, #FFF 100%);
+
+filter: drop-shadow(0px 5px 12px rgba(10, 41, 96, 0.20));
+border-radius:15px ;
+// padding:0
 
   
   
