@@ -1,6 +1,6 @@
 // src/features/data/dataSlice.js
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { checkoutApi, deleteData, fetchManufacturersApi, fetchModelsApi, fetchOptionsApi, fetchTrimsApi, fetchYearsApi, logoutApi, requestOTPApi, verifyOTPApi } from '../api';
+import { billingInfoApi, checkoutApi, deleteData, fetchManufacturersApi, fetchModelsApi, fetchOptionsApi, fetchTrimsApi, fetchYearsApi, logoutApi, paymentLink, requestOTPApi, verifyOTPApi } from '../api';
 
 export const fetchYears = createAsyncThunk('data/fetchYearsApi', async (newData,manufacturer_id) => {
     const data = await fetchYearsApi(newData,manufacturer_id);
@@ -8,7 +8,26 @@ export const fetchYears = createAsyncThunk('data/fetchYearsApi', async (newData,
 });
 
 
+export const paymentUrl = createAsyncThunk('data/payment', async (amount,return_url,cart_id) => {
+    const data = await paymentLink(21.5,"https://fwatiry.online/","1" );
+    return data;
+});
+
+
 export const clearYears = createAction('data/clearYears');
+
+
+export const billingInfo = createAsyncThunk('data/billingInfo', async () => {
+    try {
+        const data = await billingInfoApi();
+        return data;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+});
+
+
 
 
 export const fetchManufacturers = createAsyncThunk('data/fetchManufacturersApi', async () => {
@@ -82,6 +101,8 @@ const dataSlice = createSlice({
         error: {},
         data: {},
         options: {},
+        billing: null,
+        payment_link: null,
         status: 'idle',
     },
     reducers: {},
@@ -110,7 +131,30 @@ const dataSlice = createSlice({
             .addCase(clearYears, (state) => {
                 state.years = [];
               })
-          
+
+            .addCase(billingInfo.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(billingInfo.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.billing = action.payload;
+            })
+            .addCase(billingInfo.rejected, (state) => {
+                state.status = 'failed';
+            })
+
+
+            .addCase(paymentUrl.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(paymentUrl.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.payment_link = action.payload;
+            })
+            .addCase(paymentUrl.rejected, (state) => {
+                state.status = 'failed';
+            })
+              
             .addCase(fetchModels.pending, (state) => {
                 state.status = 'loading';
             })

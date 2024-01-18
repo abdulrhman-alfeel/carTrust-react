@@ -11,7 +11,9 @@ import visa from "../assets/img/visa.png";
 import CarSelect from "../components/Elements/CarSelect";
 import { Loading } from "../components/Elements/Loading";
 import TopNavbar from "../components/Nav/TopNavbar";
-import { checkout, fetchOptions, fetchTrims } from "../redux/features/dataSlice";
+import { checkout, fetchOptions, fetchTrims, paymentUrl } from "../redux/features/dataSlice";
+
+
 
 
 
@@ -21,6 +23,7 @@ import { checkout, fetchOptions, fetchTrims } from "../redux/features/dataSlice"
 // Sections
 
 export default function Checkout() {
+
   const history = useNavigate();
   const urlData = window.location.search.split("?")[1];
   const manufacturer = urlData?.split("&")[1];
@@ -30,6 +33,8 @@ export default function Checkout() {
   const status = useSelector(state => state.status);
   const error = useSelector(state => state.data);
   const data = useSelector(state => state.trims);
+  const payment_link = useSelector((state) => state.payment_link);
+
   const optionsArray = useSelector(state => state.options);
   const [trim, setTrim] = useState({});
   const [updated, setUpdated] = useState(false);
@@ -46,7 +51,18 @@ export default function Checkout() {
     plato_no: "",
     ct_score: "",
     promo_code_id: "",
-  })
+  });
+
+  const [formData, setFormData] = useState({
+    cart_id: '4244b9fd-c7e9-4f16-8d3c-4fe7bf6c48ca',
+    cart_description: 'testing order 123',
+    cart_currency: 'SAR',
+    cart_amount: 46.17,
+    callback: 'http://localhost:3000/',
+    return: 'http://localhost:3000/',
+  });
+
+ 
 
   const handleChange = (key, value) => {
     setCheckoutData({
@@ -54,6 +70,50 @@ export default function Checkout() {
       [key]: value
     })
   }
+
+
+  const handlePaymentChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+
+  const handlePayment = async (e) => {
+
+    dispatch(paymentUrl(21,'https://fwatiry.online/','1'));
+
+    console.log(payment_link);
+
+    if(payment_link){
+    window.location.href =payment_link;
+
+    }
+    // history.push(payment_link);
+
+
+    // e.preventDefault();
+
+    // try {
+    //   const response = await fetch('https://test.paytabs.sa/payment/request', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Authorization': 'SGJNG9J2RJ-J6TN6NMND6-DTJ9TL6GB6',
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+
+    //   const result = await response.json();
+    //   console.log(result);
+
+    //   // Handle the payment result and update UI accordingly
+    // } catch (error) {
+    //   console.error('Error during payment:', error);
+    // }
+  };
+
 
   const submitHandler = async () => {
     checkoutData.manufacturer_id = manufacturer;
@@ -433,7 +493,7 @@ export default function Checkout() {
               <div className="ms-lg-4 mt-4 mt-lg-0">
                 <PaymentMethodWrapper className="d-flex justify-content-between">
                   <div className="m-2">
-                    <input class="form-check-input" type="radio" name="payment_method" id="payment_method" />
+                    <input class="form-check-input" type="radio" name="payment_method"onChange={handlePaymentChange} id="payment_method" />
                     <label class="form-check-label" for="payment_method">
                       Apple Pay <br />
                     </label>
@@ -442,7 +502,7 @@ export default function Checkout() {
                 </PaymentMethodWrapper>
                 <PaymentMethodWrapper className="d-flex justify-content-between">
                   <div className="m-2">
-                    <input class="form-check-input" type="radio" name="payment_method" id="payment_method" />
+                    <input class="form-check-input" type="radio" onChange={handlePaymentChange} name="payment_method" id="payment_method" />
                     <label class="form-check-label" for="payment_method">
                       Credit Card <br />
                     </label>
@@ -454,7 +514,7 @@ export default function Checkout() {
                 </PaymentMethodWrapper>
                 <PaymentMethodWrapper className="d-flex justify-content-between">
                   <div className="m-2">
-                    <input class="form-check-input" type="radio" name="payment_method" id="payment_method" />
+                    <input class="form-check-input" type="radio" name="payment_method" onChange={handlePaymentChange} id="payment_method" />
                     <label class="form-check-label" for="payment_method">
                       Pay later <br />
                     </label>
@@ -499,7 +559,7 @@ export default function Checkout() {
                   status === "loading" ?
                     <Loading />
                     :
-                    <PayButton onClick={submitHandler}>
+                    <PayButton onClick={handlePayment}>
                       Pay now
 
                     </PayButton>

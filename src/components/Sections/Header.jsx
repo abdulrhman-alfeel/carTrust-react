@@ -13,13 +13,15 @@ import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
-import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
+import { billingInfo, fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 
 export default function Header() {
   const childRef = useRef(null);
   const history = useNavigate();
   const years = useSelector((state) => state.years);
   const models = useSelector((state) => state.models);
+  const billing = useSelector((state) => state.billing);
+
   const manufacturers = useSelector((state) => state.manufacturers);
   const status = useSelector((state) => state.status);
   const dispatch = useDispatch();
@@ -32,8 +34,10 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchManufacturers());
+    dispatch(billingInfo());
     dispatch(fetchModels("64"));
     dispatch(fetchYears(model,manufacturer));
+    console.log(billing);
 
   }, [dispatch]);
 
