@@ -46,7 +46,7 @@ export default function Contact() {
 
                     </span>
                     <input type="text" 
-                    className="form-control text-right" 
+                    className="form-control text-right input-footer" 
                     placeholder="البريد الألكتروني" aria-label="Username" a
                     ria-describedby="basic-addon1"
                     style={{textAlign:'right'}}
@@ -69,19 +69,20 @@ export default function Contact() {
             </ListHeader>
          
           <ListElement>
-            <a href="#!" className="text-reset"><img src={appstore} alt="" /></a>
+            <a href="#!" className="text-reset transition duration-300 "><img src={appstore} alt=""   width="60%" style={{borderRadius:'10px'}}/></a>
           </ListElement>
            <ListElement >
-            <a href="#!" className="text-reset mt-10"><img src={googleplay} alt="" /></a>
+            <a href="#!" className="text-reset mt-10"><img src={googleplay} alt="" width="60%"  style={{borderRadius:'10px'}}/></a>
           </ListElement>
           </div>
           <ListElement>
-          <a rel="nofollow" className="item-link  tax-footer">
+          <a rel="nofollow" className="  text-reset grid-cols-2">
                     <div className="row"
-                    style={{margin:"2px"}}
+                    // style={{margin:"2px"}}
                     >
                       <span className="mb-0 ">: الرقم الضريبي</span>
                       <span className="mb-0 ml-3">255-662-5566</span>
+             
                     </div>
                     <img src={cost} className="cost-footer"/>
                   </a>              
@@ -93,16 +94,16 @@ export default function Contact() {
                    مصادر
           </ListHeader>
           <ListElement>
-            <a href="#!" className="text-reset">ملف الشركة</a>
+            <a href="#!" className="text-reset transition duration-300 ">ملف الشركة</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">تواصل معنا</a>
+            <a href="#!" className="text-reset transition duration-300 ">تواصل معنا</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">الوظائف</a>
+            <a href="#!" className="text-reset transition duration-300 ">الوظائف</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">خدمة العملا</a>
+            <a href="#!" className="text-reset transition duration-300 ">خدمة العملا</a>
           </ListElement>
         </div>
          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mt-10">
@@ -110,16 +111,16 @@ export default function Contact() {
                    لمحة عامة
           </ListHeader>
           <ListElement>
-            <a href="#!" className="text-reset">من نحن </a>
+            <a href="#!" className="text-reset transition duration-300 ">من نحن </a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">الاسئلة المتكررة</a>
+            <a href="#!" className="text-reset transition duration-300 ">الاسئلة المتكررة</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">سياسة الخصوصية</a>
+            <a href="#!" className="text-reset transition duration-300 ">سياسة الخصوصية</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">الشروط والاحكام</a>
+            <a href="#!" className="text-reset transition duration-300 ">الشروط والاحكام</a>
           </ListElement>
         </div>
          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mt-10">
@@ -127,16 +128,16 @@ export default function Contact() {
                حول كارترست
           </ListHeader>
           <ListElement>
-            <a href="#!" className="text-reset">لماذا كار ترست</a>
+            <a href="#!" className="text-reset transition duration-300 ">لماذا كار ترست</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">قصتنا</a>
+            <a href="#!" className="text-reset transition duration-300 ">قصتنا</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">شركائنا</a>
+            <a href="#!" className="text-reset transition duration-300 ">شركائنا</a>
           </ListElement>
           <ListElement>
-            <a href="#!" className="text-reset">عملائنا</a>
+            <a href="#!" className="text-reset transition duration-300 ">عملائنا</a>
           </ListElement>
         </div>
  
