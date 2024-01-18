@@ -86,10 +86,10 @@ export default function Checkout() {
 
     console.log(payment_link);
 
-    if(payment_link){
-    window.location.href =payment_link;
+    // if(payment_link){
+    // window.location.href =payment_link;
 
-    }
+    // }
     // history.push(payment_link);
 
 
@@ -121,14 +121,26 @@ export default function Checkout() {
     checkoutData.year_id = year;
     checkoutData.trim_id = trim?.id;
     await dispatch(checkout(checkoutData));
+
     setUpdated(true);
     if (status === "succeeded" && error?.success) {
       console.log("Success");
       toast.success("Submitted successfully");
     } else if (status === "succeeded" && !error.success && error?.errors) {
+      console.log(status);
       let message = Object.values(error?.errors)[0][0];
       toast.error(message);
     }
+    await dispatch(paymentUrl(21,'https://fwatiry.online/','1'));
+
+    
+    if(payment_link && (status === "succeeded" && error?.success)){
+      console.log(payment_link);
+      window.location.href =payment_link;
+  
+      }
+
+
   }
 
   useEffect(() => {
@@ -560,7 +572,7 @@ export default function Checkout() {
                   status === "loading" ?
                     <Loading />
                     :
-                    <PayButton onClick={handlePayment}>
+                    <PayButton onClick={submitHandler}>
                       Pay now
 
                     </PayButton>
