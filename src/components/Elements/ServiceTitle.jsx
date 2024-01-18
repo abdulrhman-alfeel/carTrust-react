@@ -59,6 +59,11 @@ const TitleStyle = styled.h2`
 `;
 const SubtitleStyle = styled.h1`
 color : #1E1E1E;
+font-family: Tajawal;
+font-size: 48px;
+font-style: normal;
+font-weight: 800;
+line-height: 61px;
 @media(max-width:860px){
 line-height: 3rem;}
   

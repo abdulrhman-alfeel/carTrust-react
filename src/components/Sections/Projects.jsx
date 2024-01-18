@@ -182,7 +182,7 @@ const GetService = styled.div`
   // color: white;
   margin-right:95px;
   color: var(--white, #FFF);
-  text-align: center;
+  text-align: right;
   font-family: Tajawal;
   font-size: 55px;
   font-style: normal;
@@ -330,7 +330,10 @@ left: 100px;
 const DownloadAppWrapper = styled.div`
 position:relative;
 left:50px;
-
+text-align: center;
+display: grid;
+justify-content: center;
+align-items: center;
 @media (max-width: 860px) {
   left: 50px;
   

@@ -18,9 +18,17 @@ export const fetchManufacturersApi = async () => {
     }
 };
 
-export const fetchYearsApi = async () => {
+export const fetchYearsApi = async (newData,manufacturer_id) => {
+    // try {
+    //     const response = await axios.get(`${API_BASE_URL}/years`);
+    //     return response.data.years;
+    // } catch (error) {
+    //     return error;
+    // }
+
     try {
-        const response = await axios.get(`${API_BASE_URL}/years`);
+        const response = await axios.get(`${API_BASE_URL}/years?service_name=evaluation&manufacturer_id=12&model_id=756`);
+        console.log(response.data.years);
         return response.data.years;
     } catch (error) {
         return error;

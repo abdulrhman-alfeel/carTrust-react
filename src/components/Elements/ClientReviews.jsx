@@ -25,14 +25,12 @@ export default function ClientReviews() {
 
   var settings = {
     infinite: true,
-    speed: 500,
+    speed: 400,
     slidesToShow: width_slid,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     autoplay:true,
-    arrows: true,
-    centerPadding: 30
-
-   
+    arrows: false,
+    centerPadding: 100
   };
   return (
 <Wrapper>
@@ -51,7 +49,7 @@ style={{
 <br />
 <div
 >
-      <Slider  {...settings} >
+      <Slider dots={true} {...settings} >
     {/* <div>
       <p>Current width: {width}px</p>
     </div> */}

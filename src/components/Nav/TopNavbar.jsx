@@ -132,7 +132,7 @@ export default function TopNavbar() {
             </li>
 
             <li className=" pointer tm-nav-link">
-              <Link activeClass="active"  to="/" spy={true} smooth={true} offset={-80}>
+              <Link activeClass="active" href="/"  to="/" spy={true} smooth={true} offset={-80}>
                 الصفحة الرئيسية
               </Link>
             </li>
@@ -165,7 +165,7 @@ export default function TopNavbar() {
                   </li>
                 </>
                 :
-                <li className="semiBold font15 pointer" style={{ backgroundColor: "#21207F", width: "150px", height: "40px", borderRadius: "10px", textAlign: "center" }}>
+                <li className="semiBold font15 pointer" style={{ backgroundColor: "#21207F", width: "150px", height: "55px", borderRadius: "10px", textAlign: "center",padding:"5px" }}>
                   <NavLink to="/login" style={{ padding:"8px", color: "white", margin: "0 auto", display: "block" }}>
                     دخول/تسجيل
                   </NavLink>
@@ -264,10 +264,10 @@ const UlWrapper = styled.ul`
     display: none;
   }
 `;
-const UlWrapperRight = styled.ul`
-  @media (max-width: 760px) {
-    display: none;
-  }
-`;
+// const UlWrapperRight = styled.ul`
+//   @media (max-width: 760px) {
+//     display: none;
+//   }
+// `;
 
 

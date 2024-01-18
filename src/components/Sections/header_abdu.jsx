@@ -16,11 +16,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
 import arrow_log from '../../assets/img/arrow_log.png'
 import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
-import { components } from 'react-select';
-import { NavLink } from "react-router-dom";
-
-const { SingleValue, Option } = components;
-
 
 export default function Header() {
   const childRef = useRef(null);
@@ -53,63 +48,6 @@ export default function Header() {
     childRef.current = slideNext;
 
   };
-
-
-
-
-  const options = [
-    {
-        label: 'Option 1',
-        value: 0,
-        image: 'https://example.com/amazing-image-1.png',
-    },
-    {
-        label: 'Option 2',
-        value: 1,
-        image: 'https://example.com/amazing-image-2.png',
-    }
-];
-
-  const IconSingleValue = (props) => (
-    <SingleValue {...props}>
-        {props.data.name}
-        <img src={props.data.image} style={{ height: '30px', width: '30px', borderRadius: '50%', marginRight: '10px' }}/>
-
-    </SingleValue>
-);
-
-const IconOption = (props) => (
-    <Option {...props}>
-        <img src={props.data.make_logo} style={{ height: '30px', width: '30px', borderRadius: '50%', marginRight: '10px' }}/>
-        {/* {props.data.name} */}
-    </Option>
-);
-
-
-const customStyles = {
-  option: (provided) => ({
-      ...provided,
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-  }),
-  singleValue: (provided) => ({
-      ...provided,
-      zInndex:'0',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-  }),
-}
-
-
-
-
-
-
-
-
-
 
 
   const handleSlidePrev = (slidePrev, ind) => {
@@ -147,54 +85,6 @@ const customStyles = {
 
   const submitHandler = () => {
     history(`/checkout?&${manufacturer}&${model}&${year}`)
-  }
-
-
-
-  const Stayle_selct={
-    control: (provided) => ({
-      ...provided,
-      border: "1px solid #ccc",
-      borderRadius: "8px",
-      padding: "1px 4px",
-      // paddingTop: "7px",
-
-      height: "46px",
-      fontSize:"14px",
-      minHeight: "56px",
-      boxShadow: "none",
-      cursor: "pointer",
-      
-      "&:hover": {
-        borderColor: "#4d90fe",
-      },
-    }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: "4px",
-      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-      marginTop: "4px",
-      zIndex: 999,
-    }),
-    menuList: (provided) => ({
-      ...provided,
-      padding: 0,
-      maxHeight: "400px",
-      overflowY: "auto",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      padding: "8px 12px",
-     
-      color: state.isSelected ? "#000" : "#333",
-      backgroundColor: state.isSelected ? "#fff" : "#fff",
-      "&:hover": {
-        backgroundColor: "#f4f4f4",
-      },
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-    }),
   }
 
   return (
@@ -239,7 +129,9 @@ const customStyles = {
                             }}
                           >
                            <i class="fi fi-rr-arrow-small-right"
-                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}></i>
+                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"50px"}}
+
+                           ></i>
                           </button>
                           <button
                             style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
@@ -249,7 +141,7 @@ const customStyles = {
                             }}
                           >
                            <i class="fi fi-rr-arrow-small-left"
-                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}
+                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"50px"}}
 
                            ></i>
                           </button>
@@ -274,8 +166,8 @@ const customStyles = {
 
         </div>
       </Wrapper>
-      <HeaderElement1 className="d-flex justify-content-center align-items-center" style={{position:'relative',zIndex:999, margin: "auto", }}>
-        <div class="row " style={{ margin: "0 auto", width: "80%" ,lef:"20px",flexDirection:'row-reverse'}}>
+      <HeaderElement1 className="d-flex justify-content-center align-items-center" style={{ zInndex: "2", left: "50px", top: "200px", margin: "auto" }}>
+        <div class="row " style={{ margin: "0 auto", width: "80%" ,lef:"20px"}}>
           <div 
           // style={{marginTop:"5px"}}
           class="col-lg-3 mb-2">
@@ -288,35 +180,63 @@ const customStyles = {
               fontWeight:"900",
               lineHeight: "normal"}}
             >Car Brand</h4>
- 
-
-          <Select 
+            <Select 
             className="select-image"
-              // isDisabled={false}
-            isSearchable={false}
+                  style={{
+                    width: "12rem",
+                    height: "60px",
+                    borderRadius: "8px",
+                    border:" 1px solid rgba(110, 118, 132, 0.33)",
+                    background: "#FFF"}}
+            // id="typeText"  placeholder="Type here"
+            
             onChange={handleManufacturerChange}
             // value={}
             value={manufacturer}
             options={
+        
               manufacturers?.map((manufacturer, index) => manufacturer)
+          
             }
             formatOptionLabel={country => (
               <div className="country-option">
                 <span>{country.name}</span>
                 <img src={country.make_logo} alt="country-image" />
+
               </div>
             )
+         
           }
-
-  
-          styles={Stayle_selct}
-        />
+            isSearchable
+            />
 
 
+{/* <Select mode="multiple" style={{ width: 120 }}>
+    {manufacturers.map(({ id, name, make_logo }) =>
+ 
+        <Select.Option value={name || ""} key={id}>
+          <span>{name}</span>
+           <img src={make_logo} alt="country-image" />
+        </Select.Option>
+ 
+    )}
+  </Select> */}
+              {/* {
+                manufacturers?.map((manufacturer, index) => {
+                  console.log(manufacturer.make_logo)
 
-
-     
-
+                  return (
+                    <option 
+                   
+                    data-img_src={manufacturer?.make_logo}
+                    key={index} value={manufacturer?.id}> 
+                    
+                    <img src={`${manufacturer?.make_logo}`} alt="Image 1" />
+                    {manufacturer?.name}
+                    </option>
+                  )
+                })
+              } */}
           </div>
           <div class="col-lg-3 mb-2 ">
           <h4
@@ -328,24 +248,17 @@ const customStyles = {
               fontWeight:"900",
               lineHeight: "normal"}}
             >Car Model</h4>
-
-            <Select 
-            className="select-image"
-              // isDisabled={false}
-            isSearchable={false}
-            onChange={(e) => setModel(e)}
-            // value={}
-            value={manufacturer}
-            options={
-              models?.map((model, index) => model)
-            }
-            formatOptionLabel={country => (
-              <div className="country-option">
-                <span>{country.name}</span>
-              </div>)}
-          styles={Stayle_selct}
-        />
-
+            <select 
+              
+            id="typeText" placeholder="Type here" value={model} className="form-control select_name" onChange={(e) => setModel(e.target.value)}>
+              {
+                models?.map((model, index) => {
+                  return (
+                    <option key={index} value={model?.id}>{model?.name}</option>
+                  )
+                })
+              }
+            </select>
           </div>
           <div 
           class="col-lg-3 mb-2"
@@ -359,34 +272,21 @@ const customStyles = {
               fontWeight:"900",
               lineHeight: "normal"}}
             >Car Year</h4>
-
-              
-            <Select 
-            className="select-image"
-              // isDisabled={false}
-            isSearchable={false}
-            onChange={(e) => setYear(e)}
-            // value={}
-            value={manufacturer}
-            options={
-              years?.map((model, index) => model)
-            }
-            formatOptionLabel={country => (
-              <div className="country-option">
-                <span>{country.name}</span>
-              </div>)}
-          styles={Stayle_selct}
-        />
-    
+            <select
+                 
+            id="typeText" placeholder="Type here" value={year} className="form-control select_name" onChange={(e) => setYear(e.target.value)}>
+              {
+                years?.map((year, index) => {
+                  return (
+                    <option key={index} value={year?.id}>{year?.name}</option>
+                  )
+                })
+              }
+            </select>
           </div>
-          <div className="col-lg-3 mt-3 Evaluate">
-                  <NavLink to="/login" onClick={submitHandler} style={{ 
-                  fontSize:"1.7rem",
-                  color: "white", margin: "0 auto", display: "block" }}>
-                  تقييم
-                  </NavLink>
+          <div class="col-lg-3 mt-3">
+            <EavaluateButton href="" onClick={submitHandler}>Evaluate</EavaluateButton>
           </div>
-        
         </div>
       </HeaderElement1>
 
@@ -472,11 +372,9 @@ const ImageWrapper = styled.div`
 
 
 const EavaluateButton = styled.button`
-
  color:#FFF;
  width: 248px;
- height: 55rem,
- padding:10rem;
+ height: 40px;
  flex-shrink: 0;
 border-radius: 8px;
 background: #2D3291;
@@ -490,18 +388,15 @@ box-shadow: 0px -5px 13px 0px rgba(45, 50, 145, 0.12);
 
 const HeaderElement1 = styled.div`
  width: 75%;
- height: 175px;
+// height: 7rem;
 padding:1rem;
-top:-40px;
 background-color: #FFFFFF;
 fill: linear-gradient(180deg, #FFF 0%, #FFF 100%);
 
 filter: drop-shadow(0px 5px 12px rgba(10, 41, 96, 0.20));
 border-radius:15px ;
 // padding:0
-@media(max-width:960px){
-  height: 100%;
-}
+
   
   
 `;

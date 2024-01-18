@@ -17,11 +17,7 @@ import images from "../../data/images";
 import arrow_log from '../../assets/img/arrow_log.png'
 import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 import { components } from 'react-select';
-import { NavLink } from "react-router-dom";
-
 const { SingleValue, Option } = components;
-
-
 export default function Header() {
   const childRef = useRef(null);
   const history = useNavigate();
@@ -149,54 +145,6 @@ const customStyles = {
     history(`/checkout?&${manufacturer}&${model}&${year}`)
   }
 
-
-
-  const Stayle_selct={
-    control: (provided) => ({
-      ...provided,
-      border: "1px solid #ccc",
-      borderRadius: "8px",
-      padding: "1px 4px",
-      // paddingTop: "7px",
-
-      height: "46px",
-      fontSize:"14px",
-      minHeight: "56px",
-      boxShadow: "none",
-      cursor: "pointer",
-      
-      "&:hover": {
-        borderColor: "#4d90fe",
-      },
-    }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: "4px",
-      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-      marginTop: "4px",
-      zIndex: 999,
-    }),
-    menuList: (provided) => ({
-      ...provided,
-      padding: 0,
-      maxHeight: "400px",
-      overflowY: "auto",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      padding: "8px 12px",
-     
-      color: state.isSelected ? "#000" : "#333",
-      backgroundColor: state.isSelected ? "#fff" : "#fff",
-      "&:hover": {
-        backgroundColor: "#f4f4f4",
-      },
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-    }),
-  }
-
   return (
     <>
       <Wrapper id="home" className="headerComp">
@@ -239,7 +187,9 @@ const customStyles = {
                             }}
                           >
                            <i class="fi fi-rr-arrow-small-right"
-                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}></i>
+                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}
+
+                           ></i>
                           </button>
                           <button
                             style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
@@ -274,8 +224,8 @@ const customStyles = {
 
         </div>
       </Wrapper>
-      <HeaderElement1 className="d-flex justify-content-center align-items-center" style={{position:'relative',zIndex:999, margin: "auto", }}>
-        <div class="row " style={{ margin: "0 auto", width: "80%" ,lef:"20px",flexDirection:'row-reverse'}}>
+      <HeaderElement1 className="d-flex justify-content-center align-items-center" style={{position:'relative',zIndex:999, top:'120px', margin: "auto" }}>
+        <div class="row " style={{ margin: "0 auto", width: "80%" ,lef:"20px"}}>
           <div 
           // style={{marginTop:"5px"}}
           class="col-lg-3 mb-2">
@@ -289,34 +239,81 @@ const customStyles = {
               lineHeight: "normal"}}
             >Car Brand</h4>
  
-
-          <Select 
+{/* <div style={{position:'relative'}}> */}
+{/* <Select 
             className="select-image"
-              // isDisabled={false}
-            isSearchable={false}
+              isDisabled={false}
+              
+            // backgroundColor='#000'
+        
+            // id="typeText"  placeholder="Type here"
+            
             onChange={handleManufacturerChange}
             // value={}
+
+            
             value={manufacturer}
             options={
               manufacturers?.map((manufacturer, index) => manufacturer)
+          
             }
+        
             formatOptionLabel={country => (
               <div className="country-option">
                 <span>{country.name}</span>
                 <img src={country.make_logo} alt="country-image" />
+
               </div>
             )
           }
+            isSearchable
+        /?>*/}
+{/* </div>  */}
+
+<li>
+<div >
+              <a href="#testimonials">كارترست</a>
+              <div style={{position:'absolute',display:"flex",flexDirection:'column'}}>
+                  <a href="#" >ساعدني اختار سيارة </a>
+                  <a href="#">قيمنا </a>
+                  <a href="#">الاعتمادات</a>
+                  <a href="#">سياسة الحيادية</a>
+                  <a href="#">مواقعنا</a>
+                  <a href="#">الخدمة المتنقلة</a>
+                  <a href="#">الوظائف</a>
+                  <a href="#">تواصل معنا</a>
+              </div>
+              </div>
+              </li>
+
 
   
-          styles={Stayle_selct}
-        />
 
 
 
 
-     
+{/* 
+<select id="typeText" placeholder="Type here" value={model} className="form-control select_name" onChange={(e) => setModel(e.target.value)}>
+              {
+                manufacturers?.map((manufacturer, index) => {
+                  console.log(manufacturer.make_logo)
 
+                  return (
+                    // <div className="country-option">
+                     <option 
+                     
+                    key={index} value={manufacturer?.id}> 
+                    {manufacturer?.name}
+                    <img src={manufacturer.make_logo} className="country-image" />
+                 
+                    </option>
+              
+                            // </div>
+
+                  )
+                })
+              }
+</select> */}
           </div>
           <div class="col-lg-3 mb-2 ">
           <h4
@@ -328,24 +325,17 @@ const customStyles = {
               fontWeight:"900",
               lineHeight: "normal"}}
             >Car Model</h4>
-
-            <Select 
-            className="select-image"
-              // isDisabled={false}
-            isSearchable={false}
-            onChange={(e) => setModel(e)}
-            // value={}
-            value={manufacturer}
-            options={
-              models?.map((model, index) => model)
-            }
-            formatOptionLabel={country => (
-              <div className="country-option">
-                <span>{country.name}</span>
-              </div>)}
-          styles={Stayle_selct}
-        />
-
+            <select 
+              
+            id="typeText" placeholder="Type here" value={model} className="form-control select_name" onChange={(e) => setModel(e.target.value)}>
+              {
+                models?.map((model, index) => {
+                  return (
+                    <option key={index} value={model?.id}>{model?.name}</option>
+                  )
+                })
+              }
+            </select>
           </div>
           <div 
           class="col-lg-3 mb-2"
@@ -359,34 +349,21 @@ const customStyles = {
               fontWeight:"900",
               lineHeight: "normal"}}
             >Car Year</h4>
-
-              
-            <Select 
-            className="select-image"
-              // isDisabled={false}
-            isSearchable={false}
-            onChange={(e) => setYear(e)}
-            // value={}
-            value={manufacturer}
-            options={
-              years?.map((model, index) => model)
-            }
-            formatOptionLabel={country => (
-              <div className="country-option">
-                <span>{country.name}</span>
-              </div>)}
-          styles={Stayle_selct}
-        />
-    
+            <select
+                 
+            id="typeText" placeholder="Type here" value={year} className="form-control select_name" onChange={(e) => setYear(e.target.value)}>
+              {
+                years?.map((year, index) => {
+                  return (
+                    <option key={index} value={year?.id}>{year?.name}</option>
+                  )
+                })
+              }
+            </select>
           </div>
-          <div className="col-lg-3 mt-3 Evaluate">
-                  <NavLink to="/login" onClick={submitHandler} style={{ 
-                  fontSize:"1.7rem",
-                  color: "white", margin: "0 auto", display: "block" }}>
-                  تقييم
-                  </NavLink>
+          <div class="col-lg-3 mt-3">
+            <EavaluateButton href="" onClick={submitHandler}>Evaluate</EavaluateButton>
           </div>
-        
         </div>
       </HeaderElement1>
 
@@ -472,11 +449,9 @@ const ImageWrapper = styled.div`
 
 
 const EavaluateButton = styled.button`
-
  color:#FFF;
  width: 248px;
- height: 55rem,
- padding:10rem;
+ height: 40px;
  flex-shrink: 0;
 border-radius: 8px;
 background: #2D3291;
@@ -490,18 +465,15 @@ box-shadow: 0px -5px 13px 0px rgba(45, 50, 145, 0.12);
 
 const HeaderElement1 = styled.div`
  width: 75%;
- height: 175px;
+// height: 7rem;
 padding:1rem;
-top:-40px;
 background-color: #FFFFFF;
 fill: linear-gradient(180deg, #FFF 0%, #FFF 100%);
 
 filter: drop-shadow(0px 5px 12px rgba(10, 41, 96, 0.20));
 border-radius:15px ;
 // padding:0
-@media(max-width:960px){
-  height: 100%;
-}
+
   
   
 `;

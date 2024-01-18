@@ -1,11 +1,15 @@
 // src/features/data/dataSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchYearsApi, deleteData, fetchModelsApi, requestOTPApi, verifyOTPApi, fetchManufacturersApi, fetchTrimsApi, logoutApi, checkoutApi, fetchOptionsApi } from '../api';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { checkoutApi, deleteData, fetchManufacturersApi, fetchModelsApi, fetchOptionsApi, fetchTrimsApi, fetchYearsApi, logoutApi, requestOTPApi, verifyOTPApi } from '../api';
 
-export const fetchYears = createAsyncThunk('data/fetchYearsApi', async () => {
-    const data = await fetchYearsApi();
+export const fetchYears = createAsyncThunk('data/fetchYearsApi', async (newData,manufacturer_id) => {
+    const data = await fetchYearsApi(newData,manufacturer_id);
     return data;
 });
+
+
+export const clearYears = createAction('data/clearYears');
+
 
 export const fetchManufacturers = createAsyncThunk('data/fetchManufacturersApi', async () => {
     const data = await fetchManufacturersApi();
@@ -103,6 +107,10 @@ const dataSlice = createSlice({
             .addCase(fetchYears.rejected, (state) => {
                 state.status = 'failed';
             })
+            .addCase(clearYears, (state) => {
+                state.years = [];
+              })
+          
             .addCase(fetchModels.pending, (state) => {
                 state.status = 'loading';
             })

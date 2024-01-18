@@ -12,20 +12,20 @@ import ServiceTitle from "../Elements/ServiceTitle";
 
 export default function Services() {
   return (
+    <>
+      
     <Wrapper id="services" dir="rtl">
-      <div className="lightBg" style={{ padding: "30px 0" }}>
-        <div style={{height:"14rem"}}>
-          <ClientSlider />
-        </div>
-      </div>
+
+    <div>
+    <ClientSlider />
+    </div>
+    
       <div className="whiteBg" style={{
         padding: "60px 0", backgroundColor: "rgba(38, 170, 225, 0.05)"
       }}>
         <div >
 
           <div className="row">
-
-         
 
           <div className="col-md-6">
               <ServiceBoxRow >
@@ -87,6 +87,8 @@ export default function Services() {
 
       </div>
     </Wrapper>
+    </>
+
   );
 }
 

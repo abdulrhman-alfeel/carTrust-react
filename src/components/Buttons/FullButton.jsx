@@ -24,11 +24,11 @@ const Wrapper = styled.button`
   position: absolute;
   top: 50%;
   @media (max-width: 960px) {
-    padding: 0;
+    padding: 10px;
     width: 30%;
     margin:10px 75px ;
     z-index:999;
-    top: 85%;
+    top: 55%;
   }
   color: ${(props) => (props.border ? "#707070" : "#fff")};
   :hover {
