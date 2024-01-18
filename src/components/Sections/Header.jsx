@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import images from "../../data/images";
+<<<<<<< HEAD
 import arrow_log from '../../assets/img/arrow_log.png'
 import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
 import { components } from 'react-select';
@@ -21,12 +22,17 @@ import { NavLink } from "react-router-dom";
 
 const { SingleValue, Option } = components;
 
+=======
+import { billingInfo, fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
+>>>>>>> 3304d67450bd6f60a434a4cde7f7e12f4e256fec
 
 export default function Header() {
   const childRef = useRef(null);
   const history = useNavigate();
   const years = useSelector((state) => state.years);
   const models = useSelector((state) => state.models);
+  const billing = useSelector((state) => state.billing);
+
   const manufacturers = useSelector((state) => state.manufacturers);
   const status = useSelector((state) => state.status);
   const dispatch = useDispatch();
@@ -40,9 +46,17 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchManufacturers());
+<<<<<<< HEAD
     dispatch(fetchYears());
     dispatch(fetchModels("64"));
     console.log(manufacturers)
+=======
+    dispatch(billingInfo());
+    dispatch(fetchModels("64"));
+    dispatch(fetchYears(model,manufacturer));
+    console.log(billing);
+
+>>>>>>> 3304d67450bd6f60a434a4cde7f7e12f4e256fec
   }, [dispatch]);
 
   const handleSlideNext = (slideNext, ind) => {

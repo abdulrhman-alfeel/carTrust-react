@@ -35,6 +35,25 @@ export const fetchYearsApi = async (newData,manufacturer_id) => {
     }
 };
 
+
+export const paymentLink = async (amount,return_url,cart_id) => {
+   
+
+    try {
+        const response = await axios.post(`${API_BASE_URL}/payment/link` , {
+            amount,
+            return_url,
+            cart_id}, {
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+         return response.data.payment_link;
+    } catch (error) {
+        return error;
+    }
+};
+
 export const fetchModelsApi = async (newData) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/models/manufacturer/${newData}`);
@@ -101,4 +120,16 @@ export const deleteData = async (id) => {
     } catch (error) {
         return error;
     }
+};
+
+
+export const billingInfoApi = async () => {
+ 
+    const response = await axios.post(`${API_BASE_URL}/pg/billing/info`, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+    console.log(response);
+    return response.data;
 };
