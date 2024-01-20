@@ -146,12 +146,12 @@ const array_data = [
 
   var settings = {
     infinite: true,
-    speed: 400,
+    speed: 500,
     slidesToShow: width < 970 ? 1 : 2,
     // slidesToShow: 2,
-    slidesToScroll: 1,
-    autoplay:false,
-    arrows: false,
+    slidesToScroll: width < 970 ? 1 : 2,
+    autoplay:true,
+    arrows: true,
     centerPadding: 100
   };
 
@@ -471,20 +471,29 @@ h='2em'
         overflow="auto"
         backgroundColor={Dark ? "#020202" :"#F6F7F9"}
         // minH="200vh"
+        // height
         h="130vh"
       >
-        <Heading fontWeight="normal" mb={4}>
+        <Heading 
+        h={"38%"}
+        // w={'100em'}
+        // overflow={'hidden'}
+        fontWeight="normal" mb={4}>
         
 
-        {/* <Slider dots={true} {...settings}  > */}
-        <AvatarGroup flexDir='row'>
-        <Avatar borderRadius='25px' m={5} width={"50%"} src={imag_2}/>
-      <Avatar m={5} width={"50%"} borderRadius='25px' my={2} src={imag_1}/> 
+        <Slider style={{ height:'40%' ,margin:" 0 5px"}} dots={true} {...settings}  >
+        {/* <AvatarGroup flexDir='row'> */}
+        <Avatar borderRadius='25px' m={2}  src={imag_2}/>
+      
+        <Avatar m={2}  borderRadius='25px'  src={imag_1}/> 
+        <Avatar borderRadius='25px' m={2}  src={imag_2}/>
+        <Avatar m={2}  borderRadius='25px'  src={imag_1}/> 
+        <Avatar m={2}  borderRadius='25px'  src={imag_1}/> 
 
       {/* <Avatar m={5} borderRadius='25px' my={2} src={imag_1}/> 
       <Avatar borderRadius='25px' my={2} src={imag_2}/> */}
-      </AvatarGroup>
-    {/* </Slider> */}
+      {/* </AvatarGroup> */}
+    </Slider>
         </Heading>
 
 
@@ -515,7 +524,7 @@ h='2em'
            return(
             <Flex 
                 w={!Vaule_responsive ?'25%' : '80%'} 
-                h='41vh' 
+                h={width < 970 && width > 600? '51vh': '41vh'} 
                 m={12}
                 background="var(--Primary-0, #FFF)"
                 // boxShadow="0 0.1px 3px #000"
