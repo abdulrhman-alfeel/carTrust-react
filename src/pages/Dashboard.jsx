@@ -69,32 +69,34 @@ import Slider from "react-slick";
 export default function Dashboard() {
   const [display, changeDisplay] = useState("hide");
   const [value, changeValue] = useState("#F2B300");
-  const [Vaule_responsive, setResponsive] = useState(false);
-  const [REletiv, setRetiv] = useState('relative');
+  const [Vaule_responsive, setResponsive] = useState( window.innerWidth  < 970 ? true : false);
+  const [REletiv, setRetiv] = useState( window.innerWidth  < 970 ? 'absolute' :'relative');
   const [Dark, setDark] = useState(false);
 
 
   const [width, setWidth] = useState(window.innerWidth);
   const [width_slid, setWidth_slid] = useState(4);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-      setWidth_slid(window.innerWidth < 970 ? 1 :2)
-      window.innerWidth  < 970?
-        setResponsive(true)
-        :
-        setResponsive(false)
-        setRetiv('relative')
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWidth(window.innerWidth);
+  //     setWidth_slid(window.innerWidth < 970 ? 1 :2)
+  //     if(window.innerWidth  < 970){
+  //       setResponsive(true)
+  //       setRetiv('absolute')
+  //     }else{
+  //       setResponsive(false)
+  //       setRetiv('relative')}
 
-    };
-    window.addEventListener('resize', handleResize);
-    // swithcing()
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+
+  //   };
+  //   window.addEventListener('resize', handleResize);
+  //   // swithcing()
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
     
-  }, [window.innerWidth]);
+  // }, []);
 
 
 // const swithcing = () =>{
@@ -195,13 +197,13 @@ m={30}
     >
       {/* *column 1 */}
   
-  {Vaule_responsive == false ?
+  {Vaule_responsive === false ?
       <Flex
       position={REletiv}
         zIndex={1}
         // right={"20px"}
         // w="90%"
-        w={REletiv == "relative"  ? "20%" : '80%'}
+        w={REletiv === "relative"  ? "20%" : '80%'}
         flexDir="column"
         alignItems="center"
         border="solid 3px #fff"
@@ -220,7 +222,7 @@ m={30}
         right="-30%"
         h='2em'
         >
-{Vaule_responsive == false &&   window.innerWidth  < 970?
+{Vaule_responsive === false ?
     <Button 
     onClick={()=>{
         setResponsive(true)
@@ -254,7 +256,7 @@ null
 
             <Flex flexDir="column" 
             align={['center','center','center',"flex-start","flex-start"]} 
-            justifyContent="center">
+            justifyContent='space-around'>
               <Flex p={12} className="sidebar-items">
                 <Link
                   display={[
@@ -265,7 +267,7 @@ null
                     "flex-start",
                   ]} 
                 >
-                  <Icon color={Dark ? "#fff": null}
+                  <Icon color={Dark ? "#fff": '#000'}
                     display={["flex", "flex", "none", "flex", "flex"]}
                     as={FiHome}
                     fontSize="2xl"
@@ -411,13 +413,16 @@ justifyContent='space-between'
 
             </Flex>
           
-            <li className="semiBold font15 pointer" style={window.innerWidth < 800 ?{display:"block" , marginTop:"70%"}: {display:'none'}}>
-            <div className="dropdown">
-              <Link  className="nav-link tm-nav-link active-icon-user-nav" href="#testimonials">
+            <li className="semiBold font15 pointer" style={window.innerWidth < 800 ?{display:"block" ,position:'relative', top:"15%", left:"20%"}: {display:'none'}}>
+            <div className=" dropdown">
+             <Flex align='center' flexDir='column' className="nav-link tm-nav-link">
+              <Link  className=" active-icon-user-nav" href="#testimonials">
     
                               <Avatar
               src="avata-1.jpg"/>
               </Link>
+              <Text style={{position:'relative', left:"25%", color: Dark ? "#fff" :'#000',margin:'10px'}}>user Name</Text>
+              </Flex>
               <div className="dropdown-content">
                   <a href="#">Tow</a>
                   <a href="#">One</a>
@@ -523,7 +528,7 @@ h='2em'
 
            return(
             <Flex 
-                w={!Vaule_responsive ?'25%' : '80%'} 
+                w={ window.innerWidth  > 970 ?'25%' : '80%'} 
                 h={width < 970 && width > 600? '51vh': '41vh'} 
                 m={12}
                 background="var(--Primary-0, #FFF)"

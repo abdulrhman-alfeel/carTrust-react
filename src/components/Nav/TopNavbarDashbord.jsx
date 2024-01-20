@@ -3,55 +3,24 @@ import { Link } from "react-scroll";
 import styled from "styled-components";
 // Components
 import Backdrop from "../Elements/Backdrop";
-import Sidebar from "../Nav/Sidebar";
 // Assets
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import BurgerIcon from "../../assets/svg/BurgerIcon";
 import LogoIcon from "../../assets/svg/Logo";
 import { logout } from "../../redux/features/dataSlice";
-import  united from '../../assets/img/united-kingdom.png'
 
 import {
   Flex,
-  Heading,
   Avatar,
-  AvatarGroup,
-  Text,
   Icon,
-  IconButton,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Divider,
-  // Link,
-  Box,
-  Button,
   Input,
   InputGroup,
-  InputLeftElement,
 } from "@chakra-ui/react";
 
 import {
-  FiHome,
-  FiPieChart,
-  FiDollarSign,
-  FiBox,
-  FiCalendar,
-  FiChevronDown,
-  FiChevronUp,
-  FiPlus,
   FiCreditCard,
   FiSearch,
   FiBell,
   FiHeart,
-  FiBatteryCharging,
-  FiCrosshair,
-  FiUsers,
-  FiChevronsRight,
   FiGitPullRequest,
   FiSettings,
 } from "react-icons/fi";
@@ -64,7 +33,7 @@ import {
 export default function TopNavbarDashbord({kind}) {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     window.addEventListener("scroll", () => setY(window.scrollY));

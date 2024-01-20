@@ -13,9 +13,11 @@ import store from "./redux/store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
+    //   // "homepage": "https://freemarkate.com/carTrust",
 
-    <Route>
-      <Route path="/" element={<Landing />} />
+    <Route  basename='/carTrust/'>
+    {/* // <Route >  */}
+      <Route path="/carTrust" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-number" element={<VerifyNumber />} />
       <Route path="/checkout" element={<Checkout />} />
@@ -36,7 +38,7 @@ export default function App() {
 
   return (
     <>
-      <Provider store={store}>
+      <Provider  store={store}>
         <ToastContainer />
         <Helmet>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,7 +47,7 @@ export default function App() {
           <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'></link>
        
         </Helmet>
-        <RouterProvider router={router} />
+        <RouterProvider  router={router} />
         {/* <Landing /> */}
       </Provider>
     </ >
