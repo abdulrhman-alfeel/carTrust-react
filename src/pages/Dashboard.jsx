@@ -476,12 +476,15 @@ h='2em'
         <Heading fontWeight="normal" mb={4}>
         
 
-        <Slider dots={true} {...settings}  >
-        {/* <img  src={imag_1} style={{borderRadius:'25px'}}/> */}
-        {/* <img  src={imag_2} style={{borderRadius:'25px'}}/> */}
-      <Avatar borderRadius='25px' my={2} src={imag_1}/> 
-      <Avatar borderRadius='25px'  src={imag_2}/>
-    </Slider>
+        {/* <Slider dots={true} {...settings}  > */}
+        <AvatarGroup flexDir='row'>
+        <Avatar borderRadius='25px' m={5} width={"50%"} src={imag_2}/>
+      <Avatar m={5} width={"50%"} borderRadius='25px' my={2} src={imag_1}/> 
+
+      {/* <Avatar m={5} borderRadius='25px' my={2} src={imag_1}/> 
+      <Avatar borderRadius='25px' my={2} src={imag_2}/> */}
+      </AvatarGroup>
+    {/* </Slider> */}
         </Heading>
 
 
