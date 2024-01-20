@@ -1534,3 +1534,83 @@ line-height: 32px;
 		transform: translateX(calc(-250px * 7));
 	}
 }
+
+
+
+/* dashboard */
+
+.active{
+  color:#fff;
+}
+
+.active-icon{
+  color:#B57295 !important;
+}
+/* .active-icon-nave{
+  color:#3D5278!important;
+} */
+.active-icon-user{
+  color: #000 !important;
+  width: 3.5em;
+  width: 3.5em;
+  border-radius: 50%;
+  background-color: #ebebeb;
+  overflow: hidden;
+
+  /* box-shadow: 0 4px 2px rgb(0, 0, 0,07); */
+}
+.active-icon-user-nav{
+  color: #000 !important;
+  width: 4.5em;
+  width: 4.5em;
+  margin-left: 55% ;
+  border-radius: 50%;
+  background-color: #ebebeb;
+  overflow: hidden;
+
+  /* box-shadow: 0 4px 2px rgb(0, 0, 0,07); */
+}
+.sidebar-items_dark{
+  color:gray;
+  font-size:large;
+  padding-right:4em ;
+  width: 100%;
+  height: 6vh;
+}
+.sidebar-items{
+  color:gray;
+  font-size:large;
+  padding-right:4em ;
+  width: 100%;
+  height: 6vh;
+}
+/* .css-1g7aboa{
+  /* background-color:#000000 !important; */
+  /* display: none !important; */
+/* }  */
+
+.sidebar-items p {
+  margin-left:  1em;
+}
+
+
+.sidebar-items:hover p{
+  color:#fff
+}
+.sidebar-items:hover {
+  background-color:#2D3291;
+  border-radius: 10px;
+  /* padding: 1em  4em ; */
+}
+
+.sidebar-items:hover svg{
+  color:#B57295
+}
+
+.sidebar-items:not(:last-child){
+  margin-bottom:1.5em;
+}
+
+.icon_car{
+  color:#90A3BF !important;
+}
