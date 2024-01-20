@@ -11,13 +11,12 @@ import Select from 'react-select';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { components } from 'react-select';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import arrow_log from '../../assets/img/arrow_log.png';
 import images from "../../data/images";
-import arrow_log from '../../assets/img/arrow_log.png'
 import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
-import { components } from 'react-select';
-import { NavLink } from "react-router-dom";
 
 const { SingleValue, Option } = components;
 
@@ -42,8 +41,9 @@ export default function Header() {
 
   useEffect(() => {
     dispatch(fetchManufacturers());
-    dispatch(fetchYears());
+    // dispatch(billingInfo());
     dispatch(fetchModels("64"));
+    dispatch(fetchYears(model,manufacturer));
     console.log(manufacturers)
   }, [dispatch]);
 
@@ -140,15 +140,25 @@ const customStyles = {
 
   const handleManufacturerChange = (value) => {
     console.log(value.name)
-    setManufacturer(value);
+    // setManufacturer(value.id);
 
-      console.log(manufacturers.find(pic => pic.name == value.name).id  )
-      dispatch(fetchModels(manufacturers.find(pic => pic.name == value.name).id ));
+      console.log(manufacturers.find(pic => pic.name == value.name).id)
+      // dispatch(fetchModels(manufacturers.find(pic => pic.name == value.name).id ));
+      dispatch(fetchModels(value.id ));
 
   }
 
+  const handleModelChange = (value) => {
+    setModel(value.id);
+    console.log(model);
+    dispatch(fetchYears(model,manufacturer));
+  }
+
   const submitHandler = () => {
-    history(`/checkout?&${manufacturer}&${model}&${year}`)
+    // console.log(manufacturer);
+    // console.log(year);
+    // console.log(model);
+    history(`/checkout?&${manufacturer}&${model}&${year}`);
   }
 
 
@@ -333,9 +343,9 @@ const customStyles = {
             className="select-image"
               // isDisabled={false}
             isSearchable={false}
-            onChange={(e) => setModel(e)}
+            onChange={handleModelChange}
             // value={}
-            value={manufacturer}
+            value={model}
             options={
               models?.map((model, index) => model)
             }
@@ -365,9 +375,9 @@ const customStyles = {
             className="select-image"
               // isDisabled={false}
             isSearchable={false}
-            onChange={(e) => setYear(e)}
+            onChange={(e) => setYear(e.id)}
             // value={}
-            value={manufacturer}
+            value={year}
             options={
               years?.map((model, index) => model)
             }
@@ -379,13 +389,9 @@ const customStyles = {
         />
     
           </div>
-          <div className="col-lg-3 mt-3 Evaluate">
-                  <NavLink to="/login" onClick={submitHandler} style={{ 
-                  fontSize:"1.7rem",
-                  color: "white", margin: "0 auto", display: "block" }}>
-                  تقييم
-                  </NavLink>
-          </div>
+          <button style={{color:"white"}} onClick={submitHandler} className="col-lg-3 mt-3 Evaluate">
+           تقييم
+          </button>
         
         </div>
       </HeaderElement1>
@@ -473,17 +479,18 @@ const ImageWrapper = styled.div`
 
 const EavaluateButton = styled.button`
 
- color:#FFF;
- width: 248px;
- height: 55rem,
- padding:10rem;
- flex-shrink: 0;
-border-radius: 8px;
-background: #2D3291;
-box-shadow: 0px -5px 13px 0px rgba(45, 50, 145, 0.12);
-@media(max-width:960px){
-  width: 100%;
+//  color:#FFF;
+//  width: 248px;
+//  height: 55rem,
+//  padding:10rem;
+//  flex-shrink: 0;
+// border-radius: 8px;
+// background: #2D3291;
+// box-shadow: 0px -5px 13px 0px rgba(45, 50, 145, 0.12);
+// @media(max-width:960px){
+//   width: 100%;
  }  
+ background:none;
 `;
 
 
