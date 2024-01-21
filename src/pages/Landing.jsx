@@ -12,13 +12,13 @@ import Dashboard from "./Dashboard";
 export default function Landing() {
   return (
     <div style={{overflow:"hidden"}}>
-      {/* <TopNavbar /> */}
-      {/* <Header /> */}
-      {/* <Services /> */}
-      {/* <Projects /> */}
-      {/* <Blog /> */}
-      <Dashboard />
-      {/* <Footer /> */}
+      <TopNavbar />
+      <Header />
+      <Services />
+      <Projects />
+      <Blog />
+      {/* <Dashboard /> */}
+      <Footer />
     </div>
   );
 }
