@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
 // Screens
@@ -6,6 +6,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from "./pages/Checkout";
+import Dashboard from "./pages/Dashboard";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import VerifyNumber from "./pages/VerifyNumber";
@@ -13,11 +14,10 @@ import store from "./redux/store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    //   // "homepage": "https://freemarkate.com/carTrust",
-
-    <Route  basename='/carTrust/'>
-    {/* // <Route >  */}
-      <Route path="/carTrust" element={<Landing />} />
+ 
+      <Route >
+       <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-number" element={<VerifyNumber />} />
       <Route path="/checkout" element={<Checkout />} />

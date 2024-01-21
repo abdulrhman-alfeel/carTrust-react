@@ -1,63 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import styled from "styled-components";
-import RollerIcon from "..//assets/img/logo.png";
+import React, { useState } from "react";
 import imag_1 from "../assets/img/9579eff385e6525bfc9594ee8bd5c695.png";
-import imag_2 from "../assets/img/image-1702562405-image-1702453944-WhatsAppImage2023-12-12at6.17 1 (1).png";
 import imag_3 from "../assets/img/car_select_1.png";
 import imag_4 from "../assets/img/car_select_2.png";
 import imag_5 from "../assets/img/car_select_3.png";
+import imag_2 from "../assets/img/image-1702562405-image-1702453944-WhatsAppImage2023-12-12at6.17 1 (1).png";
 
 import {
-  checkout,
-  fetchOptions,
-  fetchTrims,
-} from "../redux/features/dataSlice";
-import {
+  Avatar,
+  Button,
   Flex,
   Heading,
-  Avatar,
-  AvatarGroup,
-  Text,
   Icon,
-  IconButton,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Divider,
   Link,
-  Box,
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
+  Text
 } from "@chakra-ui/react";
 
 import {
+  FiBatteryCharging,
+  FiBox,
+  FiChevronsRight,
+  FiCrosshair,
+  FiDollarSign,
+  FiHeart,
   FiHome,
   FiPieChart,
-  FiDollarSign,
-  FiBox,
-  FiCalendar,
-  FiChevronDown,
-  FiChevronUp,
-  FiPlus,
-  FiCreditCard,
-  FiSearch,
-  FiBell,
-  FiHeart,
-  FiBatteryCharging,
-  FiCrosshair,
-  FiUsers,
-  FiChevronsRight,
   FiSun,
+  FiUsers
 } from "react-icons/fi";
-import ClientReviews from "../components/Elements/ClientReviews";
 import TopNavbarDashbord from "../components/Nav/TopNavbarDashbord";
 
 // import MyChart from "../components/MyChart";

@@ -3,14 +3,13 @@ import { Link } from "react-scroll";
 import styled from "styled-components";
 // Components
 import Backdrop from "../Elements/Backdrop";
-import Sidebar from "../Nav/Sidebar";
 // Assets
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import united from '../../assets/img/united-kingdom.png';
 import BurgerIcon from "../../assets/svg/BurgerIcon";
 import LogoIcon from "../../assets/svg/Logo";
 import { logout } from "../../redux/features/dataSlice";
-import  united from '../../assets/img/united-kingdom.png'
 
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
@@ -107,10 +106,16 @@ export default function TopNavbar() {
               </div>
             </li>
 
+            <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <NavLink to="dashboard" className="nav-link tm-nav-link">لوحة التحكم</NavLink>
+              </div>
+            </li>
+
             {/* <li className="semiBold font15 pointer">
 
-              <NavLink to="checkout" style={{ padding: "10px 15px" }} spy={true} smooth={true} offset={-80}>
-                checkouts
+              <NavLink to="dashboard" style={{ padding: "10px 15px" }} spy={true} smooth={true} offset={-80}>
+              Dashboard
               </NavLink>
             </li> */}
 
