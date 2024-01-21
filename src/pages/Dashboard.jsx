@@ -1,10 +1,3 @@
-import React, { useState } from "react";
-import imag_1 from "../assets/img/9579eff385e6525bfc9594ee8bd5c695.png";
-import imag_3 from "../assets/img/car_select_1.png";
-import imag_4 from "../assets/img/car_select_2.png";
-import imag_5 from "../assets/img/car_select_3.png";
-import imag_2 from "../assets/img/image-1702562405-image-1702453944-WhatsAppImage2023-12-12at6.17 1 (1).png";
-
 import {
   Avatar,
   Button,
@@ -14,6 +7,11 @@ import {
   Link,
   Text
 } from "@chakra-ui/react";
+import React, { useState } from "react";
+import imag_1 from "../assets/img/9579eff385e6525bfc9594ee8bd5c695.png";
+import imag_3 from "../assets/img/car_select_1.png";
+import imag_4 from "../assets/img/car_select_2.png";
+import imag_5 from "../assets/img/car_select_3.png";
 
 import {
   FiBatteryCharging,
@@ -45,27 +43,30 @@ export default function Dashboard() {
 
   const [width, setWidth] = useState(window.innerWidth);
   const [width_slid, setWidth_slid] = useState(4);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setWidth(window.innerWidth);
-  //     setWidth_slid(window.innerWidth < 970 ? 1 :2)
-  //     if(window.innerWidth  < 970){
-  //       setResponsive(true)
-  //       setRetiv('absolute')
-  //     }else{
-  //       setResponsive(false)
-  //       setRetiv('relative')}
+  const [height, setHeight] = useState(0);
 
 
-  //   };
-  //   window.addEventListener('resize', handleResize);
-  //   // swithcing()
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize);
-  //   };
+  useEffect(() => {
+    setHeight(window.innerHeight);
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+      setWidth_slid(window.innerWidth < 970 ? 1 :2)
+      // if(window.innerWidth  < 970){
+      //   setResponsive(true)
+      //   setRetiv('absolute')
+      // }else{
+      //   setResponsive(false)
+      //   setRetiv('relative')}
+
+
+    };
+    window.addEventListener('resize', handleResize);
+    // swithcing()
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
     
-  // }, []);
+  }, []);
 
 
 // const swithcing = () =>{
@@ -111,7 +112,7 @@ const array_data = [
 
 
 
-
+// useEffect(()=>{loaded()},[])
 
 
 
@@ -122,16 +123,20 @@ const array_data = [
     // slidesToShow: 2,
     slidesToScroll: width < 970 ? 1 : 2,
     autoplay:true,
-    arrows: true,
-    centerPadding: 100
+    arrows: false,
+    
+    // centerPadding: 100
   };
+  // const loaded = ()=>{
+  //   const wrapper = document.querySelector('#wrapper')
+  //   new iScroll(wrapper, { mouseWheel: true })
+  // }
 
   return (
-    <Flex
-    h={[null, null, "1000vh"]}
-    flexDir={["column", "column", "column"]}
-    overflow="hidden"
-    maxW="2000px"
+    <div
+    style={{
+      backgroundColor: '#333333',
+      width:'100%',display:"flex",flexDirection:'column',overflow:'hidden',height:`${window.innerHeight}.px`}}
     >
 
 
@@ -144,269 +149,272 @@ m={30}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     <Flex
       w="100%"
     // mt={20}
     //   h={[null, null, "1000vh"]}
+
+    backgroundColor={Dark? '#333333' : '#fff'}
       flexDir={["column", "column", "row"]}
       overflow="hidden"
     //   maxW="2000px"
-    maxH="130vh"
+    // maxH="130vh"
     >
       {/* *column 1 */}
-  
+
   {Vaule_responsive === false ?
-      <Flex
-      position={REletiv}
-        zIndex={1}
-        // right={"20px"}
-        // w="90%"
-        w={REletiv === "relative"  ? "20%" : '80%'}
-        flexDir="column"
-        alignItems="center"
-        border="solid 3px #fff"
-        p={20}
-        pt={40}
-        // backgroundColor="#020202"
-        backgroundColor="#FFFFFF"
-        color="#fff">
 
+          <Flex
+          id="wrapper"
+          position={REletiv === 'absolute'?"fixed" :REletiv}
+          zIndex={1}
 
-        <Flex
-        position='absolute'
-        zIndex={0}
-        mt={100}
-        w={"30%"}
-        right="-30%"
-        h='2em'
-        >
-{Vaule_responsive === false ?
-    <Button 
-    onClick={()=>{
-        setResponsive(true)
-        setRetiv("relative")
-    }}
-    w={"40%"}
-    backgroundColor='#2D3291'
-    border='none' borderRadius='0 20px 20px 0' color="#000" >
-      <Icon 
-      color='#fff'
-      as={FiChevronsRight}/>     
-    </Button>
-:
-null    
-}
-</Flex>
-        <Flex     
-          
-          flexDir="column"
-        w='117%'
-        mb={20}
-        mt={-15}
-        //   border="solid 2px #333333"
-          backgroundColor={Dark? '#333333' : '#fff'}
-          justifyContent="space-between"
-          alignItems="center"
-          h="130vh"
-        >
-          <Flex flexDir="column" as="nav">
-         
-
-            <Flex flexDir="column" 
-            align={['center','center','center',"flex-start","flex-start"]} 
-            justifyContent='space-around'>
-              <Flex p={12} className="sidebar-items">
-                <Link
-                  display={[
-                    "center",
-                    "center",
-                    "center",
-                    "flex-start",
-                    "flex-start",
-                  ]} 
-                >
-                  <Icon color={Dark ? "#fff": '#000'}
-                    display={["flex", "flex", "none", "flex", "flex"]}
-                    as={FiHome}
-                    fontSize="2xl"
-                    className="active-icon"
-                  />
-                </Link>
-                <Link _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text fontSize="1em" 
-                  color={Dark ? "#fff": null}
-                //   className="active"
-                  >Dashboard</Text>
-                </Link>
-              </Flex>
-
-              <Flex  p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiPieChart} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text  color={Dark ? "#fff": null}> My Vehicles</Text>
-                </Link>
-              </Flex>
-
-              <Flex p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiDollarSign} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null}>My Evaluation</Text>
-                </Link>
-              </Flex>
-
-              <Flex p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null}>My Warranties</Text>
-                </Link>
-              </Flex>
-
-              <Flex p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null} fontSize="1em">QR CodesHistory</Text>
-                </Link>
-              </Flex>
-
-              <Flex pl={12} pt={10}  className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null}>MyTransaction</Text>
-                </Link>
-              </Flex>
-
-              <Flex p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null}>Branches</Text>
-                </Link>
-              </Flex>
-
-              <Flex p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null}>ContactUs</Text>
-                </Link>
-              </Flex>
-
-              <Flex p={12} className="sidebar-items">
-                <Link>
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                </Link>
-                <Link  _hover={{ 
-            color:'#000',
-            textDecor: "none" }}>
-                  <Text color={Dark ? "#fff": null}> Settings</Text>
-                </Link>
-              </Flex>
-
-
-              <Flex p={12} 
-
-justifyContent='space-between'
-              className="sidebar-items_dark">
-                <Link 
-                
-                display="flex" flexDir="row">
-                  <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                  <Text color={Dark ? "#fff": null}>Dark Mode</Text>
-                </Link>
-              
-                
-                    <Flex
-                    w='50%'
-                    h='2em'
-                    p={3}
-                    justifyContent='space-around'
-                    borderRadius='10em' backgroundColor="#F6F7F9">
-                    <Link  
-                    align="center"
-                    width='50%'
-                    color={Dark ?  "#2D3291" :  "#F6F7F9"}
-                    onClick={()=>setDark(false)}
-                     borderRadius='10em' backgroundColor={Dark ?   "#F6F7F9" : "#2D3291" }>
-                    <Icon as={FiSun} fontSize="2xl" />
-                    </Link>
-                    <Link
-                        align='center'
-                         width='50%'
-                         h="1.6em"
-                         onClick={()=>setDark(true)}
-                         borderRadius='10em' backgroundColor={Dark ?  "#2D3291" :  "#F6F7F9"}
-                    >
-                    <Icon as={FiBox} fontSize="2xl" />
-                    </Link>
-                    </Flex>
-              </Flex>
-
-            </Flex>
-          
-            <li className="semiBold font15 pointer" style={window.innerWidth < 800 ?{display:"block" ,position:'relative', top:"15%", left:"20%"}: {display:'none'}}>
-            <div className=" dropdown">
-             <Flex align='center' flexDir='column' className="nav-link tm-nav-link">
-              <Link  className=" active-icon-user-nav" href="#testimonials">
+            // right={"20px"}
+            // w="90%"
+            h={`${window.innerHeight}.px`}
+            // position="fixed"
+            w={REletiv === "relative"  ? "20%" : '60%'}
+            overflow={REletiv === "relative" ? "none": 'hidden'}
+            overflowY={REletiv === "relative" ? "none": 'auto'}
+            maxH='100vh'
+            flexDir="column"
+            alignItems="center"
+            // border="solid 3px #fff"
+            p={20}
+            pt={40}
+            pb={40}
+            // backgroundColor="#020202"
+            // backgroundColor="#FFFFFF"
+            color="#fff">
     
-                              <Avatar
-              src="avata-1.jpg"/>
-              </Link>
-              <Text style={{position:'relative', left:"25%", color: Dark ? "#fff" :'#000',margin:'10px'}}>user Name</Text>
-              </Flex>
-              <div className="dropdown-content">
-                  <a href="#">Tow</a>
-                  <a href="#">One</a>
+    
+            <Flex
+            position='fixed'
+            zIndex={0}
+            mt={100}
+            w={"100%"}
+            right="-60%"
+            h='2em'
+            >
+              {window.innerWidth  < 970 ?
+                  <Button 
+                  // position='fixed'
+                  // top={0}
+                  p={"2%"}
+                  // right={"30.5%"}
+                
+                  onClick={()=>{
+                      setResponsive(true)
+                      setRetiv("relative")
+                  }}
+                  w={"8%"}
+                  backgroundColor='#2D3291'
+                  border='none' borderRadius='0 20px 20px 0' color="#000" >
+                    <Icon 
+                    color='#fff'
+                    as={FiChevronsRight}/>     
+                  </Button>
+              :
+              null    
+              }
+            </Flex>
+            <Flex     
+    
+              flexDir="column"
+            w='117%'
+            h={`${window.innerHeight}.px `}
+            border= '0 black' 
+            p={"10%"} 
+            mb={-20}
+            mt={-15}
+            //   border="solid 2px #333333"
+              backgroundColor={Dark? '#333333' : '#fff'}
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Flex flexDir="column" as="nav">
+                <Flex flexDir="column" 
+                // overflowY='auto'
+                // maxH='100vh'
+                align={['center','center','center',"flex-start","flex-start"]} 
+                justifyContent='space-around'>
+                  <Flex p={12} className="sidebar-items">
+                    <Link
+                      display={[
+                        "center",
+                        "center",
+                        "center",
+                        "flex-start",
+                        "flex-start",
+                      ]} 
+                    >
+                      <Icon color={Dark ? "#fff": '#000'}
+                        display={["flex", "flex", "none", "flex", "flex"]}
+                        as={FiHome}
+                        fontSize="2xl"
+                        className="active-icon"
+                      />
+                    </Link>
+                    <Link _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text fontSize="1em" 
+                      color={Dark ? "#fff": null}
+                    //   className="active"
+                      >Dashboard</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex  p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiPieChart} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text  color={Dark ? "#fff": null}> My Vehicles</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiDollarSign} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null}>My Evaluation</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null}>My Warranties</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null} fontSize="1em">QR CodesHistory</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex pl={12} pt={10}  className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null}>MyTransaction</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null}>Branches</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null}>ContactUs</Text>
+                    </Link>
+                  </Flex>
+    
+                  <Flex p={12} className="sidebar-items">
+                    <Link>
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                    </Link>
+                    <Link  _hover={{ 
+                color:'#000',
+                textDecor: "none" }}>
+                      <Text color={Dark ? "#fff": null}> Settings</Text>
+                    </Link>
+                  </Flex>
+    
+    
+                  <Flex p={12} 
+    
+    justifyContent='space-between'
+                  className="sidebar-items_dark">
+                    <Link 
+                    
+                    display="flex" flexDir="row">
+                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
+                      <Text color={Dark ? "#fff": null}>Dark Mode</Text>
+                    </Link>
                   
-              </div>
-              </div>
-            </li>
+                    
+                        <Flex
+                        w='50%'
+                        h='2em'
+                        p={3}
+                        justifyContent='space-around'
+                        borderRadius='10em' backgroundColor="#F6F7F9">
+                        <Link  
+                        align="center"
+                        width='50%'
+                        color={Dark ?  "#2D3291" :  "#F6F7F9"}
+                        onClick={()=>setDark(false)}
+                         borderRadius='10em' backgroundColor={Dark ?   "#F6F7F9" : "#2D3291" }>
+                        <Icon as={FiSun} fontSize="2xl" />
+                        </Link>
+                        <Link
+                            align='center'
+                             width='50%'
+                             h="1.6em"
+                             onClick={()=>setDark(true)}
+                             borderRadius='10em' backgroundColor={Dark ?  "#2D3291" :  "#F6F7F9"}
+                        >
+                        <Icon as={FiBox} fontSize="2xl" />
+                        </Link>
+                        </Flex>
+                  </Flex>
+    
+                </Flex>
+              
+                <li className="semiBold font15 pointer" style={window.innerWidth < 800 ?{display:"block", 
+                alignSelf:'center',
+                marginTop:'30%',
+                marginBottom:'30%'
+                
+                }: {display:'none'}}>
+                <div className=" dropdown-dashboard">
+                 <Flex align='center' flexDir='column' className="nav-link ">
+                  <Link  className=" active-icon-user-nav" href="#testimonials"> 
+                                  <Avatar
+                  src="avata-1.jpg"/>
+                  </Link>
+                  <Text style={{color: Dark ? "#fff" :'#000',margin:'10px'}}>user Name</Text>
+                  </Flex>
+               
+                  </div>
+                </li>
+              </Flex>
+    
+            </Flex>
           </Flex>
-
-          {/* <Flex flexDir='column'alignItems="center"  mb={18} mt={5}>
-                    <Avatar my={2} src="avata-1.jpg"/>
-                    <Text textAlign='center'>Calvin west</Text>
-                </Flex> */}
-        </Flex>
-      </Flex>
 :
 <Flex
 position='absolute'
@@ -438,24 +446,33 @@ h='2em'
 
       {/* Column 2 */}
       <Flex
-        // w={["100%", "100%", "60%", "60%", "80%"]}
-        // w='100%'
         p="3%"
+        onClick={()=>{
+          if (window.innerWidth < 960 )
+          setResponsive(true)
+          setRetiv("relative")
+
+        }}
+        // position='fixed'
+        // top={0}
+        // right={0}
+        // left={0}
         flexDir="column"
-        overflow="auto"
+        overflow='hidden'
+
         backgroundColor={Dark ? "#020202" :"#F6F7F9"}
         // minH="200vh"
         // height
-        h="130vh"
+        // h="130vh"
       >
         <Heading 
         h={"38%"}
-        // w={'100em'}
+        w={'97%'}
         // overflow={'hidden'}
         fontWeight="normal" mb={4}>
         
 
-        <Slider style={{ height:'40%' ,margin:" 0 5px"}} dots={true} {...settings}  >
+        <Slider style={{ height:'40%' ,margin:" auto" }} dots={true} {...settings}  >
         {/* <AvatarGroup flexDir='row'> */}
         <Avatar borderRadius='25px' m={2}  src={imag_2}/>
       
@@ -484,7 +501,7 @@ h='2em'
           </Flex>
           {/* <Heading as="h2" size="sm" letterSpacing="tight"> */}
           <Link color={"#3563E9"}  _hover={{ 
-            color:'#000',
+            color:Dark ?"#fff":'#000',
             textDecor: "none" }}>
                   <Text  fontSize="1.5em">view All</Text>
                 </Link>
@@ -606,6 +623,6 @@ h='2em'
         </Flex>
 
 
-        </Flex>
+        </div>
   );
 }
