@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import styled from "styled-components";
 import bmw from "../assets/img/BMW.png";
+// import bmw_ from "../assets/img/BMW 1.png";
 import applepay from "../assets/img/applepay.png";
 import cash from "../assets/img/cash.png";
 import mastercard from "../assets/img/mastercard.png";
@@ -60,7 +61,7 @@ import {
 import imag_3 from "../assets/img/car_select_1.png";
 import imag_4 from "../assets/img/car_select_2.png";
 import imag_5 from "../assets/img/car_select_3.png";
-
+import Slider from "react-slick";
 
 
 // Sections
@@ -81,6 +82,11 @@ export default function Checkout() {
   const optionsArray = useSelector(state => state.options);
   const [trim, setTrim] = useState({});
   const [updated, setUpdated] = useState(false);
+  const [select_Car, setSelect_Cart] = useState(1)
+
+  const [fontEn,setFonEn] = useState('Plus Jakarta Sans')
+
+
   const [checkoutData, setCheckoutData] = useState({
     mileage: "",
     address: "",
@@ -161,45 +167,104 @@ export default function Checkout() {
   const array_data = [
     {
         id:1,
-        name:'Koenigsegg',
+        name:'i7 xDrive 60',
         Oil: "90L",
-        imag:imag_3
+        imag:imag_3,
+        icons: bmw
+
     },
     {
         id:2,
         name:'Nissan GT-R',
         Oil: "80L",
-        imag:imag_4
+        imag:imag_4,
+        icons: bmw
     },
     {
         id:3,
         name:'Rolls-Royce',
         Oil: "70L",
-        imag:imag_5
+        imag:imag_5,
+        icons: bmw
     },
     {
-        id:1,
+        id:4,
         name:'Nissan GT-R',
         Oil: "80L",
-        imag:imag_3
+        imag:imag_3,
+        icons: bmw
     },
+    {
+        id:5,
+        name:'i7 xDrive 60',
+        Oil: "90L",
+        imag:imag_3,
+        icons: bmw
+
+    },
+    {
+        id:6,
+        name:'Nissan GT-R',
+        Oil: "80L",
+        imag:imag_4,
+        icons: bmw
+    },
+    {
+        id:7,
+        name:'Rolls-Royce',
+        Oil: "70L",
+        imag:imag_5,
+        icons: bmw
+    },
+    {
+        id:8,
+        name:'Nissan GT-R',
+        Oil: "80L",
+        imag:imag_3,
+        icons: bmw
+    },
+
+
 ]
+
+
+
+
+const onClick_care = (id) =>{
+
+  setSelect_Cart(id)
+}
 
 
 
 const NaveEvltion = () =>{
   return(
-    <Flex flexDir='row' justifyContent="space-around" mt={8}>
+    // <Flex
+    // className="CarTrim"
+    // overflowX='auto'
+    //               // minW='100%' 
+    //               p={20}
+    //               // border="solid 2px #000"
+    // flexDir='row' justifyContent="space-around" mt={8}>
+         <Slider style={{
+          position: "relative",
+          right: '50%',
+          left: '-3%',
+          padding:'10px'}}  {...settings} >
     {array_data?.map(pic =>{
 
    return(
     <Flex 
-        w={ window.innerWidth  > 970 ?'25%' : '80%'} 
-        h={width < 970 && width > 600? '51vh': '41vh'} 
+        onClick={()=>onClick_care(pic.id)}
+        minW={ window.innerWidth  > 970 ?'25%' : '80%'} 
+        // minW='100%'
+        // h='222px'
+        h={width < 970 && width > 600? '31vh': '30vh'} 
         m={12}
-        background="var(--Primary-0, #FFF)"
+        background="#F6F7F9"
+        border={select_Car === pic.id ? "solid 2px #2D3291" : null}
         // boxShadow="0 0.1px 3px #000"
-        borderRadius="5%"
+        borderRadius="8%"
         flexDirection='column'
         justifyContent="space-between"
         pb={10}
@@ -213,23 +278,20 @@ const NaveEvltion = () =>{
                 flexDir='column'
                 >
                     <Text
-                    fontSize='1em'
+                    fontSize='1.2em'
                     fontWeight='bold'
                     >{pic.name}</Text>
+
                     <Text
                     color="var(--Secondary-300, #90A3BF)"
-                    >Sport</Text>
+                    >7 Series</Text>
                 </Flex>
-                <Icon 
-                display={["flex", "flex", "none", "flex", "flex"]}
-                as={FiHeart}
-                fontSize="1.7em"
-                className="active-icon"/>
+                <img width='15%' height='50%' src={pic.icons}/>
                 </Flex>
         
             <Flex
-            overflow='hidden'
             m={10}
+            // overflow='hidden'
             // border="solid 5px #000"
             justify='center'
             borderRadius='25px'
@@ -237,53 +299,18 @@ const NaveEvltion = () =>{
             <Avatar borderRadius='25px' w='100%' my={2} src={pic.imag}/>
             </Flex>
     <Flex
-    flexDir='column'
-    >        
-        <Flex
-        ml={10}
-        mr={10}
-        // border="solid 2px #000 "
-        justifyContent='space-around'
-        >
-            <Flex>
-            <Icon
-                display={["flex", "flex", "none", "flex", "flex"]}
-                as={FiBatteryCharging}
-                fontSize="1em"
-                mr={9}
-                className="icon_car"/>
-            <Text fontSize='0.8em'>{pic.Oil}</Text>
-            </Flex>
-            <Flex>
-            <Icon
-                display={["flex", "flex", "none", "flex", "flex"]}
-                as={FiCrosshair}
-                mr={9}
-                fontSize="1em"
-                className="icon_car"/>
-            <Text fontSize='0.8em'>Manual</Text>
-            </Flex>
-            <Flex>
-            <Icon
-                display={["flex", "flex", "none", "flex", "flex"]}
-                as={FiUsers}
-                mr={8}
-                color='#90A3BF'
-                fontSize="1em"
-                className="icon_car"/>
-            <Text fontSize='0.8em'>People</Text>
-            </Flex>
-        </Flex>
-        <Flex justifyContent="center" mt={2}>
+    flexDir='column'>        
+        <Flex justifyContent="center" mt={2} >
         <Button
             w='90%'
-            h="2.8em"
-            color='#fff'
-            backgroundColor='#3563E9'
-            m={20}
+            h="2.4em"
+            color={select_Car === pic.id ?'#fff': '#2D3291'}
+            // mb={25}
+            backgroundColor={select_Car === pic.id ?'#2D3291' : null}
+            m={15}
             // p={3}
             borderWidth={1}
-            borderRadius="4px"
+            borderRadius="8px"
             // bgColor={value == 1 ? 'gray.600' : 'gray.400'}
             // onClick={() => changeValue("#B57295")}
         >
@@ -293,8 +320,8 @@ const NaveEvltion = () =>{
     </Flex>
     </Flex>
         )})}
-    
-    </Flex>
+    </Slider>
+    // </Flex>
   )
 }
 
@@ -352,32 +379,53 @@ const NaveEvltion = () =>{
 
   //   }
   // }, [updated])
-
+  var settings = {
+    infinite: true,
+    speed: 200,
+    slidesToShow: window.innerWidth > 960 ? 3 : 1,
+    slidesToScroll:window.innerWidth > 960 ? 3 : 1,
+    // autoplay:true,
+    arrows: false,
+  };
   return (
     <>
       <ToastContainer />
       <TopNavbar />
-
+      {/* borderRadius:'10%' */}
       {/* /////////////// */}
-      <section style={{ background: "#F6F7F9" }} class="bg-light py-5">
-        <div class="container" style={{ marginTop: "40px", }}>
+      <section style={{ marginTop:'3%', background: "#F6F7F9" }} class="bg-light py-5">
+        <div class="container" 
+        style={{ marginTop: "40px", }}
+        >
           <div class="row">
 
             <div class="col-xl-8 col-lg-8 mb-4">
-
               <div class="card shadow-0 border">
                 <div class="p-4">
-                  <h5 class="card-title mb-3">Car Trims</h5>
+                  <Flex
+                  flexDir='column'
+                  ml={11}
+                  >
+                  <Text 
+                  fontFamily='Plus Jakarta Sans'
+                  fontWeight={700}
+                  fontStyle='normal'
+                  fontSize='2em' >Car Trims</Text>
+                  <Text 
+                  color="var(--Secondary-300, #90A3BF)"
+                  >Please select your car trim</Text>
+                  </Flex>
                   <NaveEvltion />
+
                   {/* {
                     status === "loading" ?
                       <Loading />
                       : */}
-                      <CarSelectWrapper>
+                      {/* <CarSelectWrapper>
                         <CarSelect trims={data?.trims} onSelect={(val) => setTrim(val)} />
-                      </CarSelectWrapper>
+                      </CarSelectWrapper> */}
                   {/* } */}
-                  <hr class="my-4" />
+                  {/* <hr class="my-4" /> */}
                 </div>
               </div>
 
@@ -670,8 +718,7 @@ const NaveEvltion = () =>{
             </div>
 
 
-            <Wrapper className="col-xl-4 col-lg-4  justify-content-center" >
-
+            <Wrapper style={{  padding:'4%'}} className="col-xl-4 col-lg-4  justify-content-center" >
               <div className="row">
 
                 <ColumnWrapper className="col-lg-12">
@@ -684,24 +731,80 @@ const NaveEvltion = () =>{
                   <img style={{ width: "130px" }} src={trim?.trim_image} alt="" />
                 </ColumnWrapper>
 
+
                 <ColumnWrapper className="col-6">
                   <p>{trim?.name}</p>
                 </ColumnWrapper>
 
+              <Flex 
+              justifyContent="space-between"
+              >
+                <Flex
+                w='30%'
+                h='7em'
+                borderRadius="10%"
+                align='center'
+                // justifyContent='center'
+                backgroundColor='#F6F7F9'
+                >
+                <Avatar
+                margin="auto"
+                w='90%'  src={imag_3}/>
+                </Flex>
+                <Flex
+                w='40%'
+                // p={20}
+                align='center'
+                justify='center'
+                flexDir="column"
+                >
+                  <Text
+                    // fontFamily='Plus Jakarta Sans'
+                    fontWeight={700}
+                    fontStyle='normal'
+                    // fontSize='2em'
+                    fontSize='150%'
+                  >
+                  i7 xDrive 60
+                  </Text>
+                  <Flex 
+                  w='100%'
+                  // fontFamily='Plus Jakarta Sans'
+                  fontWeight={700}
+                  fontStyle='normal'
+                  fontSize='1em'
+                  // border="solid 5px  #000"
+                  justifyContent='space-around'
+                  >
+                    <Text>
+                    BMW
+                    </Text>
+                    <Text>
+                    7 Series
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex 
+                w='25%'
+                // mr={20}
+                justify="flex-end"
+                align='center'
+                className="col-2">
+                  <Avatar w={window.innerWidth < 960? "30%" :  '40%'} h='30%' src={bmw} alt="" />
+                </Flex>
+                </Flex>
+              
 
-                <ColumnWrapper className="col-2">
-                  <img src={bmw} alt="" />
-                </ColumnWrapper>
-
-
-                <ColumnWrapper className="col-lg-12">
+                <ColumnWrapper  style={{ fontFamily:"Plus Jakarta Sans"}} className="col-lg-12">
                   <h3>Payment Method</h3>
                   <p>Please enter your payment method</p>
                 </ColumnWrapper>
               </div>
 
 
-              <div className="ms-lg-4 mt-4 mt-lg-0">
+              <div
+              
+              className="mt-4 mt-lg-2">
                 <PaymentMethodWrapper className="d-flex justify-content-between">
                   <div className="m-2">
                     <input class="form-check-input" type="radio" name="payment_method"onChange={handlePaymentChange} id="payment_method" />
@@ -735,7 +838,7 @@ const NaveEvltion = () =>{
 
               </div>
 
-              <div class="ms-lg-4 mt-4 mt-lg-0">
+              <div class=" mt-4 mt-lg-0">
                 <div class="d-flex justify-content-between">
                   <p class="mb-2">Subtotal</p>
                   <p class="mb-2">SAR 195.90</p>
