@@ -68,16 +68,19 @@ export default function TopNavbarDashbord({kind}) {
     return(
       <Flex>
             <li className="semiBold font15 pointer">
-            <div className="dropdown">
-              <a className="nav-link tm-nav-link" href="#testimonials">
+            <div className="dropdown-dashboard">
+              <a className="nav-link tm-nav-link-dashboard" href="#testimonials">
                     <Icon 
                         display={["flex", "flex", "none", "flex", "flex"]}
                         as={FiHeart}
                         fontSize="1.7em"
-                        color={kind == true ? '#fff': null}
+                        _hover={{
+                          color:'#fff'
+                        }}
+                        color={kind === true ? '#fff': null}
                         className="active-icon-nave"/>
               </a>
-              <div className="dropdown-content">
+              <div className="dropdown-content-dashboard">
                   <a href="#">Tow</a>
                   <a href="#">One</a>
                   
@@ -85,16 +88,19 @@ export default function TopNavbarDashbord({kind}) {
               </div>
             </li>
             <li className="semiBold font15 pointer">
-            <div className="dropdown">
-              <a className="nav-link tm-nav-link" href="#testimonials">
+            <div className="dropdown-dashboard">
+              <a className="nav-link tm-nav-link-dashboard" href="#testimonials">
                     <Icon 
+                        _hover={{
+                          color:'#fff'
+                        }}
                         display={["flex", "flex", "none", "flex", "flex"]}
                         as={FiBell}
                         fontSize="1.7em"
-                        color={kind == true ? '#fff': null}
+                        color={kind === true ? '#fff': null}
                         className="active-icon-nave"/>
               </a>
-              <div className="dropdown-content">
+              <div className="dropdown-content-dashboard">
                   <a href="#">Tow</a>
                   <a href="#">One</a>
                   
@@ -102,16 +108,19 @@ export default function TopNavbarDashbord({kind}) {
               </div>
             </li>
             <li className="semiBold font15 pointer">
-            <div className="dropdown">
-              <a className="nav-link tm-nav-link" href="#testimonials">
+            <div className="dropdown-dashboard">
+              <a className="nav-link tm-nav-link-dashboard" href="#testimonials">
                     <Icon 
+                        _hover={{
+                          color:'#fff'
+                        }}
                         display={["flex", "flex", "none", "flex", "flex"]}
                         as={FiSettings}
                         fontSize="1.7em"
-                        color={kind == true ? '#fff': null}
+                        color={kind === true ? '#fff': null}
                         className="active-icon-nave"/>
               </a>
-              <div className="dropdown-content">
+              <div className="dropdown-content-dashboard">
                   <a href="#">Tow</a>
                   <a href="#">One</a>
                   
@@ -119,13 +128,17 @@ export default function TopNavbarDashbord({kind}) {
               </div>
             </li>
             <li className="semiBold font15 pointer" style={window.innerWidth < 800 ?{display:'none'}: null}>
-            <div className="dropdown">
-              <Link  className="nav-link tm-nav-link active-icon-user" href="#testimonials">
+            <div className="dropdown-dashboard">
+              <Link  
+                  _hover={{
+                    color:'#fff'
+                  }}
+              className="nav-link tm-nav-link-dashboard active-icon-user" href="#testimonials">
     
                               <Avatar
               src="avata-1.jpg"/>
               </Link>
-              <div className="dropdown-content">
+              <div className="dropdown-content-dashboard">
                   <a href="#">Tow</a>
                   <a href="#">One</a>
                   
@@ -152,7 +165,7 @@ export default function TopNavbarDashbord({kind}) {
   top: 0;
   left: 0;
   padding: 44px;
-  background:${kind == true ?  "#000"  : "#fff"};
+  background:${kind === true ?  "#000"  : "#fff"};
   z-index: 999;
 `;
 
@@ -164,7 +177,7 @@ export default function TopNavbarDashbord({kind}) {
       <Wrapper  className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px"  } : { height: "80px" }}>
        
         <NavInner
-        // style={{backgroundColor:kind == true ? '#333333' : '#fff' }}
+        // style={{backgroundColor:kind === true ? '#333333' : '#fff' }}
         className="container flexSpaceCenter">
         <LogoIcon />
 

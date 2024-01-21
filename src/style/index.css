@@ -629,6 +629,7 @@
 height: 300px;
 flex-shrink: 0;
    position: relative;
+   
    right: 100px;
    top: 50px;
    /* width: 150px; */
@@ -991,7 +992,6 @@ background: #2D3291;
 
 
    .blog-car-image-container {
-     position: "";
      /* top: 0; */
      /* left: 0; */
      width: 400px;
@@ -1563,7 +1563,7 @@ line-height: 32px;
   color: #000 !important;
   width: 4.5em;
   width: 4.5em;
-  margin-left: 55% ;
+  /* margin-left: 55% ; */
   border-radius: 50%;
   background-color: #ebebeb;
   overflow: hidden;
@@ -1614,3 +1614,96 @@ line-height: 32px;
 .icon_car{
   color:#90A3BF !important;
 }
+
+
+
+
+/* navBar dashboard */
+
+
+.dropdown-dashboard {
+  position: relative;
+  display: inline-block;
+ }
+ 
+
+ .dropdown-content-dashboard {  
+  display: none;
+  position: absolute;
+  right: 90%;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  flex-shrink: 0;
+  min-width: 15em;
+  /* max-width: 260px; */
+  box-shadow: 5px -5px 20px 5px rgba(0, 0, 0, 0.07);
+  z-index: 1;
+  color: #000;
+
+text-align: right;
+font-family: "Tajawal";
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 32px;
+ }
+ 
+ .dropdown-content-dashboard a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+ }
+ 
+ .dropdown-content-dashboard a:hover {
+  border-radius: 5px;
+  background: #3C4097;
+  color: rgb(255, 255, 255);
+ }
+ 
+ .dropdown-dashboard:hover .dropdown-content-dashboard {
+  display: block;
+ }
+ 
+
+ .tm-nav-link-dashboard {
+  color: #1E1E1E;
+  text-align: right;
+  font-family: "Tajawal";
+  font-size:14px;
+  margin: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+} 
+.tm-nav-link-dashboard:hover{
+  background-color: #0689cf;
+  border-radius: 50%;
+  /* animation-duration: 30s;
+  animation-iteration-count: infinite; */
+
+}
+ /* .dropdown-:hover .dropbtn {
+  background-color: #3e8e41;
+ } */
+
+ /* .slick-slider{
+  margin:auto;
+  padding: 20px;
+ } */
+.slick-dots {
+  top: -20%;
+}
+ .slick-slide{
+  margin:auto;
+  padding: 20px;
+ }
+.slick-prev:before, .slick-next:before {
+  display: none;
+ }
