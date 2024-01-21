@@ -64,6 +64,8 @@ export default function CarSelect({ trims, onSelect }) {
 
                 </ContentWrapper>
               </LogoWrapper>
+
+              
             )
           })
         }
