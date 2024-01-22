@@ -6,8 +6,9 @@ import Backdrop from "../Elements/Backdrop";
 // Assets
 import { useDispatch } from "react-redux";
 import LogoIcon from "../../assets/svg/Logo";
+import Logopng from "../../assets/img/logo.png";
 import { logout } from "../../redux/features/dataSlice";
-
+import {useSaction_navbar} from './seaction_center_nav.js'
 import {
   Flex,
   Avatar,
@@ -23,6 +24,7 @@ import {
   FiHeart,
   FiGitPullRequest,
   FiSettings,
+  FiMenu,
 } from "react-icons/fi";
 
 
@@ -32,31 +34,32 @@ import {
 
 export default function TopNavbarDashbord({kind}) {
   const [y, setY] = useState(window.scrollY);
+  const [width, setwidth] = useState(window.innerWidth);
   const [sidebarOpen, toggleSidebar] = useState(false);
+  const Seaction_navber_center = useSaction_navbar(kind)
   // const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
+    // console.log(kind,)
     window.addEventListener("scroll", () => setY(window.scrollY));
     return () => {
       window.removeEventListener("scroll", () => setY(window.scrollY));
     };
   }, [y]);
 
-  useEffect(()=>{
-    const handleResize = () => {
-      let count =window.innerWidth;
-     console.log( window.innerWidth );
-     if (parseInt(count) > 960){
-     toggleSidebar(false)}
+  // useEffect(()=>{
+  //   const handleResize = () => {
+  //    if (window.innerWidth < 960){
+  //    toggleSidebar(true)}
      
-    };
-    window.addEventListener('resize', handleResize);
+  //   };
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
   
-  },[window.innerWidth])
+  // },[window.innerWidth])
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
@@ -67,26 +70,7 @@ export default function TopNavbarDashbord({kind}) {
   const Seaction_navber =()=>{
     return(
       <Flex>
-            <li className="semiBold font15 pointer">
-            <div className="dropdown-dashboard">
-              <a className="nav-link tm-nav-link-dashboard" href="#testimonials">
-                    <Icon 
-                        display={["flex", "flex", "none", "flex", "flex"]}
-                        as={FiHeart}
-                        fontSize="1.7em"
-                        _hover={{
-                          color:'#fff'
-                        }}
-                        color={kind === true ? '#fff': null}
-                        className="active-icon-nave"/>
-              </a>
-              <div className="dropdown-content-dashboard">
-                  <a href="#">Tow</a>
-                  <a href="#">One</a>
-                  
-              </div>
-              </div>
-            </li>
+       
             <li className="semiBold font15 pointer">
             <div className="dropdown-dashboard">
               <a className="nav-link tm-nav-link-dashboard" href="#testimonials">
@@ -164,7 +148,8 @@ export default function TopNavbarDashbord({kind}) {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 44px;
+  // padding: 14px;
+  padding-bottom: 24px;
   background:${kind === true ?  "#000"  : "#fff"};
   z-index: 999;
 `;
@@ -172,89 +157,79 @@ export default function TopNavbarDashbord({kind}) {
   return (
     <>
       {/* <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} /> */}
-      {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
+      {/* {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />} */}
      
-      <Wrapper  className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px"  } : { height: "80px" }}>
+      <Wrapper  className="flexCenter animate whiteBg" style={y > 100 ? { height: "70px"  } : { height: "90px" }}>
        
         <NavInner
+        
+        style={{flexDirection:width < 960 ? 'row-reverse': 'row',
+        // border:'solid 2px #000',
+        width:`${width}.px`
+      }}
         // style={{backgroundColor:kind === true ? '#333333' : '#fff' }}
         className="container flexSpaceCenter">
-        <LogoIcon />
+        
+      
 
+        <Flex 
+          // border="solid 2px #000"
+          align='center'
+          position="relative"
+          right={window.innerWidth > 960 ? '5%' : 0}
+          // top='-1em'
+          flexDir='row-reverse'
+          justifyContent='space-around'
+          // border="solid 3px #000"
+          w={window.innerWidth < 960? '80%' : '8%'}
+          h='10vh'
+          >
+          <div className="pointer"  >
+            {/* <Icon  color={'#000'} as={FiMenu} className="dropdown" /> */}
+            
+            <Icon 
+            onClick={() => toggleSidebar(!sidebarOpen)}
+            // border="solid 8px #000"
+            display={window.innerWidth < 960 ? 'flex' : 'none'}
+            color={kind ? "#fff": '#000'}
+                        // display={["flex", "flex", "none", "flex", "flex"]}
+                        as={FiMenu}
+                        fontSize="2em"
+                        className="dropdown_dashbord"
+                      />
 
-         
-          {sidebarOpen?
-           <div className="pointer" >
-          <div className="dropdown_navber">
-                 <Seaction_navber />
+        {sidebarOpen & width < 960 ? 
+         <div style={{background:kind === true ? '#333333': '#fff'}} className="dropdown_navber_dashbord">
+                 <Seaction_navber_center />
 
           </div>
+         :null}
           </div>
-          :
-          null
-          }
+
+             {/* <Avatar src={Logopng} w={120} /> */}
+             <img src={Logopng} width={120} />
+        </Flex>
+        
   
  
-
-          <InputGroup
-             w="30%"
-             display={window.innerWidth < 900 ? 'none' : "flex"}
-             p={5}
-             border="1px solid rgba(195, 212, 233, 0.40)"
-             borderWidth={1}
-             background=" var(--Primary-0, #FFF)"
-             borderRadius="2em"
-             justifyContent="space-between"
-          pointerEvents="none"
-          children={<FiCreditCard color="gray.700" />}
-        >
-          <Flex>
-          <Icon as={FiSearch}
-           fontSize="1.7em"
-           ml={5}
-           mr={5}
-          />
-          <Input
-          border="none"
-            mt={2}
-            mb={2}
-            type="number"
-            placeholder="Search something here"
-          />
-          </Flex>
-          <Icon as={FiGitPullRequest}
-          fontSize='1.7em'
-          mr={10}
-          color="#3D5278"
-          />
-        </InputGroup>
-        
+  {/* <Flex className="dropdown_navber"> */}
+              
+{width > 960 ?
+  <Seaction_navber_center />
+  : 
+  null
+}
 
           
-          <Flex className="pointer" >
+          {/* <Flex className="pointer" >
           {/* <Flex className="dropdown_navber"> */}
                  <Seaction_navber />
 
           {/* </Flex> */}
-          </Flex>
-{/* 
-          <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
-            <BurgerIcon  className="burgerIcon"/>
+          {/* </Flex> */} 
+
+     
  
-          </BurderWrapper> */}
-          {/* <UlWrapperRight > */}
-            
-            {/* <li className="semiBold font15 pointer">
-              <a href="/" style={{ padding: "10px 30px 10px 0" }}>
-                Log in
-              </a>
-            </li>
-            <li className="semiBold font15 pointer flexCenter">
-              <a href="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
-                Get Started
-              </a>
-            </li> */}
-          {/* </UlWrapperRight> */}
         </NavInner>
       </Wrapper>
     </>
@@ -264,7 +239,7 @@ export default function TopNavbarDashbord({kind}) {
 
 const NavInner = styled.div`
   position: relative;
-  height: 100%;
+  // height: 100%;
 
   // border:solid 2px #000
 `

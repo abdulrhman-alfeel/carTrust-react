@@ -79,27 +79,27 @@ export default function Dashboard() {
   const [height, setHeight] = useState(0);
 
 
-  useEffect(() => {
-    setHeight(window.innerHeight);
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-      setWidth_slid(window.innerWidth < 970 ? 1 :2)
-      // if(window.innerWidth  < 970){
-      //   setResponsive(true)
-      //   setRetiv('absolute')
-      // }else{
-      //   setResponsive(false)
-      //   setRetiv('relative')}
+  // useEffect(() => {
+  //   setHeight(window.innerHeight);
+  //   const handleResize = () => {
+  //     setWidth(window.innerWidth);
+  //     setWidth_slid(window.innerWidth < 970 ? 1 :2)
+  //     // if(window.innerWidth  < 970){
+  //     //   setResponsive(true)
+  //     //   setRetiv('absolute')
+  //     // }else{
+  //     //   setResponsive(false)
+  //     //   setRetiv('relative')}
 
 
-    };
-    window.addEventListener('resize', handleResize);
-    // swithcing()
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+  //   };
+  //   window.addEventListener('resize', handleResize);
+  //   // swithcing()
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
     
-  }, []);
+  // }, []);
 
 
 // const swithcing = () =>{
@@ -175,6 +175,7 @@ const array_data = [
 
 <Flex
 m={30}
+// pb={100}
     >
 
 <TopNavbarDashbord kind={Dark} />
@@ -200,7 +201,7 @@ m={30}
           <Flex
           id="wrapper"
           position={REletiv === 'absolute'?"fixed" :REletiv}
-          zIndex={1}
+          zIndex={2}
 
             // right={"20px"}
             // w="90%"
@@ -252,7 +253,6 @@ m={30}
               }
             </Flex>
             <Flex     
-    
               flexDir="column"
             w='117%'
             h={`${window.innerHeight}.px `}
@@ -260,6 +260,7 @@ m={30}
             p={"10%"} 
             mb={-20}
             mt={-15}
+            
             //   border="solid 2px #333333"
               backgroundColor={Dark? '#333333' : '#fff'}
               justifyContent="space-between"
@@ -271,6 +272,14 @@ m={30}
                 // maxH='100vh'
                 align={['center','center','center',"flex-start","flex-start"]} 
                 justifyContent='space-around'>
+                  <Flex>
+                    <Text
+                    color=" rgba(148, 167, 203, 0.40)"
+                    fontSize='12px'
+                    m={10}
+                    mb={30}
+                    >MAIN MENU</Text>
+                  </Flex>
                   <Flex p={12} className="sidebar-items">
                     <Link
                       display={[
@@ -321,7 +330,7 @@ m={30}
                   </Flex>
     
                   <Flex p={12} className="sidebar-items">
-                    <Link>
+                    <Link >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
                     <Link  _hover={{ 
@@ -363,7 +372,18 @@ m={30}
                       <Text color={Dark ? "#fff": null}>Branches</Text>
                     </Link>
                   </Flex>
-    
+                      
+                  <Flex>
+                    <Text
+                    color=" rgba(148, 167, 203, 0.40)"
+                    m={10}
+                    mb={30}
+                    fontSize='12px'
+                    >P R E F E R E N C E S</Text>
+                  </Flex>
+
+
+
                   <Flex p={12} className="sidebar-items">
                     <Link>
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
@@ -388,17 +408,14 @@ m={30}
     
     
                   <Flex p={12} 
-    
-    justifyContent='space-between'
+                  justifyContent='space-between'
                   className="sidebar-items_dark">
                     <Link 
                     
                     display="flex" flexDir="row">
-                      <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
-                      <Text color={Dark ? "#fff": null}>Dark Mode</Text>
+                      {/* <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" /> */}
+                      <Text color={Dark ? "#fff": null}fontSize='0.9em'm={5}>Dark Mode</Text>
                     </Link>
-                  
-                    
                         <Flex
                         w='50%'
                         h='2em'
@@ -425,8 +442,7 @@ m={30}
                         </Flex>
                   </Flex>
     
-                </Flex>
-              
+                </Flex>             
                 <li className="semiBold font15 pointer" style={window.innerWidth < 800 ?{display:"block", 
                 alignSelf:'center',
                 marginTop:'30%',
@@ -525,7 +541,7 @@ h='2em'
   
         {/* <MyChart /> */}
 
-        <Flex justifyContent="space-between" mt={8}>
+        <Flex justifyContent="space-between" m={20} mt={8}>
           <Flex justifyContent="space-between" align="flex-end">
             <Heading as="h2" fontSize='1.5em' size="sm" letterSpacing="tight">
             My Vehicles
@@ -630,6 +646,7 @@ h='2em'
                 </Flex>
                 <Flex justifyContent="center" mt={2}>
                 <Button
+                  className="buttonamait"
                     w='90%'
                     h="2.8em"
                     color='#fff'

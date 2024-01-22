@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from "./pages/Checkout";
 import Landing from "./pages/Landing";
+import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import VerifyNumber from "./pages/VerifyNumber";
 import store from "./redux/store";
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/verify-number" element={<VerifyNumber />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
     </Route>
   )
   // [{

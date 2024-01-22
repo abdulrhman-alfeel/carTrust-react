@@ -130,13 +130,15 @@ const customStyles = {
     swiper?.slidePrev();
   };
 
-  // if (status === 'loading') {
-  //   return <p>Loading...</p>;
-  // }
 
-  // if (status === 'failed') {
-  //   return <p>Error loading data</p>;
-  // }
+
+
+
+
+
+
+
+
 
   const handleManufacturerChange = (value) => {
     console.log(value.name)
@@ -150,6 +152,12 @@ const customStyles = {
   const submitHandler = () => {
     history(`/checkout?&${manufacturer}&${model}&${year}`)
   }
+
+
+
+
+
+
 
 
 
@@ -199,6 +207,25 @@ const customStyles = {
     }),
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <>
       <Wrapper id="home" className="headerComp">
@@ -288,8 +315,6 @@ const customStyles = {
               fontWeight:"900",
               lineHeight: "normal"}}
             >Car Brand</h4>
- 
-
           <Select 
             className="select-image"
               // isDisabled={false}
@@ -301,7 +326,7 @@ const customStyles = {
               manufacturers?.map((manufacturer, index) => manufacturer)
             }
             formatOptionLabel={country => (
-              <div className="country-option">
+              <div key={country.id} className="country-option">
                 <span>{country.name}</span>
                 <img src={country.make_logo} alt="country-image" />
               </div>
@@ -379,10 +404,16 @@ const customStyles = {
         />
     
           </div>
-          <div className="col-lg-3 mt-3 Evaluate">
-                  <NavLink to="/login" onClick={submitHandler} style={{ 
+          <div className="col-lg-3 mt-3 Evaluate" style={{overflow:'hidden'}}>
+                  <NavLink to="/login" className='buttonamait_login'  onClick={submitHandler} style={{ 
+                  width: window.innerWidth  > 960 ? "8.7em": "5.2em",
+                  height:"1.5em",
+                  
+                  justifyContent:'center',
+                  alignItems:'center',
+                  opacity:'80%',
                   fontSize:"1.7rem",
-                  color: "white", margin: "0 auto", display: "block" }}>
+                  color: "white", margin: "0 auto", display: "flex" }}>
                   تقييم
                   </NavLink>
           </div>

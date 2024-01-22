@@ -11,12 +11,13 @@ import BurgerIcon from "../../assets/svg/BurgerIcon";
 import LogoIcon from "../../assets/svg/Logo";
 import { logout } from "../../redux/features/dataSlice";
 import  united from '../../assets/img/united-kingdom.png'
-import {useSaction_navbar} from './seaction_center_nav.js'
+import { useNavigate } from "react-router-dom";
+
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
-  const Seaction_navber = useSaction_navbar(false)
+  const history = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", () => setY(window.scrollY));
     return () => {
@@ -30,6 +31,7 @@ export default function TopNavbar() {
      console.log( window.innerWidth );
      if (parseInt(count) > 960){
      toggleSidebar(false)}
+     
     };
     window.addEventListener('resize', handleResize);
 
@@ -45,7 +47,104 @@ export default function TopNavbar() {
     localStorage.removeItem("user");
     document.location.reload();
   }
+  const Seaction_navber =()=>{
+    return(
+      <>
+      
+      <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials">سعر السيارات المستخدمة</a>
+              <div className="dropdown-content">
+                  <a href="#">سعر سيارتي </a>
+                  <a href="#">سعر السيارات الجديدة</a>
+                  <a href="#">السعر المستقبلي</a>
+              </div>
+              </div>
+            </li>
+            <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials">فحص السيارات</a>
+              <div className="dropdown-content">
+                  <a href="#">فحص السيارات </a>
+                  <a href="#">انواع فحص السيارات</a>
+                  
+              </div>
+              </div>
+            </li>
+            <li className="semiBold font15 pointer">
+              <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials">ضمان السيارات</a>
+              <div className="dropdown-content">
+                  <a href="#">اضمن لي سيارتي</a>
+                  <a href="#">برنامج كارترستد</a>
+                  <a href="#">تسوق مع كارترستد</a>
+              </div>
+              </div>
+            </li>
+            <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials">البيانات والأفكار</a>
+              <div className="dropdown-content">
+                  <a href="#">ساعدني اختار سيارة </a>
+                  <a href="#">افضل السيارات</a>
+                  <a href="#">مراجعة الخبراء</a>
+                  <a href="#">السيارات الكهربائية</a>
+                  <a href="#">برنامج جوائز كارترست</a>
+                  <a href="#">آخر الاخبار</a>
+              </div>
+              </div>
+            </li>
+            <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials">الحلول التقنية</a>
+              <div className="dropdown-content">
+                  <a href="#">منصة الشركاء </a>
+                  <a href="#">منصة العناية بالسيارة </a>
+                  <a href="#">منصة المزاد</a>
+                  <a href="#">فحص اضرار المركبات بالذكاء الاصطناعي</a>
+                  <a href="#">منصة تقييم تكلفة تصليح المركبات الذكية</a>
+                  <a href="#">الفحص الحراري لجسم المركبة</a>
+              </div>
+              </div>
+            </li>
+            <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials" onClick={()=> history(`/Dashboard`)}>لوحة التحكم</a>
+              </div>
+            </li>
 
+            {/* <li className="semiBold font15 pointer">
+
+              <NavLink to="checkout" style={{ padding: "10px 15px" }} spy={true} smooth={true} offset={-80}>
+                checkouts
+              </NavLink>
+            </li> */}
+
+
+            <li className="semiBold font15 pointer">
+            <div className="dropdown">
+              <a className="nav-link tm-nav-link" href="#testimonials">كارترست</a>
+              <div className="dropdown-content">
+                  <a href="#">ساعدني اختار سيارة </a>
+                  <a href="#">قيمنا </a>
+                  <a href="#">الاعتمادات</a>
+                  <a href="#">سياسة الحيادية</a>
+                  <a href="#">مواقعنا</a>
+                  <a href="#">الخدمة المتنقلة</a>
+                  <a href="#">الوظائف</a>
+                  <a href="#">تواصل معنا</a>
+              </div>
+              </div>
+            </li>
+
+            <li className=" pointer tm-nav-link">
+              <Link activeClass="active" href="/"  to="/" spy={true} smooth={true} offset={-80}>
+                الصفحة الرئيسية
+              </Link>
+            </li>
+      </>
+    )
+  } 
 
   return (
     <>
@@ -72,11 +171,8 @@ export default function TopNavbar() {
                   </li>
                 </>
                 :
-                <li className="semiBold font15 pointer" style={{  width: "150px", height: "55px", borderRadius: "10px", textAlign: "center",padding:"5px" }}>
-                  <NavLink className='buttonamait_login' to="/login" style={{
-                     width:"10em",
-                     height:"3em"
-                    , padding:"8px", color: "white", margin: "0 auto", display: "block" }}>
+                <li className="semiBold font15 pointer" style={{ backgroundColor: "#21207F", width: "150px", height: "55px", borderRadius: "10px", textAlign: "center",padding:"5px" }}>
+                  <NavLink to="/login" style={{ padding:"8px", color: "white", margin: "0 auto", display: "block" }}>
                     دخول/تسجيل
                   </NavLink>
                 </li>
@@ -115,7 +211,7 @@ export default function TopNavbar() {
  
 
           <UlWrapper className="flexNullCenter ">
-          <Seaction_navber  />
+          <Seaction_navber />
           </UlWrapper>
 
           <LogoIcon />
