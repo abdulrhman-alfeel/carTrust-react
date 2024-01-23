@@ -1152,7 +1152,7 @@ const NaveEvltion = () =>{
                   status === "loading" ?
                     <Loading />
                     :
-                    <Button w='100%'  className="buttonamait" onClick={submitHandler}>
+                    <Button w='100%'   onClick={submitHandler}>
                       Pay now
 
                     </Button>

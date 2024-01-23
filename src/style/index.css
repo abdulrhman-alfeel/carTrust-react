@@ -1796,15 +1796,15 @@ filter:blur(20px);
  
   line-height: 2em;
   text-align:center;
-  background:linear-gradient(90deg,#2D3291,#00579F,#f441a5,#03a9f4);
-
+  /* background:linear-gradient(90deg,#2D3291,#00579F,#f441a5,#03a9f4); */
+  background-color:#2D3291;
   background-size: 300%;
   border-radius:0.5em;
   text-transform:uppercase;
   z-index: 1;
   
 }
-.buttonamait_login:hover{
+/* .buttonamait_login:hover{
   animation:animation 8s linear infinite;
   border:none;
 }
@@ -1823,13 +1823,13 @@ z-index: -1;
 background:linear-gradient(90deg,#2D3291,#00579F,#f441a5,#03a9f4);
 /* background:linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4); */
 
-background-size: 400%;
+/* background-size: 400%;
 border-radius: 0.3em;
 transition: 1s;
-}
+} */
 .buttonamait_login:hover::before{
 filter:blur(20px);
-}
+} */
 
 
 
@@ -1958,3 +1958,4 @@ font-weight: 700;
 .drow_car:hover .name_drow{
   display: block;
 }
+

@@ -73,7 +73,9 @@ export default function TopNavbar() {
                 </>
                 :
                 <li className="semiBold font15 pointer" style={{  width: "150px", height: "55px", borderRadius: "10px", textAlign: "center",padding:"5px" }}>
-                  <NavLink className='buttonamait_login' to="/login" style={{
+                  <NavLink
+                   className='buttonamait_login'
+                   to="/login" style={{
                      width:"10em",
                      height:"3em"
                     , padding:"8px", color: "white", margin: "0 auto", display: "block" }}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
 // Screens
@@ -10,6 +10,7 @@ import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import VerifyNumber from "./pages/VerifyNumber";
+import PostPyment from "./pages/PostPyment";
 import store from "./redux/store";
 
 const router = createBrowserRouter(
@@ -21,8 +22,10 @@ const router = createBrowserRouter(
       <Route path="/carTrust" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-number" element={<VerifyNumber />} />
-      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkout" element={<Checkout />} /> 
       <Route path="/Dashboard" element={<Dashboard />} />
+       <Route path="/PostPyment" element={<PostPyment />} /> 
+
     </Route>
   )
   // [{

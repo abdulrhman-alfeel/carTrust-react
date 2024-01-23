@@ -646,7 +646,6 @@ h='2em'
                 </Flex>
                 <Flex justifyContent="center" mt={2}>
                 <Button
-                  className="buttonamait"
                     w='90%'
                     h="2.8em"
                     color='#fff'
