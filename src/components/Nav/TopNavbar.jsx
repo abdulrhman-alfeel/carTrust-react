@@ -3,14 +3,13 @@ import { Link } from "react-scroll";
 import styled from "styled-components";
 // Components
 import Backdrop from "../Elements/Backdrop";
-import Sidebar from "../Nav/Sidebar";
 // Assets
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import united from '../../assets/img/united-kingdom.png';
 import BurgerIcon from "../../assets/svg/BurgerIcon";
 import LogoIcon from "../../assets/svg/Logo";
 import { logout } from "../../redux/features/dataSlice";
-import  united from '../../assets/img/united-kingdom.png'
 import {useSaction_navbar} from './seaction_center_nav.js'
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);

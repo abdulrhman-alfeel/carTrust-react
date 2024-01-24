@@ -88,6 +88,11 @@ export const deleteDataAsync = createAsyncThunk('data/deleteData', async (id) =>
     await deleteData(id);
     return id;
 });
+export const Dark = createAsyncThunk('data/Dark', async (id) => {
+    await deleteData(id);
+    return id;
+});
+
 
 const dataSlice = createSlice({
     name: 'data',

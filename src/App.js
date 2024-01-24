@@ -6,20 +6,20 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Checkout from "./pages/Checkout";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import Landing from "./pages/Landing";
-import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import VerifyNumber from "./pages/VerifyNumber";
 import PostPyment from "./pages/PostPyment";
 import store from "./redux/store";
+import { Storeing } from "./redux/redux/storeing";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    //   // "homepage": "https://freemarkate.com/carTrust",
-
-    <Route  basename='/carTrust/'>
-    {/* // <Route >  */}
-      <Route path="/carTrust" element={<Landing />} />
+ 
+      <Route >
+       <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-number" element={<VerifyNumber />} />
       <Route path="/checkout" element={<Checkout />} /> 
@@ -44,6 +44,7 @@ export default function App() {
   return (
     <>
       <Provider  store={store}>
+      {/* <Provider  store={Storeing}> */}
         <ToastContainer />
         <Helmet>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,6 +56,7 @@ export default function App() {
         <RouterProvider  router={router} />
         {/* <Landing /> */}
       </Provider>
+      {/* </Provider> */}
     </ >
   );
 }

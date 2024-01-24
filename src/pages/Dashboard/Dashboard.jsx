@@ -1,83 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import styled from "styled-components";
-import RollerIcon from "..//assets/img/logo.png";
-import imag_1 from "../assets/img/9579eff385e6525bfc9594ee8bd5c695.png";
-import imag_2 from "../assets/img/image-1702562405-image-1702453944-WhatsAppImage2023-12-12at6.17 1 (1).png";
-import imag_3 from "../assets/img/car_select_1.png";
-import imag_4 from "../assets/img/car_select_2.png";
-import imag_5 from "../assets/img/car_select_3.png";
-import iScroll from 'iscroll';
 import {
-  checkout,
-  fetchOptions,
-  fetchTrims,
-} from "../redux/features/dataSlice";
-import {
+  Avatar,
+  Button,
   Flex,
   Heading,
-  Avatar,
-  AvatarGroup,
-  Text,
   Icon,
-  IconButton,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Divider,
   Link,
-  Box,
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
+  Text
 } from "@chakra-ui/react";
+import React, { useState,Suspense } from "react";
 
+import useDark from "../../function/useDark";
 import {
+  FiBatteryCharging,
+  FiBox,
+  FiChevronsRight,
+  FiCrosshair,
+  FiDollarSign,
+  FiHeart,
   FiHome,
   FiPieChart,
-  FiDollarSign,
-  FiBox,
-  FiCalendar,
-  FiChevronDown,
-  FiChevronUp,
-  FiPlus,
-  FiCreditCard,
-  FiSearch,
-  FiBell,
-  FiHeart,
-  FiBatteryCharging,
-  FiCrosshair,
-  FiUsers,
-  FiChevronsRight,
   FiSun,
+  FiUsers
 } from "react-icons/fi";
-import ClientReviews from "../components/Elements/ClientReviews";
-import TopNavbarDashbord from "../components/Nav/TopNavbarDashbord";
+import TopNavbarDashbord from "../../components/Nav/TopNavbarDashbord";
+import DashboardHome from "./DashboardHome";
+import MYEvalution from "./MYEvalution";
+import imag_funt from '../../assets/img/04e77cc8e99ec927c37de1ac3b3e82cd.png'
 
-// import MyChart from "../components/MyChart";
-import Slider from "react-slick";
-
-
-// Sections
 
 export default function Dashboard() {
   const [display, changeDisplay] = useState("hide");
-  const [value, changeValue] = useState("#F2B300");
+
   const [Vaule_responsive, setResponsive] = useState( window.innerWidth  < 970 ? true : false);
   const [REletiv, setRetiv] = useState( window.innerWidth  < 970 ? 'absolute' :'relative');
   const [Dark, setDark] = useState(false);
+  const [pages,setPages] = useState('Dashboard')
 
 
-  const [width, setWidth] = useState(window.innerWidth);
-  const [width_slid, setWidth_slid] = useState(4);
-  const [height, setHeight] = useState(0);
-
+  const {setDarkup} = useDark();
 
   // useEffect(() => {
   //   setHeight(window.innerHeight);
@@ -107,63 +67,22 @@ export default function Dashboard() {
 //    if(darking !== null && darking !== undefined) {
 //     darking.stayle.background = '#000000'
 //    }
-     
- 
 // }
-const array_data = [
-    {
-        id:1,
-        name:'Koenigsegg',
-        Oil: "90L",
-        imag:imag_3
-    },
-    {
-        id:2,
-        name:'Nissan GT-R',
-        Oil: "80L",
-        imag:imag_4
-    },
-    {
-        id:3,
-        name:'Rolls-Royce',
-        Oil: "70L",
-        imag:imag_5
-    },
-    {
-        id:1,
-        name:'Nissan GT-R',
-        Oil: "80L",
-        imag:imag_3
-    },
-]
+
+
+
+const stylefouce = {
+  backgroundColor:"#2D3291",
+
+  borderRadius: "10px",
+  color:"#fff"
+
+}
 
 
 
 
 
-
-
-
-
-// useEffect(()=>{loaded()},[])
-
-
-
-  var settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: width < 970 ? 1 : 2,
-    // slidesToShow: 2,
-    slidesToScroll: width < 970 ? 1 : 2,
-    autoplay:true,
-    arrows: false,
-    
-    // centerPadding: 100
-  };
-  // const loaded = ()=>{
-  //   const wrapper = document.querySelector('#wrapper')
-  //   new iScroll(wrapper, { mouseWheel: true })
-  // }
 
   return (
     <div
@@ -202,7 +121,6 @@ m={30}
           id="wrapper"
           position={REletiv === 'absolute'?"fixed" :REletiv}
           zIndex={2}
-
             // right={"20px"}
             // w="90%"
             h={`${window.innerHeight}.px`}
@@ -220,8 +138,6 @@ m={30}
             // backgroundColor="#020202"
             // backgroundColor="#FFFFFF"
             color="#fff">
-    
-    
             <Flex
             position='fixed'
             zIndex={0}
@@ -236,7 +152,6 @@ m={30}
                   // top={0}
                   p={"2%"}
                   // right={"30.5%"}
-                
                   onClick={()=>{
                       setResponsive(true)
                       setRetiv("relative")
@@ -260,7 +175,6 @@ m={30}
             p={"10%"} 
             mb={-20}
             mt={-15}
-            
             //   border="solid 2px #333333"
               backgroundColor={Dark? '#333333' : '#fff'}
               justifyContent="space-between"
@@ -280,7 +194,9 @@ m={30}
                     mb={30}
                     >MAIN MENU</Text>
                   </Flex>
-                  <Flex p={12} className="sidebar-items">
+                  <Flex p={12}
+                  style={pages === 'Dashboard' ? stylefouce : null}
+                  className="sidebar-items">
                     <Link
                       display={[
                         "center",
@@ -297,9 +213,18 @@ m={30}
                         className="active-icon"
                       />
                     </Link>
-                    <Link _hover={{ 
-                color:'#000',
-                textDecor: "none" }}>
+                    <Link 
+                    _focus={{ 
+                backgroundColor:"#2D3291",
+                borderRadius: "10px",
+                color:'#fff',
+                textDecor: "none" }}
+                style={pages === 'Dashboard' ? {color:'#fff'} : null}
+                onClick={()=>{
+                  setPages('Dashboard')
+                }}
+                justifyContent='space-around'
+                >
                       <Text fontSize="1em" 
                       color={Dark ? "#fff": null}
                     //   className="active"
@@ -307,66 +232,120 @@ m={30}
                     </Link>
                   </Flex>
     
-                  <Flex  p={12} className="sidebar-items">
-                    <Link>
+                  <Flex  p={12}
+                  style={pages === 'Vehicles' ? stylefouce : null}
+                  className="sidebar-items">
+                    <Link
+                    style={pages === 'Vehicles' ? {color:'#fff'} : null}
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiPieChart} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link 
+                    style={pages === 'Vehicles' ? {color:'#fff'} : null}
+                        onClick={()=>{
+                          setPages('Vehicles')
+                        }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text  color={Dark ? "#fff": null}> My Vehicles</Text>
                     </Link>
                   </Flex>
     
-                  <Flex p={12} className="sidebar-items">
-                    <Link>
+                  <Flex 
+                  style={pages === 'Evaluation' ? stylefouce : null}
+                  p={12} className="sidebar-items">
+                    <Link
+                  style={pages === 'Evaluation' ? {color:'#fff'} : null}
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiDollarSign} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link 
+                    style={pages === 'Evaluation' ? {color:'#fff'} : null}
+                    onClick={()=>{
+                      setPages('Evaluation')
+                    }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null}>My Evaluation</Text>
                     </Link>
                   </Flex>
     
-                  <Flex p={12} className="sidebar-items">
-                    <Link >
+                  <Flex p={12}
+                  style={pages === 'Warranties' ? stylefouce : null}
+                  className="sidebar-items">
+                    <Link 
+                    style={pages === 'Warranties' ? {color:'#fff'} : null}
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link 
+                    style={pages === 'Warranties' ? {color:'#fff'} : null}
+                      onClick={()=>{
+                        setPages('Warranties')
+                      }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null}>My Warranties</Text>
                     </Link>
                   </Flex>
     
-                  <Flex p={12} className="sidebar-items">
-                    <Link>
+                  <Flex p={12}
+                  style={pages === 'CodesHistory' ? stylefouce : null}
+                  className="sidebar-items">
+                    <Link
+                    style={pages === 'CodesHistory' ? {color:'#fff'} : null}
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link 
+                        style={pages === 'CodesHistory' ? {color:'#fff'} : null}
+                        onClick={()=>{
+                          setPages('CodesHistory')
+                        }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null} fontSize="1em">QR CodesHistory</Text>
                     </Link>
                   </Flex>
     
-                  <Flex pl={12} pt={10}  className="sidebar-items">
-                    <Link>
+                  <Flex
+                  style={pages === 'MyTransaction' ? stylefouce : null}
+                  pl={12} pt={10}  className="sidebar-items">
+                    <Link
+                    style={pages === 'MyTransaction' ? {color:'#fff'} : null} 
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link
+                    style={pages === 'MyTransaction' ? {color:'#fff'} : null} 
+                    onClick={()=>{
+                      setPages('MyTransaction')
+                    }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null}>MyTransaction</Text>
                     </Link>
                   </Flex>
     
-                  <Flex p={12} className="sidebar-items">
-                    <Link>
+                  <Flex 
+                  style={pages === 'Branches' ? stylefouce : null}
+                  p={12} className="sidebar-items">
+                    <Link
+                    style={pages === 'Branches' ? {color:'#fff'} : null} 
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link
+                      style={pages === 'Branches' ? {color:'#fff'} : null} 
+                      onClick={()=>{
+                      setPages('Branches')
+                    }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null}>Branches</Text>
@@ -384,22 +363,40 @@ m={30}
 
 
 
-                  <Flex p={12} className="sidebar-items">
-                    <Link>
+                  <Flex 
+                  style={pages === 'ContactUs' ? stylefouce : null}
+                  p={12} className="sidebar-items">
+                    <Link
+                    style={pages === 'Branches' ? {color:'#fff'} : null} 
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link 
+                    style={pages === 'Branches' ? {color:'#fff'} : null} 
+                    onClick={()=>{
+                      setPages('ContactUs')
+                    }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null}>ContactUs</Text>
                     </Link>
                   </Flex>
     
-                  <Flex p={12} className="sidebar-items">
-                    <Link>
+                  <Flex 
+                  style={pages === 'Settings' ? stylefouce : null}
+                  p={12} className="sidebar-items">
+                    <Link
+                    style={pages === 'Settings' ? {color:'#fff'} : null} 
+                    >
                       <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" />
                     </Link>
-                    <Link  _hover={{ 
+                    <Link 
+                      style={pages === 'Settings' ? {color:'#fff'} : null} 
+                      onClick={()=>{
+                      setPages('Settings')
+                    }}
+                    _hover={{ 
                 color:'#000',
                 textDecor: "none" }}>
                       <Text color={Dark ? "#fff": null}> Settings</Text>
@@ -407,11 +404,12 @@ m={30}
                   </Flex>
     
     
-                  <Flex p={12} 
+                  <Flex 
+                  w='100%'
+                  p={12} 
                   justifyContent='space-between'
                   className="sidebar-items_dark">
-                    <Link 
-                    
+                    <Link          
                     display="flex" flexDir="row">
                       {/* <Icon color={Dark ? "#fff": null} as={FiBox} fontSize="2xl" /> */}
                       <Text color={Dark ? "#fff": null}fontSize='0.9em'm={5}>Dark Mode</Text>
@@ -426,16 +424,20 @@ m={30}
                         align="center"
                         width='50%'
                         color={Dark ?  "#2D3291" :  "#F6F7F9"}
-                        onClick={()=>setDark(false)}
-                         borderRadius='10em' backgroundColor={Dark ?   "#F6F7F9" : "#2D3291" }>
+                        onClick={()=>{
+                          setDarkup('Dark',false)
+                          setDark(false)}}
+                        borderRadius='10em' backgroundColor={Dark ?   "#F6F7F9" : "#2D3291" }>
                         <Icon as={FiSun} fontSize="2xl" />
                         </Link>
                         <Link
                             align='center'
-                             width='50%'
-                             h="1.6em"
-                             onClick={()=>setDark(true)}
-                             borderRadius='10em' backgroundColor={Dark ?  "#2D3291" :  "#F6F7F9"}
+                            width='50%'
+                            h="1.6em"
+                            onClick={()=>{
+                            setDarkup('Dark',true)
+                            setDark(true)}}
+                            borderRadius='10em' backgroundColor={Dark ?  "#2D3291" :  "#F6F7F9"}
                         >
                         <Icon as={FiBox} fontSize="2xl" />
                         </Link>
@@ -450,14 +452,13 @@ m={30}
                 
                 }: {display:'none'}}>
                 <div className=" dropdown-dashboard">
-                 <Flex align='center' flexDir='column' className="nav-link ">
+                <Flex align='center' flexDir='column' className="nav-link ">
                   <Link  className=" active-icon-user-nav" href="#testimonials"> 
                                   <Avatar
                   src="avata-1.jpg"/>
                   </Link>
                   <Text style={{color: Dark ? "#fff" :'#000',margin:'10px'}}>user Name</Text>
                   </Flex>
-               
                   </div>
                 </li>
               </Flex>
@@ -489,188 +490,32 @@ h='2em'
 </Flex>
 }
 
+<Flex
+w={window.innerWidth < 960? "100%" :'80%'}
+>
+{pages === 'Dashboard'?
+<DashboardHome setResponsive={setResponsive} setRetiv={setRetiv} />  
+:pages === 'Evaluation'?
+<MYEvalution setResponsive={setResponsive} setRetiv={setRetiv} />
+:
+<Flex 
+align='center'
+justify='center'
+flexDir='column'
+w='100%'
+// border='solid 2px #000'
+>
+  <img width='15%' height="20%" src={imag_funt} />
+  <Text
+  m={15}
+  color="#B0BBD0"
+  >No Evaluation Found</Text>
+</Flex>
+}
 
-
-
-
-      {/* Column 2 */}
-      <Flex
-        p="3%"
-        onClick={()=>{
-          if (window.innerWidth < 960 )
-          setResponsive(true)
-          setRetiv("relative")
-
-        }}
-        // position='fixed'
-        // top={0}
-        // right={0}
-        // left={0}
-        flexDir="column"
-        overflow='hidden'
-
-        backgroundColor={Dark ? "#020202" :"#F6F7F9"}
-        // minH="200vh"
-        // height
-        // h="130vh"
-      >
-        <Heading 
-        h={"38%"}
-        w={'97%'}
-        // overflow={'hidden'}
-        fontWeight="normal" mb={4}>
-        
-
-        <Slider style={{ height:'40%' ,margin:" auto" }} dots={true} {...settings}  >
-        {/* <AvatarGroup flexDir='row'> */}
-        <Avatar borderRadius='25px' m={2}  src={imag_2}/>
-      
-        <Avatar m={2}  borderRadius='25px'  src={imag_1}/> 
-        <Avatar borderRadius='25px' m={2}  src={imag_2}/>
-        <Avatar m={2}  borderRadius='25px'  src={imag_1}/> 
-        <Avatar m={2}  borderRadius='25px'  src={imag_1}/> 
-
-      {/* <Avatar m={5} borderRadius='25px' my={2} src={imag_1}/> 
-      <Avatar borderRadius='25px' my={2} src={imag_2}/> */}
-      {/* </AvatarGroup> */}
-    </Slider>
-        </Heading>
-
-
-
-  
-        {/* <MyChart /> */}
-
-        <Flex justifyContent="space-between" m={20} mt={8}>
-          <Flex justifyContent="space-between" align="flex-end">
-            <Heading as="h2" fontSize='1.5em' size="sm" letterSpacing="tight">
-            My Vehicles
-            </Heading>
-     
-          </Flex>
-          {/* <Heading as="h2" size="sm" letterSpacing="tight"> */}
-          <Link color={"#3563E9"}  _hover={{ 
-            color:Dark ?"#fff":'#000',
-            textDecor: "none" }}>
-                  <Text  fontSize="1.5em">view All</Text>
-                </Link>
-            {/* </Heading> */}
-        </Flex>
-
-      
-        <Flex flexDir='row' flexWrap={width < 970 ?"wrap" :'nowrap'}justifyContent="space-around" mt={8}>
-            {array_data?.map(pic =>{
-
-           return(
-            <Flex 
-                w={ window.innerWidth  > 970 ?'25%' : '80%'} 
-                h={width < 970 && width > 600? '51vh': '41vh'} 
-                m={12}
-                background="var(--Primary-0, #FFF)"
-                // boxShadow="0 0.1px 3px #000"
-                borderRadius="5%"
-                flexDirection='column'
-                justifyContent="space-between"
-                pb={10}
-                
-                >
-                    <Flex 
-                    flexDir='row'
-                    p={20}
-                    justifyContent="space-between"
-                    >
-                        <Flex
-                        flexDir='column'
-                        >
-                            <Text
-                            fontSize='1em'
-                            fontWeight='bold'
-                            >{pic.name}</Text>
-                            <Text
-                            color="var(--Secondary-300, #90A3BF)"
-                            >Sport</Text>
-                        </Flex>
-                        <Icon 
-                        display={["flex", "flex", "none", "flex", "flex"]}
-                        as={FiHeart}
-                        fontSize="1.7em"
-                        className="active-icon"/>
-                        </Flex>
-                
-                    <Flex
-                    overflow='hidden'
-                    m={10}
-                    // border="solid 5px #000"
-                    justify='center'
-                    borderRadius='25px'
-                    >
-                    <Avatar borderRadius='25px' w='100%' my={2} src={pic.imag}/>
-                    </Flex>
-            <Flex
-            flexDir='column'
-            >        
-                <Flex
-                ml={10}
-                mr={10}
-                // border="solid 2px #000 "
-                justifyContent='space-around'
-                >
-                    <Flex>
-                    <Icon
-                        display={["flex", "flex", "none", "flex", "flex"]}
-                        as={FiBatteryCharging}
-                        fontSize="1em"
-                        mr={9}
-                        className="icon_car"/>
-                    <Text fontSize='0.8em'>{pic.Oil}</Text>
-                    </Flex>
-                    <Flex>
-                    <Icon
-                        display={["flex", "flex", "none", "flex", "flex"]}
-                        as={FiCrosshair}
-                        mr={9}
-                        fontSize="1em"
-                        className="icon_car"/>
-                    <Text fontSize='0.8em'>Manual</Text>
-                    </Flex>
-                    <Flex>
-                    <Icon
-                        display={["flex", "flex", "none", "flex", "flex"]}
-                        as={FiUsers}
-                        mr={8}
-                        color='#90A3BF'
-                        fontSize="1em"
-                        className="icon_car"/>
-                    <Text fontSize='0.8em'>People</Text>
-                    </Flex>
-                </Flex>
-                <Flex justifyContent="center" mt={2}>
-                <Button
-                    w='90%'
-                    h="2.8em"
-                    color='#fff'
-                    backgroundColor='#3563E9'
-                    m={20}
-                    // p={3}
-                    borderWidth={1}
-                    borderRadius="4px"
-                    // bgColor={value == 1 ? 'gray.600' : 'gray.400'}
-                    onClick={() => changeValue("#B57295")}
-                >
-                    StartNow
-                </Button>
-                </Flex>
-            </Flex>
-            </Flex>
-                )})}
-            
-            </Flex>
-
+</Flex>
 
         </Flex>
-
-        </Flex>
-
 
         </div>
   );

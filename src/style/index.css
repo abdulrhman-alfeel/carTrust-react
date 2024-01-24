@@ -1870,6 +1870,7 @@ filter:blur(20px);
 
 
 .sidebar-items:hover p{
+  cursor: pointer;
   color:#fff
 }
 .sidebar-items:hover {
@@ -1959,3 +1960,14 @@ font-weight: 700;
   display: block;
 }
 
+/* button:focus {
+  background-color: rgb(195, 15, 42);
+  color: black;
+} */
+.box_car:focus{
+  border:"solid 2px #2D3291"
+}
+/* .box_car:focus .startNow{
+  background-color:'#2D3291';
+  color:'#fff'
+} */

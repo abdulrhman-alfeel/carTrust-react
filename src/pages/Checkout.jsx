@@ -328,6 +328,10 @@ const NaveEvltion = () =>{
         style={{
           transition: "2s"
         }}
+        className="box_car"
+        animation={select_Car === pic.id ?"all 3s linear infinite":null}
+
+        _focus={{border:"solid 2px #2D3291"}}
         // _hover={{border:""}}
         border={select_Car === pic.id ? "solid 2px #2D3291" : "2px #fff" }
         borderRadius={borderRadius}      
@@ -407,6 +411,7 @@ const NaveEvltion = () =>{
       
         <Flex   animation=" 3s linear 1s infinite running slidein" justifyContent="center" >
         <Button
+        className="startNow"
         // className={select_Car === pic.id ? "buttonamait": null}
             w='90%'
             h="2.4em"
@@ -414,8 +419,12 @@ const NaveEvltion = () =>{
             // mb={25}
             animation={select_Car === pic.id ?"all 3s linear infinite":null}
             backgroundColor={select_Car === pic.id ?'#2D3291' : '#fff'}
+            // _focus={{
+            //   backgroundColor:'#2D3291',
+            //   color:'#fff'
+            //  }}
             mt={15}
-            border='solid 2px #2D3291'
+            // border='solid 2px #2D3291'
             // p={3}
             fontWeight={700}
             borderWidth={2}
@@ -1152,7 +1161,13 @@ const NaveEvltion = () =>{
                   status === "loading" ?
                     <Loading />
                     :
-                    <Button w='100%'   onClick={submitHandler}>
+                    <Button
+                    backgroundColor='#2D3291'
+                    borderRadius='10px'
+                    color='#fff'
+                    border='none'
+                    p={10}
+                    w='100%'   onClick={submitHandler}>
                       Pay now
 
                     </Button>
