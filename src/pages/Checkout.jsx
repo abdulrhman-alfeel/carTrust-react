@@ -127,8 +127,6 @@ export default function Checkout() {
       }else{
         setRowing(false)
       }
-
-
     };
     window.addEventListener('resize', handleResize);
     // swithcing()
@@ -198,9 +196,7 @@ export default function Checkout() {
   const array_data = [
     {
         id:1,
-        name:`i7 xDrive 60  
-        asdkfj;lkajdflkjsdf asdkfj;lkajdflkjsdf sdfsdfsadfsdfsadfsdafsdfsafsadf lkajdflkjsdf asdkfj;lkajdflkjsdf sdfsdfsadfsdfsadfsdafsdfsafsadf
-        `,
+        name:`i7 xDrive 60`,
         Oil: "90L",
         imag:imag_3,
         icons: bmw
@@ -268,7 +264,6 @@ const onClick_care = (id) =>{
   setSelect_Cart(id)
 }
 
-
 let slid;
 if (window.innerWidth < 1030 || window.innerWidth   > 960){
     slid = 2
@@ -295,6 +290,24 @@ var settings = {
   // autoplay:true,
   arrows: false,
 };
+
+
+
+
+const handleTrimSelect = (val) => {
+  setTrim(val.id);
+  
+  setCheckoutData({
+    ...checkoutData,
+    payload:{
+      ...checkoutData.payload,
+      trim_id: val.id
+    }
+  })
+  
+   }
+
+
 const NaveEvltion = () =>{
   return(
 
@@ -429,7 +442,7 @@ const NaveEvltion = () =>{
             fontWeight={700}
             borderWidth={2}
             borderRadius='0.3em'           // bgColor={value == 1 ? 'gray.600' : 'gray.400'}
-            // onClick={() => changeValue("#B57295")}
+            onClick={() => handleTrimSelect(pic)}
         >
             StartNow
         </Button>
@@ -447,14 +460,58 @@ const NaveEvltion = () =>{
 
 
 
+  // const submitHandler = async () => {
+  //   checkoutData.manufacturer_id = manufacturer;
+  //   checkoutData.model_id = model;
+  //   checkoutData.year_id = year;
+  //   checkoutData.trim_id = trim?.id;
+  //   await dispatch(checkout(checkoutData));
+
+  //   setUpdated(true);
+  //   if (status === "succeeded" && error?.success) {
+  //     console.log("Success");
+  //     toast.success("Submitted successfully");
+  //   } else if (status === "succeeded" && !error.success && error?.errors) {
+  //     console.log(status);
+  //     let message = Object.values(error?.errors)[0][0];
+  //     toast.error(message);
+  //   }
+  //   await dispatch(paymentUrl(21,'https://fwatiry.online/','1'));
+  //   if(payment_link && (status === "succeeded" && error?.success)){
+  //     console.log(payment_link);
+  //     window.location.href =payment_link;
+  
+  //     }
+
+
+  // }
+
 
   const submitHandler = async () => {
-    checkoutData.manufacturer_id = manufacturer;
-    checkoutData.model_id = model;
-    checkoutData.year_id = year;
-    checkoutData.trim_id = trim?.id;
-    await dispatch(checkout(checkoutData));
+    checkoutData.payload.manufacturer_id = manufacturer;
+    checkoutData.payload.model_id = model;
+    checkoutData.payload.year_id = year;
+    checkoutData.payload.trim_id = trim;
 
+    // setCheckoutData({
+    //   ...checkoutData,
+    //   payload:{
+    //     ...checkoutData.payload,
+    //     trim_id: trim
+    //   }
+    // })
+
+    setCheckoutData((prevData) => ({
+      ...prevData,
+      payload: {
+        ...prevData.payload,
+        trim_id: trim,
+      },
+    }));
+
+ 
+
+     
     setUpdated(true);
     if (status === "succeeded" && error?.success) {
       console.log("Success");
@@ -464,8 +521,23 @@ const NaveEvltion = () =>{
       let message = Object.values(error?.errors)[0][0];
       toast.error(message);
     }
-    await dispatch(paymentUrl(21,'https://fwatiry.online/','1'));
+
+    const response = await dispatch(checkout(checkoutData));
+     
+    const cart = response.payload.cart_id;
+
+    if (cart) {
+      console.log("Cart ID exists:", cart);
+      const paymentUrleResponse =await dispatch(paymentUrl({ cart, return_url: "https://fwatiry.online/", amount: 25, string: "h" }));
+      console.log(paymentUrleResponse);
+      window.location.href =paymentUrleResponse.payload;
+  } else {
+      console.log("Cart ID is undefined");
+  }
+
+    
     if(payment_link && (status === "succeeded" && error?.success)){
+      console.log("Hellloooooooooooo");
       console.log(payment_link);
       window.location.href =payment_link;
   
@@ -473,6 +545,14 @@ const NaveEvltion = () =>{
 
 
   }
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     dispatch(fetchTrims({ manufacturer, model, year }));
@@ -1130,7 +1210,7 @@ const NaveEvltion = () =>{
                   <p class="mb-3" style={{fontSize:fontTitl.titlesub,color:'var(--Secondary-300, #90A3BF)'}}>Tax:</p>
                   <p class="mb-3" style={{fontSize:fontTitl.titlesub,fontWeight:700}}>- SAR 60.00</p>
                 </div>
-               
+
 
 
 

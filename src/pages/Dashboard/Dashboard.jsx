@@ -228,7 +228,7 @@ m={30}
                     //   className="active"
                       >Dashboard</Text>
                     </Link>
-                  </Flex>
+                  </Flex>  
     
                   <Flex  p={12}
                   style={pages === 'Vehicles' ? stylefouce : null}
