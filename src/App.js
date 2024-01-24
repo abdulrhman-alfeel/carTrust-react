@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import VerifyNumber from "./pages/VerifyNumber";
 import PostPyment from "./pages/PostPyment";
 import store from "./redux/store";
-import { Storeing } from "./redux/redux/storeing";
+// import { Storeing } from "./redux/redux/storeing";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
