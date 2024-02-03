@@ -2,6 +2,7 @@
   "name": "car_trust",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cartrust.tech/",
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
@@ -46,6 +47,7 @@
     "styled-components": "^6.1.6",
     "swiper": "^11.0.5",
     "thunk": "^0.0.1",
+    "uuid4": "^2.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

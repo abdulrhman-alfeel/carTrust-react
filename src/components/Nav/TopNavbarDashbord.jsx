@@ -156,41 +156,32 @@ export default function TopNavbarDashbord({kind}) {
 
   return (
     <>
-      {/* <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} /> */}
-      {/* {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />} */}
-     
       <Wrapper  className="flexCenter animate whiteBg" style={y > 100 ? { height: "70px"  } : { height: "90px" }}>
-       
-        <NavInner
-        
+        <NavInner     
         style={{flexDirection:width < 960 ? 'row-reverse': 'row',
         // border:'solid 2px #000',
         width:`${width}.px`
       }}
         // style={{backgroundColor:kind === true ? '#333333' : '#fff' }}
         className="container flexSpaceCenter">
-        
-      
 
         <Flex 
           // border="solid 2px #000"
           align='center'
           position="relative"
           right={window.innerWidth > 960 ? '5%' : 0}
-          // top='-1em'
-          flexDir='row-reverse'
-          justifyContent='space-around'
-          // border="solid 3px #000"
-          w={window.innerWidth < 960? '80%' : '8%'}
+          flexDir='row'
+          justifyContent='space-between'
+          w={window.innerWidth < 960? '95%' : '8%'}
           h='10vh'
           >
-          <div className="pointer"  >
-            {/* <Icon  color={'#000'} as={FiMenu} className="dropdown" /> */}
-            
+          <div 
+          className="pointer"  >            
             <Icon 
             onClick={() => toggleSidebar(!sidebarOpen)}
             // border="solid 8px #000"
             display={window.innerWidth < 960 ? 'flex' : 'none'}
+            // left='20%'
             color={kind ? "#fff": '#000'}
                         // display={["flex", "flex", "none", "flex", "flex"]}
                         as={FiMenu}
@@ -199,9 +190,32 @@ export default function TopNavbarDashbord({kind}) {
                       />
 
         {sidebarOpen & width < 960 ? 
+        <div
+        onClick={() => toggleSidebar(false)}
+        style={{
+          // border:'solid 2px #000',
+          position:'absolute',
+          top:0,
+          width:'100%',
+          height:'100vh',
+          paddingTop:'20px',
+          display:'flex',
+          justifyContent:'flex-start',
+          alignItems:'flex-start',
+          alignSelf:'flex-start'
+        }}
+        >
          <div style={{background:kind === true ? '#333333': '#fff'}} className="dropdown_navber_dashbord">
                  <Seaction_navber_center />
-
+               <div
+               style={{
+                display:'flex',
+                justifyContent:'center'
+               }}
+               >
+                 <Seaction_navber />
+                 </div>
+          </div>
           </div>
          :null}
           </div>
@@ -209,24 +223,17 @@ export default function TopNavbarDashbord({kind}) {
              {/* <Avatar src={Logopng} w={120} /> */}
              <img src={Logopng} width={120} />
         </Flex>
-        
-  
- 
-  {/* <Flex className="dropdown_navber"> */}
-              
+
 {width > 960 ?
   <Seaction_navber_center />
   : 
   null
 }
 
-          
-          {/* <Flex className="pointer" >
-          {/* <Flex className="dropdown_navber"> */}
-                 <Seaction_navber />
 
-          {/* </Flex> */}
-          {/* </Flex> */} 
+                {window.innerWidth > 960 ? <Seaction_navber />: null}
+
+    
 
      
  

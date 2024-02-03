@@ -30,14 +30,12 @@ export default function Services() {
           <div className="col-md-6">
               <ServiceBoxRow >
                 {/* <ServiceBoxRow > */}
-                <ServiceBoxWrapper >
-                  <ServiceTitle
+
+                <ServiceTitle
                     title="افضل الخدمات"
                     subtitle="احصل على تجربة فريدة"
                     subtitle2="ومذهلة مع خدمات كار ترست"
                   />
-                </ServiceBoxWrapper>
-
               </ServiceBoxRow>
             </div>
 
@@ -50,25 +48,23 @@ export default function Services() {
                   <ServiceBox
                     icon="roller"
                     title="تقييم السيارات"
-                    subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
+                    subtitle="هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص."
                   />
                 </ServiceBoxWrapper>
                 <ServiceBoxWrapper>
                   <ServiceBox
                     icon="monitor"
                     title="فحص المركبات"
-                    subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
+                    subtitle="هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص.."
                   />
                 </ServiceBoxWrapper>
                 <ServiceBoxWrapper>
                   <ServiceBox
                     icon="browser"
                     title="الضمان الذهبي"
-                    subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing."
+                    subtitle="هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص."
                   />
                 </ServiceBoxWrapper>
-
-               
               </ServiceBoxRow>
             </ServicesWrapper>
 
@@ -124,6 +120,7 @@ const ServiceBoxHeader = styled.div`
 `;
 const ServiceBoxWrapper = styled.div`
   // margin:35px;
+  width:100%;
   @media (max-width: 860px) {
     width: 100%;
     display:flex;

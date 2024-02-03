@@ -26,8 +26,6 @@ export default function Login() {
     } else if (status === "failed") {
       toast.error(error.message)
     }
-
-
   }
 
   useEffect(() => {
@@ -51,12 +49,9 @@ export default function Login() {
     <div className="continer-login-home">
       <ToastContainer />
       <Wrapper className="row">
-
         <div className="col-8 img-login" >
           <img src={loginImage} alt="" />
-
         </div>
-
         <div className="col-4 login-continer" style={{ margin: "auto" }}>
           <p className="title-sub-login" >Let’s explore beyond the world with Car Trust services,</p>
           <p className="title-login" >Hello, Welcome Back!</p>
@@ -99,8 +94,6 @@ const EavaluateButton = styled.button`
  margin-top:20px;
 
 @media(max-width:960px){
-  // position: absolute;
-  // display:none;
  width:100%;
  text-align:center;
  padding: 0 ; 

@@ -2,14 +2,26 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { billingInfoApi, checkoutApi, deleteData, fetchManufacturersApi, fetchModelsApi, fetchOptionsApi, fetchTrimsApi, fetchYearsApi, logoutApi, paymentLink, requestOTPApi, verifyOTPApi } from '../api';
 
-export const fetchYears = createAsyncThunk('data/fetchYearsApi', async (newData,manufacturer_id) => {
-    const data = await fetchYearsApi(newData,manufacturer_id);
+export const fetchYears = createAsyncThunk('data/fetchYearsApi', async (modle,manufacturer) => {
+    console.log(manufacturer,'deituls')
+    const data = await fetchYearsApi(modle,manufacturer);
     return data;
 });
 
 
-export const paymentUrl = createAsyncThunk('data/payment', async (amount,return_url,cart_id) => {
-    const data = await paymentLink(21.5,"https://fwatiry.online/","1" );
+// export const paymentUrl = createAsyncThunk('data/payment', async (cart,return_url,amount,string) => {
+//     console.log("cartttttttttttttttt");
+//     console.log(cart);
+//     console.log(amount);
+//     const data = await paymentLink(amount,"https://freemarkate.com/Seccessing_py",cart );
+//     return data;
+// });
+
+export const paymentUrl = createAsyncThunk('data/payment', async ({ cart, return_url, amount, string }) => {
+    console.log("cartttttttttttttttt");
+    console.log(cart);
+    console.log(amount);
+    const data = await paymentLink(amount, return_url, cart);
     return data;
 });
 
@@ -47,12 +59,14 @@ export const fetchTrims = createAsyncThunk('data/fetchTrimsApi', async (newData)
 
 export const fetchOptions = createAsyncThunk('data/fetchOptionsApi', async () => {
     const data = await fetchOptionsApi();
+    console.log(data , 'hhhhhhhhh')
     return data;
 });
 
 export const checkout = createAsyncThunk('data/checkoutApi', async (newData) => {
     try {
         const data = await checkoutApi(newData);
+        console.log(data);
         return data;
     } catch (error) {
         console.log(error);
@@ -88,11 +102,9 @@ export const deleteDataAsync = createAsyncThunk('data/deleteData', async (id) =>
     await deleteData(id);
     return id;
 });
-export const Dark = createAsyncThunk('data/Dark', async (id) => {
-    await deleteData(id);
-    return id;
+export const changestat = createAsyncThunk('data/changestat',  (statusing) => {
+    return statusing;
 });
-
 
 const dataSlice = createSlice({
     name: 'data',
@@ -108,6 +120,8 @@ const dataSlice = createSlice({
         options: {},
         billing: null,
         payment_link: null,
+        statusing:false,
+        statusing_Items:[],
         status: 'idle',
     },
     reducers: {},
@@ -232,6 +246,15 @@ const dataSlice = createSlice({
             })
             .addCase(logout.rejected, (state) => {
                 state.status = 'failed';
+            })
+            .addCase(changestat.fulfilled, (state,action) => {
+                state.statusing === false?
+                state.statusing = true
+                :
+                state.statusing = false;
+                state.statusing= action.payload
+                // state.statusing_Items.push(action.payload)
+
             })
     },
 });

@@ -8,8 +8,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const PdfViewer = ({ pdfURL }) => {
  return (
-    <Document   file={pdfURL}>
-      <Page  height={10} width={window.innerWidth < 960 ? 370:1300} pageNumber={1} />
+    <Document    file={pdfURL}>
+      <Page   height={10} width={window.innerWidth < 960 ? 370:1300} pageNumber={1} />
     </Document>
  );
 };

@@ -18,17 +18,10 @@ export const fetchManufacturersApi = async () => {
     }
 };
 
-export const fetchYearsApi = async (newData,manufacturer_id) => {
-    // try {
-    //     const response = await axios.get(`${API_BASE_URL}/years`);
-    //     return response.data.years;
-    // } catch (error) {
-    //     return error;
-    // }
-
+export const fetchYearsApi = async (model,manufacturer) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/years?service_name=evaluation&manufacturer_id=12&model_id=756`);
-        console.log(response.data.years);
+        console.log(manufacturer,'manugactur')
+        const response = await axios.get(`${API_BASE_URL}/years?service_name=evaluation&manufacturer_id=${manufacturer}&model_id=${model}`);
         return response.data.years;
     } catch (error) {
         return error;
@@ -37,18 +30,17 @@ export const fetchYearsApi = async (newData,manufacturer_id) => {
 
 
 export const paymentLink = async (amount,return_url,cart_id) => {
-   
-
     try {
         const response = await axios.post(`${API_BASE_URL}/payment/link` , {
             amount,
             return_url,
-            cart_id}, {
+            cart_id
+        }, {
             headers: {
                 "Authorization": "Bearer " + token
             }
         });
-         return response.data.payment_link;
+        return response.data.payment_link;
     } catch (error) {
         return error;
     }
@@ -75,6 +67,7 @@ export const fetchTrimsApi = async (newData) => {
 export const fetchOptionsApi = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/pg/options/list`);
+        console.log(response.data?.data,'hoooooo')
         return response.data?.data;
     } catch (error) {
         return error;
@@ -105,7 +98,10 @@ export const logoutApi = async (newData) => {
 };
 
 export const checkoutApi = async (newData) => {
-    const response = await axios.post(`${API_BASE_URL}/pg/evaluate`, newData, {
+    // const response = await axios.post(`${API_BASE_URL}/pg/evaluate`, newData, {
+ 
+
+        const response = await axios.post(`${API_BASE_URL}/cart/create`, newData, {
         headers: {
             "Authorization": "Bearer " + token
         }

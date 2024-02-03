@@ -6,19 +6,23 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import FullButton from "../Buttons/FullButton";
 // Assets
-import Select from 'react-select';
+import Slider from "react-slick";
 
+import Select from 'react-select';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
-import { components } from 'react-select';
+import { useNavigate } from "react-router-dom";
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import arrow_log from '../../assets/img/arrow_log.png';
 import images from "../../data/images";
-import { fetchManufacturers, fetchModels, fetchYears } from "../../redux/features/dataSlice";
+import { fetchManufacturers, fetchModels,fetchTrims } from "../../redux/features/dataSlice";
+import { Loading } from "../Elements/Loading";
+import { toast } from "react-toastify";
+// import {fetchYearsApi} from "../../pages/function/useFatchYear";
+import axios from 'axios';
+const API_BASE_URL = 'https://partner-api.cartrust.sa/api/v2'; // Replace with your API endpoint
 
-const { SingleValue, Option } = components;
 
 
 export default function Header() {
@@ -27,113 +31,29 @@ export default function Header() {
   const years = useSelector((state) => state.years);
   const models = useSelector((state) => state.models);
   const billing = useSelector((state) => state.billing);
+  const data = useSelector((state) => state.trims);
 
   const manufacturers = useSelector((state) => state.manufacturers);
   const status = useSelector((state) => state.status);
   const dispatch = useDispatch();
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [update, setUpdate] = useState("");
-  const [manufacturer, setManufacturer] = useState("64");
-  const [model, setModel] = useState("2639");
-  const [year, setYear] = useState("133");
+  const [manufacturer, setManufacturer] = useState(0);
+  const [model, setModel] = useState(null);
+  const [year, setYear] = useState(null);
+  const [icon, setIcon] = useState("");
+  const [Brand, setBrand] = useState('');
+  const [found, setFound] = useState(false);
+  const [ModelsName, setModelsName] = useState('');
+  const [data_years, setDatayrs] = useState([]);
   // const [Brand, setBrand] = useState("133");
   const [swiper, setSwiper] = React.useState(null);
+  const [empty, setEmpty] = React.useState(false);
+
+
 
   useEffect(() => {
-    dispatch(fetchManufacturers());
-    // dispatch(billingInfo());
-    dispatch(fetchModels("64"));
-    dispatch(fetchYears(model,manufacturer));
-    console.log(manufacturers)
+    dispatch(fetchManufacturers());   
+    setTimeout(changeSlide, 1000);
   }, [dispatch]);
-
-  const handleSlideNext = (slideNext, ind) => {
-    console.log(slideNext, ind)
-    setSlideIndex(ind)
-    setSlideIndex(slideIndex)
-    // Now, you have a reference to the child function
-    childRef.current = slideNext;
-
-  };
-
-
-
-
-  const options = [
-    {
-        label: 'Option 1',
-        value: 0,
-        image: 'https://example.com/amazing-image-1.png',
-    },
-    {
-        label: 'Option 2',
-        value: 1,
-        image: 'https://example.com/amazing-image-2.png',
-    }
-];
-
-  const IconSingleValue = (props) => (
-    <SingleValue {...props}>
-        {props.data.name}
-        <img src={props.data.image} style={{ height: '30px', width: '30px', borderRadius: '50%', marginRight: '10px' }}/>
-
-    </SingleValue>
-);
-
-const IconOption = (props) => (
-    <Option {...props}>
-        <img src={props.data.make_logo} style={{ height: '30px', width: '30px', borderRadius: '50%', marginRight: '10px' }}/>
-        {/* {props.data.name} */}
-    </Option>
-);
-
-
-const customStyles = {
-  option: (provided) => ({
-      ...provided,
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-  }),
-  singleValue: (provided) => ({
-      ...provided,
-      zInndex:'0',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-  }),
-}
-
-
-
-
-
-
-
-
-
-
-
-  const handleSlidePrev = (slidePrev, ind) => {
-    setSlideIndex(ind)
-    // Now, you have a reference to the child function
-    childRef.current = slidePrev;
-
-  };
-
-  const handleSlideNextClick = (e) => {
-    swiper?.slideNext();
-  };
-  console.log(childRef)
-
-  const handleSlidePrevClick = () => {
-    swiper?.slidePrev();
-  };
-
-
-
-
-
 
 
 
@@ -141,44 +61,93 @@ const customStyles = {
 
 
   const handleManufacturerChange = (value) => {
-    console.log(value.name)
-    // setManufacturer(value.id);
-
-      console.log(manufacturers.find(pic => pic.name == value.name).id)
-      // dispatch(fetchModels(manufacturers.find(pic => pic.name == value.name).id ));
-      dispatch(fetchModels(value.id ));
+    setIcon(value.make_logo)
+    setBrand(value.name)
+    setModel(null)
+    setYear(null)
+    setManufacturer(value.id);
+      dispatch(fetchModels(value.id));
 
   }
 
   const handleModelChange = (value) => {
     setModel(value.id);
-    console.log(model);
-    dispatch(fetchYears(model,manufacturer));
+    setModelsName(value.name);
+    setEmpty(false)
+    console.log(manufacturer,value.id,'manufacturerdont')
+ 
+    // dispatch(fetchYears(value.id,manufacturer))
+    fetchYearsApi(value.id,manufacturer)
+
+    console.log(fetchYearsApi(value.id,manufacturer),'array')
+   }
+
+
+
+  const fetchYearsApi = async (model,manufacturer) => {
+    try {
+        console.log(manufacturer,'manugactur')
+        const response = await axios.get(`${API_BASE_URL}/years?service_name=evaluation&manufacturer_id=${manufacturer}&model_id=${model}`);
+        console.log(response.data.years)
+        const databis = response.data.years;
+        setDatayrs(databis)
+        return response.data.years
+    } catch (error) {
+        return error;
+    }  }
+
+
+
+
+  const submitHandler = async () => {
+    console.log(Brand,'brand');
+    console.log(year,'year');
+    console.log(Brand,ModelsName,year);
+    setFound(true)
+    if(Brand !== null && ModelsName !== null && year !== null){
+    dispatch(fetchTrims({ manufacturer, model, year }))
+      try{
+          setTimeout(() => {
+          status ? 
+          history(`/checkout?&${manufacturer}&${model}&${year}&${icon}&${Brand}&${ModelsName}`)
+          :   toast.error('لايوجد هناك تفاصيل لهذا الخيار');
+        }, 1000);
+        setFound(false)
+      }catch(err){console.log(err)}
+    ;
+
+      setEmpty(false)
+    }else{
+      setEmpty(true)
+      // alert('يجب اكمال البيانات ')
+    }
+    
   }
 
-  const submitHandler = () => {
-    // console.log(manufacturer);
-    // console.log(year);
-    // console.log(model);
-    history(`/checkout?&${manufacturer}&${model}&${year}`);
+  let currentSlide = 0;
+  function changeSlide() {
+    try{
+    const slides_tow = document.querySelectorAll('.slide');
+  //  slides_tow[currentSlide].style.opacity = 0;
+   slides_tow[currentSlide].style.display = 'none';
+   currentSlide = (currentSlide + 1) % slides_tow.length;
+   slides_tow[currentSlide].style.display = 'flex';
+  }catch(err){
+    console.log(err)
   }
-
-
-
-
-
-
+  }
+  // setInterval(changeSlide, 3000); // Change slide every 3 seconds
+ // Change slide every 3 seconds
 
 
 
   const Stayle_selct={
     control: (provided) => ({
       ...provided,
-      border: "1px solid #ccc",
+      border: `1px solid ${empty? "#a02424":'#ccc'}`,
       borderRadius: "8px",
       padding: "1px 4px",
       // paddingTop: "7px",
-
       height: "46px",
       fontSize:"14px",
       minHeight: "56px",
@@ -205,7 +174,6 @@ const customStyles = {
     option: (provided, state) => ({
       ...provided,
       padding: "8px 12px",
-     
       color: state.isSelected ? "#000" : "#333",
       backgroundColor: state.isSelected ? "#fff" : "#fff",
       "&:hover": {
@@ -218,159 +186,193 @@ const customStyles = {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const settings = {
+    infinite: true,
+    speed: 2500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay:true,
+    arrows: true,
+    cssEase: "linear",
+    responsive: [
+      {
+      breakpoint: 1280,
+      settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: true
+      }
+      },
+      {
+      breakpoint: 1024,
+      settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: true
+      }
+      }
+      ]
+      
 
   
+  };
+
   return (
     <>
-      <Wrapper id="home" className="headerComp">
-        <div>
-          <Swiper
-            initialSlide={0}
-            spaceBetween={50}
-            slidesPerView={1}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => setSwiper(swiper)}
-          >
+
+      <Wrapper  id="home" >
+        <Slider  autoplaySpeed={5000} {...settings} >
             {images.map((image, index) => {
               return (
-                <SwiperSlide  key={index}>
-                  {/* <div style={{ display: "flex", justifyContent: "space-between" }}> */}
+                <SwiperSlide key={index} style={{border:'solid 2px #000'}} >
                   <div className="row">
-                    {/* <LeftSide className="flexCenter"> */}
                     <LeftSide className="col-sm-12 col-md-6 col-lg-6 ">
                       <div dir="rtl">
                         <div
                         style={{
-                          marginTop:"12%",
-                          marginRight:'7%'             
+                          marginTop:"9%",
+                          marginRight:'7%',
+                       
                       }}
                         >
-                        <h1 className="extraBold font60">{image?.text1}</h1>
-                        <h1 className="extraBold font60">{image?.text2}</h1>
+                        <h1 style={{   lineHeight:'2em'}} className="extraBold ">{image?.text1}</h1>
+                        <h1 className="extraBold ">{image?.text2}</h1>
                         <h2>{image?.text3}</h2>
                         </div>
-                        <BtnWrapper>
-                          <FullButton title={image?.buttonText} />
+                        <BtnWrapper style={{
+                          // position:'relative',
+                          // top:'15em',
+                        display:window.innerWidth < 960?'none': 'flex'
+                        }}>
+                          <FullButton title={image?.buttonText} hr="#headrEvleaction" />
                         </BtnWrapper>
                         <NextPrevWrapper className="Center_left">
                           <button
                             style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
                             onClick={(e) => {
                               e.preventDefault();
-                              handleSlidePrevClick();
+                              // handleSlidePrevClick();
+                              changeSlide()
                             }}
                           >
                           <i class="fi fi-rr-arrow-small-right"
                             style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}></i>
                           </button>
                           <button
-                            style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
+                            style={{ 
+                              backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", 
+                              borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" ,
+                              }}
                             onClick={(e) => {
                               e.preventDefault();
-                              handleSlidePrevClick();
+                              // handleSlidePrevClick();
+                              changeSlide()
                             }}
                           >
                           <i class="fi fi-rr-arrow-small-left"
-                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}
-                           ></i>
+                            style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}></i>
                           </button>
-                      
                         </NextPrevWrapper>
                       </div>
                     </LeftSide>
                     <RightSide className="col-sm-12 col-md-6 col-lg-6" >
-                    <img src={arrow_log} alt={image.imgAlt} className="image_arrow" />
+                    <img src={arrow_log} alt={image.imgAlt} 
+                    width='20%' 
+                    style={{
+                    position: "absolute",
+                    top: "1.5em",
+                    left: "45%",
+                    zIndex:999
+                    }} />
                       <ImageWrapper>
-                        <div className="image-container" key={index} >
-                          <img src={image.imgURL} alt={image.imgAlt} className="image_slider" />
+                        <div style={{justifyContent:'center',
+                      marginLeft:'60px',
+                      position:'relative',
+                      left:"20px"
+                      }} className="image-container slide" key={index} >
+                          <img src={image.imgURL} alt={image.imgAlt}
+                          style={{
+                            // border:'solid 2px #000',
+                            minHeight:window.innerWidth > 960? "45em": "20em",
+                          }}
+                          className="image_slider" />
                         </div>
                       </ImageWrapper>
+
                     </RightSide>
                   </div>
                 </SwiperSlide>
               );
               // return <img key={index} src={image.imgURL} alt={image.imgAlt} />;
             })}
-          </Swiper>
+          </Slider>
 
-        </div>
       </Wrapper>
       <HeaderElement1 className="d-flex justify-content-center align-items-center" style={{position:'relative',zIndex:999, margin: "auto", }}>
-        <div class="row " style={{ margin: "0 auto", width: "80%" ,lef:"20px",flexDirection:'row-reverse'}}>
+        <div
+        id="headrEvleaction" 
+        class="row " 
+        style={{ margin: "0 auto", width: "80%" ,
+        lef:"20px",flexDirection:'row-reverse'}}>
           <div 
           // style={{marginTop:"5px"}}
           class="col-lg-3 mb-2">
             <h4
             style={{
               color: "#000",
-              fontFamily: "Poppins",
+              marginBottom:'10px',
               fontSize: "14px",
               fontStyle: "normal",
+              textAlign:'right',
               fontWeight:"900",
               lineHeight: "normal"}}
-            >Car Brand</h4>
+            >الشركة المصنعة</h4>
+
           <Select 
+          isRtl
             className="select-image"
               // isDisabled={false}
+              placeholder='حدد ماركة السيارة'
             isSearchable={false}
             onChange={handleManufacturerChange}
-            // value={}
-            value={manufacturer}
+            value={manufacturer?.name}
             options={
               manufacturers?.map((manufacturer, index) => manufacturer)
             }
             formatOptionLabel={country => (
-              <div key={country.id} className="country-option">
-                <span>{country.name}</span>
+              <div className="country-option">
+                <span>{country.name_arabic}</span>
                 <img src={country.make_logo} alt="country-image" />
               </div>
             )
           }
-
-  
           styles={Stayle_selct}
         />
-
-
-
-
-     
 
           </div>
           <div class="col-lg-3 mb-2 ">
           <h4
             style={{
               color: "#000",
-              fontFamily: "Poppins",
+              marginBottom:'10px',
               fontSize: "14px",
               fontStyle: "normal",
+              textAlign:'right',
               fontWeight:"900",
               lineHeight: "normal"}}
-            >Car Model</h4>
+            >الموديل</h4>
 
             <Select 
+            isRtl
+            placeholder="حدد موديل السيارة"
             className="select-image"
               // isDisabled={false}
             isSearchable={false}
             onChange={handleModelChange}
             // value={}
-            value={model}
+            value={model?.name}
             options={
               models?.map((model, index) => model)
             }
@@ -380,31 +382,31 @@ const customStyles = {
               </div>)}
           styles={Stayle_selct}
         />
-
           </div>
           <div 
           class="col-lg-3 mb-2"
           >
-                <h4
+            <h4
             style={{
               color: "#000",
-              fontFamily: "Poppins",
+              marginBottom:'10px',
               fontSize: "14px",
               fontStyle: "normal",
+              textAlign:'right',
               fontWeight:"900",
               lineHeight: "normal"}}
-            >Car Year</h4>
-
-              
+            >السنة</h4>
             <Select 
+            isRtl
             className="select-image"
+            placeholder="حدد سنة الصنع"
               // isDisabled={false}
             isSearchable={false}
             onChange={(e) => setYear(e.id)}
             // value={}
-            value={year}
+            // value={year?.name}
             options={
-              years?.map((model, index) => model)
+              data_years?.map((model, index) => model)
             }
             formatOptionLabel={country => (
               <div className="country-option">
@@ -412,25 +414,23 @@ const customStyles = {
               </div>)}
           styles={Stayle_selct}
         />
-    
           </div>
-          <div className="col-lg-3 mt-3 Evaluate" style={{overflow:'hidden'}}>
-                  <NavLink to="/login" className='buttonamait_login'  onClick={submitHandler} style={{ 
-                  width: window.innerWidth  > 960 ? "8.7em": "5.2em",
-                  height:"1.5em",
-                  
-                  justifyContent:'center',
-                  alignItems:'center',
-                  opacity:'80%',
-                  fontSize:"1.7rem",
-                  color: "white", margin: "0 auto", display: "flex" }}>
-                  تقييم
-                  </NavLink>
-          </div>
+          {status === "loading" ? (
+                      <button style={{
+                        border:'none',backgroundColor:'#fff'}}  className="col-lg-3 mt-4 ">
+                          <Loading />
+                      </button>
+              
+                  ) : (
+          <button style={{
+            border:'none',
+            color:"white"}} onClick={submitHandler} className="col-lg-3  Evaluate">
+          تقييم
+          </button>
+)}
         
         </div>
       </HeaderElement1>
-
     </>
   );
 }
@@ -439,14 +439,19 @@ const customStyles = {
 const Wrapper = styled.section`
   padding-top: 100px;
   width: 100%;
+  height: 50em;
+  overflow:hidden;
    @media (max-width: 960px) {
     flex-direction: column;
+      height: 40em;
   }
 `;
 const LeftSide = styled.div`
-   
 `;
 const RightSide = styled.div`
+display:flex;
+// border:solid 2px #000;
+overflow: hidden;
 @media (max-width: 960px) {
   position:relative;
   top:-10px;
@@ -480,7 +485,7 @@ const BtnWrapper = styled.div`
 
 const NextPrevWrapper = styled.div`
 
- margin-top: 25px;
+ margin-top: 125px;
  margin-right:70%;
  @media(max-width:960px){
 
@@ -534,7 +539,7 @@ const HeaderElement1 = styled.div`
  width: 75%;
  height: 175px;
 padding:1rem;
-top:-40px;
+top:-70px;
 background-color: #FFFFFF;
 fill: linear-gradient(180deg, #FFF 0%, #FFF 100%);
 

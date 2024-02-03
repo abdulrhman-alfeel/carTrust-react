@@ -10,7 +10,7 @@ const Seaction_navber =()=>{
       
       <li className="semiBold font15 pointer">
             <div sytle={{color:'#fff'}} className="dropdown">
-              <a style={{color:Dark === true ? "#fff": null , }} className="nav-link tm-nav-link" href="#testimonials">سعر السيارات المستخدمة</a>
+              <a style={{color:Dark === true ? "#fff": null , }} className="nav-link tm-nav-link" >سعر السيارات المستخدمة</a>
               <div style={{position:window.innerWidth < 960?"relative":"none",right:'5%' ,background: Dark === true ? "#000": null}}   className="dropdown-content">
                   <a style={{color:Dark === true ? "#fff": null }} href="#">سعر سيارتي </a>
                   <a style={{color:Dark === true ? "#fff": null }} href="#">سعر السيارات الجديدة</a>
@@ -20,7 +20,7 @@ const Seaction_navber =()=>{
             </li>
             <li  className="semiBold font15 pointer">
             <div   className="dropdown">
-            <a style={{color:Dark === true ? "#fff": null }}   className="nav-link tm-nav-link" href="#testimonials">ضمان السيارات</a>
+            <a style={{color:Dark === true ? "#fff": null }}   className="nav-link tm-nav-link" >ضمان السيارات</a>
               <div  style={{position:window.innerWidth < 960?"relative":"none",right:'5%',background: Dark === true ? "#000": null}} className="dropdown-content">
                   <a style={{color:Dark === true ? "#fff": null }} href="#">فحص السيارات </a>
                   <a style={{color:Dark === true ? "#fff": null }} href="#">انواع فحص السيارات</a>
@@ -30,7 +30,7 @@ const Seaction_navber =()=>{
             </li>
             <li className="semiBold font15 pointer">
               <div  className="dropdown">
-              <a style={{color:Dark === true ? "#fff": null }}   className="nav-link tm-nav-link" href="#testimonials">ضمان السيارات</a>
+              <a style={{color:Dark === true ? "#fff": null }}   className="nav-link tm-nav-link" >ضمان السيارات</a>
               <div style={{position:window.innerWidth < 960?"relative":"none",right:'5%',background: Dark === true ? "#000": null}}  className="dropdown-content">
                   <a style={{color:Dark === true ? "#fff": null }} href="#">اضمن لي سيارتي</a>
                   <a style={{color:Dark === true ? "#fff": null }} href="#">برنامج كارترستد</a>
@@ -40,7 +40,7 @@ const Seaction_navber =()=>{
             </li>
             <li  className="semiBold font15 pointer">
             <div   className="dropdown">
-              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" href="#testimonials">البيانات والأفكار</a>
+              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" >البيانات والأفكار</a>
               <div style={{position:window.innerWidth < 960?"relative":"none",right:'5%',background: Dark === true ? "#000": null}}  className="dropdown-content">
                   <a style={{color:Dark === true ? "#fff": null }} href="#">ساعدني اختار سيارة </a>
                   <a style={{color:Dark === true ? "#fff": null }} href="#">افضل السيارات</a>
@@ -53,7 +53,7 @@ const Seaction_navber =()=>{
             </li>
             <li  className="semiBold font15 pointer">
             <div   className="dropdown">
-              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" href="#testimonials">الحلول التقنية</a>
+              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" >الحلول التقنية</a>
               <div  style={{position:window.innerWidth < 960?"relative":"none",right:'5%',background: Dark === true ? "#000": null}}  className="dropdown-content">
                   <a style={{color:Dark === true ? "#fff": null }} href="#">منصة الشركاء </a>
                   <a style={{color:Dark === true ? "#fff": null }} href="#">منصة العناية بالسيارة </a>
@@ -64,23 +64,10 @@ const Seaction_navber =()=>{
               </div>
               </div>
             </li>
-            <li  className="semiBold font15 pointer">
-            <div className="dropdown">
-              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" href="#testimonials" onClick={()=> history(`/Dashboard`)}>لوحة التحكم</a>
-              </div>
-            </li>
-
-            {/* <li className="semiBold font15 pointer">
-
-              <NavLink to="checkout" style={{ padding: "10px 15px" }} spy={true} smooth={true} offset={-80}>
-                checkouts
-              </NavLink>
-            </li> */}
-
 
             <li className="semiBold font15 pointer">
             <div  className="dropdown">
-              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" href="#testimonials">كارترست</a>
+              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" >كارترست</a>
               <div style={{position:window.innerWidth < 960?"relative":"none",right:'5%',background: Dark === true ? "#000": null}}  className="dropdown-content">
                   <a style={{color:Dark === true ? "#fff": null }} href="#">ساعدني اختار سيارة </a>
                   <a style={{color:Dark === true ? "#fff": null }} href="#">قيمنا </a>
@@ -95,10 +82,15 @@ const Seaction_navber =()=>{
             </li>
 
             <li className=" pointer">
-              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" href="/carTrust"  >
+              <a style={{color:Dark === true ? "#fff": null }} className="nav-link tm-nav-link" href="/"  onClick={()=>{
+              localStorage.removeItem('cart_id')
+              localStorage.removeItem('checkoutData')
+              }} >
                 الصفحة الرئيسية
               </a>
             </li>
+
+  
       </>
     )
   } 

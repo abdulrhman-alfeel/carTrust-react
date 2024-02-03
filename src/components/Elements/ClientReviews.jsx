@@ -13,8 +13,13 @@ export default function ClientReviews() {
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
-      setWidth_slid(window.innerWidth < 960 ? 1 :4)
-
+      if(window.innerWidth === 820 && window.innerHeight === 1180  ){
+        setWidth_slid(1.5)
+      }if (window.innerWidth === 768 && window.innerHeight === 1024){
+        setWidth_slid(1.5)
+      }else{
+        setWidth_slid(window.innerWidth < 960 ? 1 :4)
+      }
     };
     window.addEventListener('resize', handleResize);
 
@@ -44,10 +49,8 @@ style={{
   fontStyle: "normal",
   fontWeight: "700",
   lineHeight: "130%" /* 52px */
-  
 }}
 >ما يقوله الناس عنا</h1>
-
 <br />
 <div
 >
@@ -57,43 +60,33 @@ style={{
     </div> */}
 
 <PostsClint 
-nameUser="Dawn Marie Williams "
+nameUser="يوسف مصطفى الحسيني "
 evaluation="5.0"
-title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
-veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+title="  هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى
 "
 />
       
 <PostsClint 
-nameUser="Dawn Marie Williams "
+nameUser="ناصر فهد الشهري "
 evaluation="5.0"
-title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
-veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+title=" هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى
 "
 />
       
 <PostsClint 
-nameUser="Dawn Marie Williams "
+nameUser="عبدالعزيز محمد السديس "
 evaluation="5.0"
-title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
-veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+title="  هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى
 "
 />
       
 <PostsClint 
-nameUser="Dawn Marie Williams "
+nameUser="ناصر فهد الشهري "
 evaluation="5.0"
-title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
-veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
+title=" هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى
 "
 />
-<PostsClint 
-nameUser="Dawn Marie Williams "
-evaluation="5.0"
-title="  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet, 
-veniam, repellat blanditiis, quam neque suscipit beatae possimus vero voluptatibus ipsa.
-"
-/>
+
       
     </Slider>
     </div>

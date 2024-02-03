@@ -14,10 +14,10 @@ export default function ServiceTitle({title, subtitle, subtitle2}) {
    
 
   return (
-    <Wrapper >
+    <Wrapper className="firvy_sever">
 
-<div className="container titles">
-      <div className="row">
+<div className="container titles ">
+      <div  className="row ">
       
         <div className="col-md-12" dir="rtl">
         <TitleStyle >{title}</TitleStyle>

@@ -33,7 +33,7 @@ export default function Projects() {
           كيف تحصل على خدمتك؟
         </GetServiceTitle>
         <GetServiceDescription className="col-12">
-          <GetServiceDescriptionText >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem nemo, amet beatae voluptates incidunt possimus expedita facere quod alias animi natus labore blanditiis qui facilis ex eos est obcaecati reprehenderit?</GetServiceDescriptionText>
+          <GetServiceDescriptionText>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.</GetServiceDescriptionText>
         </GetServiceDescription>
         
              <GetServiceColumn className="col-sm-12 col-md-12 col-lg-3">
@@ -43,8 +43,8 @@ export default function Projects() {
             </GetServiceIcon>
 
                 <div style={{margin:"30px"}}>
-                <h2>title</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h4>حمل التقرير</h4>
+                <p >هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص.</p>
                 </div>
               </GetServiceColumn>
              <GetServiceColumn  className="col-sm-12 col-md-12 col-lg-3">
@@ -53,8 +53,8 @@ export default function Projects() {
 
                 </GetServiceIcon>
                    <div style={{margin:"30px"}}>
-                <h2>title</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h4>اكمل الدفع</h4>
+                <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص.  </p>
                 </div>
               </GetServiceColumn>
              <GetServiceColumn className="col-sm-12 col-md-12 col-lg-3">
@@ -63,8 +63,8 @@ export default function Projects() {
              </GetServiceIcon>
 
                    <div style={{margin:"30px"}}>
-                <h2>title</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h4>اختر الخدمة</h4>
+                <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص.</p>
                 </div>
               </GetServiceColumn>
              <GetServiceColumn className="col-sm-12 col-md-12 col-lg-3">
@@ -72,17 +72,15 @@ export default function Projects() {
              <img style={{marginTop:"5px",width:"48px"}}  src={service_icon_4} alt="" />
 
              </GetServiceIcon>
-
-                   <div style={{margin:"30px"}}>
-                <h2>title</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <div style={{margin:"30px"}}>
+                <h4>ابحث عن سيارتك</h4>
+                <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص.</p>
                 </div>
               </GetServiceColumn>
        </GetService>
 
 
-       <PhoneApplication className="row">
-      
+       <PhoneApplication className="row homApplication">
              <AddLeft className="col-sm-12 col-md-6">
                  <ImgWrapper className="phone-images">
                   {/* <img  className="phone-image-1"  src={phone1} alt="add" /> */}
@@ -157,10 +155,19 @@ display:flex;
 align-items:center;
 justify-content: center; 
 overflow: hidden;
+
+@media (width:820px) and (height:1180px) {
+height: 850px;
+}
+@media  (width:768px) and (height:1024px){
+height: 850px;
+}
 @media (max-width: 860px) {
   width:100%;
   height: 100%;
-
+ }
+ @media(width:430px) and (height:932px){
+  height:100%
  }
     
 `;
@@ -316,11 +323,21 @@ width:50%;
 `;
  
 const ImgWrapper = styled.div`
-left: 100px;
-
+left:50px;
+@media(width:768px)and (height:1024px){
+  left:120px
+}
+@media(width:820px)and (height:1180px){
+  left:140px;
+  top:-5px
+}
 @media (max-width: 960px) {
-  left: 50px;
-  width:35rem
+  left: 120px;
+  top:90px;
+  width:35rem,
+    display: flex;
+  justify-content: center;
+  align-items: center;
 
   }
 

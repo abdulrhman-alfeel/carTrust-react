@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import FullButton from "../Buttons/FullButton";
 // Assets
 import Select from 'react-select';
+import Slider from "react-slick";
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,20 +53,6 @@ export default function Header() {
 
 
 
-
-  const options = [
-    {
-        label: 'Option 1',
-        value: 0,
-        image: 'https://example.com/amazing-image-1.png',
-    },
-    {
-        label: 'Option 2',
-        value: 1,
-        image: 'https://example.com/amazing-image-2.png',
-    }
-];
-
   const IconSingleValue = (props) => (
     <SingleValue {...props}>
         {props.data.name}
@@ -106,40 +93,20 @@ const customStyles = {
 
 
 
+const settings = {
+  infinite: true,
+  speed: 200,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay:true,
+  arrows: false,
 
-
-  const handleSlidePrev = (slidePrev, ind) => {
-    setSlideIndex(ind)
-    // Now, you have a reference to the child function
-    childRef.current = slidePrev;
-
-  };
-
-  const handleSlideNextClick = (e) => {
-    swiper?.slideNext();
-  };
-  console.log(childRef)
+};
 
   const handleSlidePrevClick = () => {
     swiper?.slidePrev();
   };
 
-  // if (status === 'loading') {
-  //   return <p>Loading...</p>;
-  // }
-
-  // if (status === 'failed') {
-  //   return <p>Error loading data</p>;
-  // }
-
-  const handleManufacturerChange = (value) => {
-    console.log(value.name)
-    setManufacturer(value);
-
-      console.log(manufacturers.find(pic => pic.name == value.name).id  )
-      dispatch(fetchModels(manufacturers.find(pic => pic.name == value.name).id ));
-
-  }
 
   const submitHandler = () => {
     history(`/checkout?&${manufacturer}&${model}&${year}`)
@@ -149,14 +116,14 @@ const customStyles = {
     <>
       <Wrapper id="home" className="headerComp">
         <div>
-          <Swiper
+          {/* <Swiper
             initialSlide={0}
             spaceBetween={50}
             slidesPerView={1}
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => setSwiper(swiper)}
-          >
-
+          > */}
+          <Slider  {...settings} >
             {images.map((image, index) => {
               return (
                 <SwiperSlide  key={index}>
@@ -186,10 +153,9 @@ const customStyles = {
                               handleSlidePrevClick();
                             }}
                           >
-                           <i class="fi fi-rr-arrow-small-right"
+                          <i class="fi fi-rr-arrow-small-right"
                             style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}
-
-                           ></i>
+                          ></i>
                           </button>
                           <button
                             style={{ backgroundColor: "white", width: "50px", height: "50px", borderRadius: "50px", borderColor: "#a5a6a8", borderWidth: "1px", margin: "5px" }}
@@ -198,12 +164,10 @@ const customStyles = {
                               handleSlidePrevClick();
                             }}
                           >
-                           <i class="fi fi-rr-arrow-small-left"
+                          <i class="fi fi-rr-arrow-small-left"
                             style={{display:"flex", justifyContent:'center',alignItems:'center',fontSize:"30px"}}
-
-                           ></i>
+                          ></i>
                           </button>
-                      
                         </NextPrevWrapper>
                       </div>
                     </LeftSide>
@@ -220,7 +184,8 @@ const customStyles = {
               );
               // return <img key={index} src={image.imgURL} alt={image.imgAlt} />;
             })}
-          </Swiper>
+            </Slider>
+          {/* </Swiper> */}
 
         </div>
       </Wrapper>

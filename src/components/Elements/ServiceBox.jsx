@@ -43,7 +43,7 @@ export default function ServiceBox({icon, title, subtitle}) {
 
         <div className="col-md-6 m-0 evlution_box_text" dir="rtl">
         <TitleStyle className="font20 extraBold ">{title}</TitleStyle>
-        <SubtitleStyle className="font13 ">{subtitle}</SubtitleStyle>
+        <SubtitleStyle className="font13 text_server ">{subtitle}</SubtitleStyle>
         </div>
 
         <br />
@@ -91,6 +91,7 @@ line-height: normal;
   text-align: center;
   width:10rem
 }
+
 `;
 const SubtitleStyle = styled.p`
 // word-wrap: break-word;
@@ -100,7 +101,7 @@ color: #858585;
 
 text-align: right;
 font-family: Tajawal;
-font-size: 20px;
+font-size: 16px;
 font-style: normal;
 font-weight: 800;
 line-height: normal;
@@ -109,7 +110,14 @@ line-height: normal;
   width :300px;
   word-wrap: break-word;
   text-align: center;
-  `;
+}
+@media (width:768px) and (height:1024px){
+  text-align: right;
+}
+@media (width:820px) and (height:1180px){
+  text-align: right;
+}
+`;
 
   const Divider = styled.div`
   stroke-width: 12px;

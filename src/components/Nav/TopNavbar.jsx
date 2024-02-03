@@ -1,21 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
 import styled from "styled-components";
 // Components
 import Backdrop from "../Elements/Backdrop";
 // Assets
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import united from '../../assets/img/united-kingdom.png';
 import BurgerIcon from "../../assets/svg/BurgerIcon";
 import LogoIcon from "../../assets/svg/Logo";
-import { logout } from "../../redux/features/dataSlice";
 import {useSaction_navbar} from './seaction_center_nav.js'
+
+import {
+  Flex,
+  Avatar,
+  Icon,
+  Input,
+  Text,
+  InputGroup,
+} from "@chakra-ui/react";
+
+
+import { changestat } from "../../redux/features/dataSlice";
+
+import Logincomponn from "../Sections/Logincomponn";
+import UsePage_user from "./user.jsx";
+
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
+
   const [sidebarOpen, toggleSidebar] = useState(false);
+  const [loginIt, setLoginIt] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
-  const Seaction_navber = useSaction_navbar(false)
+  const Seaction_navber = useSaction_navbar(false);
+
+  
   useEffect(() => {
     window.addEventListener("scroll", () => setY(window.scrollY));
     return () => {
@@ -24,14 +40,13 @@ export default function TopNavbar() {
   }, [y]);
 
   useEffect(()=>{
+    console.log(user,'helow user')
     const handleResize = () => {
       let count =window.innerWidth;
-     console.log( window.innerWidth );
-     if (parseInt(count) > 960){
-     toggleSidebar(false)}
+    if (parseInt(count) >  1312){
+      toggleSidebar(false)}
     };
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -39,106 +54,76 @@ export default function TopNavbar() {
   },[window.innerWidth])
   const dispatch = useDispatch();
 
-  const logoutHandler = () => {
-    dispatch(logout());
-    localStorage.removeItem("user");
-    document.location.reload();
-  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
     <>
       {/* <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} /> */}
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-     
       <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px" } : { height: "80px" }}>
-       
-        <NavInner className="container flexSpaceCenter">
-          <Link className="pointer flexNullCenter " to="home" smooth={true}>
+        <NavInner 
+        style={{
+          width:'100%',
+          // border:'solid 2px #000',
+          justifyContent:'space-between',
+          alignItems:'center',
+          flexDirection:'row-reverse',
+          }}
+        className="container flexSpaceCenter">
 
-            {
-              user ?
-                <>
-                  <li className="semiBold font15 pointer" style={{ backgroundColor: "#21207F", width: "150px", height: "40px", borderRadius: "10px", textAlign: "center" }}>
-                    <a href="/" onClick={logoutHandler} style={{ padding: "10px 30px 10px 0", color: "white", margin: "0 auto", display: "block" }}>
-                      logout
-                    </a>
-                  </li>
-                  <li className="semiBold font15 pointer" style={{ width: "150px", height: "20px", borderRadius: "10px", textAlign: "center" }}>
-                    <a href="/" style={{ margin: "0 auto", display: "block", color: "black" }}>
-                      {user.first_name} {user.last_name}
-                    </a>
-                  </li>
-                </>
-                :
-                <li className="semiBold font15 pointer" style={{  width: "150px", height: "55px", borderRadius: "10px", textAlign: "center",padding:"5px" }}>
-                  <NavLink
-                   className='buttonamait_login'
-                   to="/login" style={{
-                     width:"10em",
-                     height:"3em"
-                    , padding:"8px", color: "white", margin: "0 auto", display: "block" }}>
-                    دخول/تسجيل
-                  </NavLink>
-                </li>
-            }
-          
-            <li className="semiBold font15 pointer flexCenter switch-lung">
-              <a href="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
-                English
-              </a>
-              <a href="#whatwedo" class="text-center tm-down-arrow-link">
-                <img src={united} alt="flags" 
-                style={{
-                  width:"25px",
-                  borderRadius: "5px"}}/>
-            </a>
-            </li>
-            {/* <LogoIcon /> */}
-            {/* <h1 style={{ marginLeft: "15px" }} className="font20 extraBold">
-              fanatic
-            </h1> */}
-          </Link>
+{/* 888888888888888 */}
 
-
-         
+          {window.innerWidth > 960?
+          <UsePage_user setLoginIt={setLoginIt}/>  
+          :
+          null
+        }
           {sidebarOpen?
-           <div className="pointer" >
           <div className="dropdown_navber">
-                 <Seaction_navber />
-
-          </div>
+          <Seaction_navber />
+          <Flex justify='right' >
+          <UsePage_user setLoginIt={setLoginIt}/>  
+          </Flex>
           </div>
           :
           null
           }
-  
- 
-
           <UlWrapper className="flexNullCenter ">
           <Seaction_navber  />
           </UlWrapper>
-
+          <div
+          style={{
+            // position:'relative',
+            // left:window.innerWidth < 1100? window.innerHeight > 960 ? '24%': '7%':0,
+            Left:window.innerWidth > 1100 ? '100px' :'50px',
+            width:window.innerWidth > 1100 ? '10%' : window.innerHeight > 960 ? '75%':'25%',
+            // border:'solid 2px #000'
+          }}
+          >
           <LogoIcon />
+          </div>
           <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
             <BurgerIcon  className="burgerIcon"/>
- 
+
           </BurderWrapper>
-          {/* <UlWrapperRight > */}
-            
-            {/* <li className="semiBold font15 pointer">
-              <a href="/" style={{ padding: "10px 30px 10px 0" }}>
-                Log in
-              </a>
-            </li>
-            <li className="semiBold font15 pointer flexCenter">
-              <a href="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
-                Get Started
-              </a>
-            </li> */}
-          {/* </UlWrapperRight> */}
+      
         </NavInner>
       </Wrapper>
+      {loginIt === true? 
+        <Logincomponn setCansl={setLoginIt} />
+        :null}
     </>
   );
 }
@@ -148,12 +133,14 @@ const Wrapper = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  padding: 44px;
-  z-index: 999;
+  // padding: 44px;
+  padding-left:10px;
+  padding-right:10px;
+  z-index: 9999;
 `;
 const NavInner = styled.div`
   position: relative;
-  height: 100%;
+  // height: 100%;
 
   // border:solid 2px #000
 `
@@ -164,14 +151,14 @@ const BurderWrapper = styled.button`
   height: 100%;
   padding: 0 15px;
   display: none;
-  @media (max-width: 960px) {
+  @media (max-width:  1312px) {
     display: block;
   }
 `;
 const UlWrapper = styled.ul`
   display: flex;
 
-  @media (max-width: 960px) {
+  @media (max-width: 1312px) {
     display: none;
   }
 `;

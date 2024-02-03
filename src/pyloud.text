@@ -1,0 +1,112 @@
+  // https://secure.paytabs.sa/payment/page/5F40348582E4EC0AEA574E46001913C366D68C0D1CCD5A82C7FF5B5F/start
+
+
+  // {type: 'data/payment/fulfilled', payload: 'https://secure.paytabs.sa/payment/wr/5F403ED482E4E93269E52B3CDCE953533198F48EB7EF237439E14D18', meta: {…}}
+  // meta
+  // : 
+  // arg
+  // : 
+  // {cart: 492, return_url: 'https://freemarkate.com', amount: 1, string: 'h'}
+  // requestId
+  // : 
+  // "p53p1etSKgP5t5IzsZG77"
+  // requestStatus
+  // : 
+  // "fulfilled"
+  // [[Prototype]]
+  // : 
+  // Object
+  // payload
+  // : 
+  // "https://secure.paytabs.sa/payment/wr/5F403ED482E4E93269E52B3CDCE953533198F48EB7EF237439E14D18"
+  // type
+  // : 
+  // "data/payment/fulfilled"
+
+  // cart_id
+  // : 
+  // null
+  // discount_amount
+  // : 
+  // null
+  // payload
+  // : 
+  // accident
+  // : 
+  // "Low"
+  // address
+  // : 
+  // ""
+  // certified
+  // : 
+  // "yes"
+  // color
+  // : 
+  // "Black"
+  // ct_score
+  // : 
+  // ""
+  // maintenance_history
+  // : 
+  // "available"
+  // manufacturer_id
+  // : 
+  // "91"
+  // mileage
+  // : 
+  // "432423234"
+  // model_id
+  // : 
+  // "2741"
+  // origin
+  // : 
+  // "KSA / GCC Import"
+  // plato_no
+  // : 
+  // ""
+  // promo_code_id
+  // : 
+  // ""
+  // purpose_of_use
+  // : 
+  // "Personal"
+  // trim_id
+  // : 
+  // 40377
+  // warranty
+  // : 
+  // "manufacturer"
+  // year_id
+  // : 
+  // "133"
+  // [[Prototype]]
+  // : 
+  // Object
+  // service_amount
+  // : 
+  // "180"
+  // service_type
+  // : 
+  // "evaluation"
+  // total_payable
+  // : 
+
+
+
+
+
+
+
+
+
+  Reason #1: A Frontend HTTP request sent to Paytabs
+
+
+That means that you are using frontend JS to send/receive HTTP requests/responses within your integration with PayTabs. Which is not supported by PayTabs for higher security purposes.
+
+In this case, you will have to use your backend to perform those sending/receiving HTTP requests/responses actions.
+
+
+
+
+To know more about our various integration methods which include backend packages and eCommerce plugins and more please check our How To Integrate With Paytabs solution article. 

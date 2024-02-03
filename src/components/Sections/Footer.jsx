@@ -29,8 +29,6 @@ export default function Contact() {
        <div className="row-footer ">
          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 mt-10">
          <div className="contact-item inupt-footer">
-
-                  
               <a rel="nofollow" href="https://www.tooplate.com/contact" 
                   className="item-link"
                   style={{justifyContent:'flex-end',width:'100%'}}
@@ -52,13 +50,12 @@ export default function Contact() {
                     style={{textAlign:'right'}}
                     />
                   </div>ٍ
-                  
                   <a rel="nofollow" href="#section_3" className="item-link"
                    style={{
                    position: "relative",
                    right:"20px"
                    }}>
-                      <img src={evaluation} style={{width: "22rem"}}/>
+                      <img src={evaluation} style={{width:window.innerWidth === 768 ? "12rem"  : "22rem"}}/>
                   </a>              
           </div>
         </div>
@@ -76,15 +73,12 @@ export default function Contact() {
           </ListElement>
           </div>
           <ListElement>
-          <a rel="nofollow" className="   grid-cols-2"
-        
-          >
+          <a rel="nofollow" className="   grid-cols-2">
                     <div className="row"
                     // style={{margin:"2px"}}
                     >
                       <span className="mb-0 ">: الرقم الضريبي</span>
                       <span className="mb-0 ml-3">255-662-5566</span>
-             
                     </div>
                     <img src={cost} className="cost-footer"/>
                   </a>              
@@ -174,13 +168,16 @@ export default function Contact() {
       <a href="#"> <img src={RollerIcon} alt=""  className="cartrust-footer"/> </a>
       </div>
  </div>
+ <div>
+  <h6 style={{textAlign:'center',margin:'10px'}}>الحقوق محفوظة لدى شركة كارت ترست </h6>
+ </div>
   </Wrapper>
    );
 }
 
 const Wrapper = styled.div`
   background-color:#F6f6F6;
-  // border:solid 2px #000;
+  border:solid 1px #ccc;
   padding-top:10px
 `;
 const InnerWrapper = styled.div`

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function FullButton({ title, action, border }) {
+export default function FullButton({ title, action, border,hr }) {
   return (
     <Wrapper
+      href={hr}
       className="animate pointer radius8 buttom_slider "
       onClick={action ? () => action() : null}
       border={border}
@@ -13,12 +14,13 @@ export default function FullButton({ title, action, border }) {
   );
 }
 
-const Wrapper = styled.button`
+const Wrapper = styled.a`
   border: 1px solid #21207F;
   background-color: #2D3291;
   width: 18%;
   padding: 15px;
   outline: none;
+  text-align:center;
   border-radius: 8px;
   margin:10px 95px ;
   position: absolute;
