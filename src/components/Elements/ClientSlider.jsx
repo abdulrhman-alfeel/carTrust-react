@@ -24,11 +24,11 @@ export default function ClientSlider() {
   // }, [window.innerWidth]);
   const settings = {
     infinite: true,
-    speed: 200,
+    speed: 2500,
     slidesToShow: 7,
-    slidesToScroll: 7,
+    slidesToScroll: 1,
     autoplay:true,
-    arrows: false,
+    arrows: true,
 
   };
   return (

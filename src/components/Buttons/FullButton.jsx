@@ -17,7 +17,7 @@ export default function FullButton({ title, action, border,hr }) {
 const Wrapper = styled.a`
   border: 1px solid #21207F;
   background-color: #2D3291;
-  width: 18%;
+  width: 3%;
   padding: 15px;
   outline: none;
   text-align:center;

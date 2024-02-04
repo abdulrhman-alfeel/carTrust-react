@@ -12,8 +12,6 @@ import Select from 'react-select';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import 'swiper/css';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import arrow_log from '../../assets/img/arrow_log.png';
 import images from "../../data/images";
 import { fetchManufacturers, fetchModels,fetchTrims } from "../../redux/features/dataSlice";
@@ -226,7 +224,7 @@ export default function Header() {
         <Slider  autoplaySpeed={5000} {...settings} >
             {images.map((image, index) => {
               return (
-                <SwiperSlide key={index} style={{border:'solid 2px #000'}} >
+                <div key={index} style={{border:'solid 2px #000'}} >
                   <div className="row">
                     <LeftSide className="col-sm-12 col-md-6 col-lg-6 ">
                       <div dir="rtl">
@@ -234,7 +232,6 @@ export default function Header() {
                         style={{
                           marginTop:"9%",
                           marginRight:'7%',
-                       
                       }}
                         >
                         <h1 style={{   lineHeight:'2em'}} className="extraBold ">{image?.text1}</h1>
@@ -244,6 +241,7 @@ export default function Header() {
                         <BtnWrapper style={{
                           // position:'relative',
                           // top:'15em',
+                          overflow:'hidden',
                         display:window.innerWidth < 960?'none': 'flex'
                         }}>
                           <FullButton title={image?.buttonText} hr="#headrEvleaction" />
@@ -278,12 +276,15 @@ export default function Header() {
                       </div>
                     </LeftSide>
                     <RightSide className="col-sm-12 col-md-6 col-lg-6" >
+           
                     <img src={arrow_log} alt={image.imgAlt} 
-                    width='20%' 
+                    width='3%' 
                     style={{
                     position: "absolute",
-                    top: "1.5em",
-                    left: "45%",
+                    top: "2.5em",
+                    // left: '2%',
+                    // right:'50%',
+                    marginLeft:'-0.7%',
                     zIndex:999
                     }} />
                       <ImageWrapper>
@@ -303,7 +304,7 @@ export default function Header() {
 
                     </RightSide>
                   </div>
-                </SwiperSlide>
+                </div>
               );
               // return <img key={index} src={image.imgURL} alt={image.imgAlt} />;
             })}
